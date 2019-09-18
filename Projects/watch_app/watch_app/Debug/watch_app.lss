@@ -1,0 +1,1198 @@
+
+watch_app.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000592  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  00000592  00000626  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000023  0080006a  0080006a  00000630  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000630  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  00000cfc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000d93  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000100  00000000  00000000  00000dc2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000f7d  00000000  00000000  00000ec2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 0000051e  00000000  00000000  00001e3f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000003e0  00000000  00000000  0000235d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000224  00000000  00000000  00002740  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    0000054a  00000000  00000000  00002964  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000009ac  00000000  00000000  00002eae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 000000d8  00000000  00000000  0000385a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 50 00 	jmp	0xa0	; 0xa0 <__vector_11>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e9       	ldi	r30, 0x92	; 146
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ad 38       	cpi	r26, 0x8D	; 141
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 85 02 	call	0x50a	; 0x50a <main>
+  8a:	0c 94 c7 02 	jmp	0x58e	; 0x58e <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <interupt_config>:
+}*/
+
+static void  interupt_config()
+{
+	// timer0 interrupt setting
+	*(volatile unsigned char*)0x5f |=(1<<7);
+  92:	8f b7       	in	r24, 0x3f	; 63
+  94:	80 68       	ori	r24, 0x80	; 128
+  96:	8f bf       	out	0x3f, r24	; 63
+	*(volatile unsigned char*)0x59 |=(1<<0);
+  98:	89 b7       	in	r24, 0x39	; 57
+  9a:	81 60       	ori	r24, 0x01	; 1
+  9c:	89 bf       	out	0x39, r24	; 57
+  9e:	08 95       	ret
+
+000000a0 <__vector_11>:
+#include "commen.h"
+
+#include <avr/interrupt.h>
+static void(*cb_fun_ovf_t)();
+ISR(TIMER0_OVF_vect)
+{
+  a0:	1f 92       	push	r1
+  a2:	0f 92       	push	r0
+  a4:	0f b6       	in	r0, 0x3f	; 63
+  a6:	0f 92       	push	r0
+  a8:	11 24       	eor	r1, r1
+  aa:	2f 93       	push	r18
+  ac:	3f 93       	push	r19
+  ae:	4f 93       	push	r20
+  b0:	5f 93       	push	r21
+  b2:	6f 93       	push	r22
+  b4:	7f 93       	push	r23
+  b6:	8f 93       	push	r24
+  b8:	9f 93       	push	r25
+  ba:	af 93       	push	r26
+  bc:	bf 93       	push	r27
+  be:	ef 93       	push	r30
+  c0:	ff 93       	push	r31
+  (*cb_fun_ovf_t)();
+  c2:	e0 91 6a 00 	lds	r30, 0x006A
+  c6:	f0 91 6b 00 	lds	r31, 0x006B
+  ca:	09 95       	icall
+}
+  cc:	ff 91       	pop	r31
+  ce:	ef 91       	pop	r30
+  d0:	bf 91       	pop	r27
+  d2:	af 91       	pop	r26
+  d4:	9f 91       	pop	r25
+  d6:	8f 91       	pop	r24
+  d8:	7f 91       	pop	r23
+  da:	6f 91       	pop	r22
+  dc:	5f 91       	pop	r21
+  de:	4f 91       	pop	r20
+  e0:	3f 91       	pop	r19
+  e2:	2f 91       	pop	r18
+  e4:	0f 90       	pop	r0
+  e6:	0f be       	out	0x3f, r0	; 63
+  e8:	0f 90       	pop	r0
+  ea:	1f 90       	pop	r1
+  ec:	18 95       	reti
+
+000000ee <hal_init_timer>:
+	// timer0 interrupt setting
+	*(volatile unsigned char*)0x5f |=(1<<7);
+	*(volatile unsigned char*)0x59 |=(1<<0);
+}
+ecore_su8 hal_init_timer(gcfg_hal_timer_t * obj, ecore_u8* cb_fun_ovf)
+{
+  ee:	cf 93       	push	r28
+  f0:	df 93       	push	r29
+  f2:	ec 01       	movw	r28, r24
+   // static ecore_s8 check=obj->ins_timer;
+	ecore_su8 ret_val = E_OK;
+	if(obj != NULL)
+  f4:	00 97       	sbiw	r24, 0x00	; 0
+  f6:	09 f4       	brne	.+2      	; 0xfa <hal_init_timer+0xc>
+  f8:	45 c0       	rjmp	.+138    	; 0x184 <hal_init_timer+0x96>
+	{
+		if(obj->freq && obj->ins_timer && obj->timer_fun &&(cb_fun_ovf!=NULL))
+  fa:	89 81       	ldd	r24, Y+1	; 0x01
+  fc:	88 23       	and	r24, r24
+  fe:	09 f4       	brne	.+2      	; 0x102 <hal_init_timer+0x14>
+ 100:	43 c0       	rjmp	.+134    	; 0x188 <hal_init_timer+0x9a>
+ 102:	98 81       	ld	r25, Y
+ 104:	99 23       	and	r25, r25
+ 106:	09 f4       	brne	.+2      	; 0x10a <hal_init_timer+0x1c>
+ 108:	41 c0       	rjmp	.+130    	; 0x18c <hal_init_timer+0x9e>
+ 10a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 10c:	88 23       	and	r24, r24
+ 10e:	09 f4       	brne	.+2      	; 0x112 <hal_init_timer+0x24>
+ 110:	3f c0       	rjmp	.+126    	; 0x190 <hal_init_timer+0xa2>
+ 112:	61 15       	cp	r22, r1
+ 114:	71 05       	cpc	r23, r1
+ 116:	f1 f1       	breq	.+124    	; 0x194 <hal_init_timer+0xa6>
+		{
+			 cb_fun_ovf_t = cb_fun_ovf;
+ 118:	70 93 6b 00 	sts	0x006B, r23
+ 11c:	60 93 6a 00 	sts	0x006A, r22
+			 if( obj->ins_timer==TIMER_0)
+ 120:	93 35       	cpi	r25, 0x53	; 83
+ 122:	c9 f4       	brne	.+50     	; 0x156 <hal_init_timer+0x68>
+			 {
+				 if(obj->timer_fun==NORMAL_MODE)
+ 124:	81 30       	cpi	r24, 0x01	; 1
+ 126:	21 f4       	brne	.+8      	; 0x130 <hal_init_timer+0x42>
+				 *(volatile unsigned char*)TIMER_0 &=~(1<<3) &~(1<<6);
+ 128:	83 b7       	in	r24, 0x33	; 51
+ 12a:	87 7b       	andi	r24, 0xB7	; 183
+ 12c:	83 bf       	out	0x33, r24	; 51
+ 12e:	0b c0       	rjmp	.+22     	; 0x146 <hal_init_timer+0x58>
+				 else if(obj->timer_fun==PWM_PHASE_CORRECT)
+ 130:	82 30       	cpi	r24, 0x02	; 2
+ 132:	21 f4       	brne	.+8      	; 0x13c <hal_init_timer+0x4e>
+				 *(volatile unsigned char*)TIMER_0 |=(1<<3) &~(1<<6);
+ 134:	83 b7       	in	r24, 0x33	; 51
+ 136:	88 60       	ori	r24, 0x08	; 8
+ 138:	83 bf       	out	0x33, r24	; 51
+ 13a:	05 c0       	rjmp	.+10     	; 0x146 <hal_init_timer+0x58>
+				 else if(obj->timer_fun==CTC_MODE)
+				 *(volatile unsigned char*)TIMER_0 &=~(1<<3) |(1<<6);
+				 else if(obj->timer_fun==FAST_PWM)
+ 13c:	83 30       	cpi	r24, 0x03	; 3
+ 13e:	19 f4       	brne	.+6      	; 0x146 <hal_init_timer+0x58>
+				 *(volatile unsigned char*)TIMER_0 |=(1<<3) |(1<<6);
+ 140:	83 b7       	in	r24, 0x33	; 51
+ 142:	88 64       	ori	r24, 0x48	; 72
+ 144:	83 bf       	out	0x33, r24	; 51
+				 interupt_config();
+ 146:	0e 94 49 00 	call	0x92	; 0x92 <interupt_config>
+				 *(volatile unsigned char*)obj->ins_timer=obj->freq;
+ 14a:	e8 81       	ld	r30, Y
+ 14c:	f0 e0       	ldi	r31, 0x00	; 0
+ 14e:	89 81       	ldd	r24, Y+1	; 0x01
+ 150:	80 83       	st	Z, r24
+	*(volatile unsigned char*)0x59 |=(1<<0);
+}
+ecore_su8 hal_init_timer(gcfg_hal_timer_t * obj, ecore_u8* cb_fun_ovf)
+{
+   // static ecore_s8 check=obj->ins_timer;
+	ecore_su8 ret_val = E_OK;
+ 152:	81 e0       	ldi	r24, 0x01	; 1
+ 154:	22 c0       	rjmp	.+68     	; 0x19a <hal_init_timer+0xac>
+				 else if(obj->timer_fun==FAST_PWM)
+				 *(volatile unsigned char*)TIMER_0 |=(1<<3) |(1<<6);
+				 interupt_config();
+				 *(volatile unsigned char*)obj->ins_timer=obj->freq;
+			 }
+			  else if(obj->ins_timer==TIMER_2)
+ 156:	95 34       	cpi	r25, 0x45	; 69
+ 158:	f9 f4       	brne	.+62     	; 0x198 <hal_init_timer+0xaa>
+			  {
+				  if(obj->timer_fun==NORMAL_MODE)
+ 15a:	81 30       	cpi	r24, 0x01	; 1
+ 15c:	21 f4       	brne	.+8      	; 0x166 <hal_init_timer+0x78>
+				  *(volatile unsigned char*)TIMER_0 &=~(1<<3) &~(1<<6);
+ 15e:	83 b7       	in	r24, 0x33	; 51
+ 160:	87 7b       	andi	r24, 0xB7	; 183
+ 162:	83 bf       	out	0x33, r24	; 51
+ 164:	0b c0       	rjmp	.+22     	; 0x17c <hal_init_timer+0x8e>
+				  else if(obj->timer_fun==PWM_PHASE_CORRECT)
+ 166:	82 30       	cpi	r24, 0x02	; 2
+ 168:	21 f4       	brne	.+8      	; 0x172 <hal_init_timer+0x84>
+				  *(volatile unsigned char*)TIMER_0 |=(1<<3) &~(1<<6);
+ 16a:	83 b7       	in	r24, 0x33	; 51
+ 16c:	88 60       	ori	r24, 0x08	; 8
+ 16e:	83 bf       	out	0x33, r24	; 51
+ 170:	05 c0       	rjmp	.+10     	; 0x17c <hal_init_timer+0x8e>
+				  else if(obj->timer_fun==CTC_MODE)
+				  *(volatile unsigned char*)TIMER_0 &=~(1<<3) |(1<<6);
+				  else if(obj->timer_fun==FAST_PWM)
+ 172:	83 30       	cpi	r24, 0x03	; 3
+ 174:	19 f4       	brne	.+6      	; 0x17c <hal_init_timer+0x8e>
+				  *(volatile unsigned char*)TIMER_0 |=(1<<3) |(1<<6);
+ 176:	83 b7       	in	r24, 0x33	; 51
+ 178:	88 64       	ori	r24, 0x48	; 72
+ 17a:	83 bf       	out	0x33, r24	; 51
+				   interupt_config();
+ 17c:	0e 94 49 00 	call	0x92	; 0x92 <interupt_config>
+	*(volatile unsigned char*)0x59 |=(1<<0);
+}
+ecore_su8 hal_init_timer(gcfg_hal_timer_t * obj, ecore_u8* cb_fun_ovf)
+{
+   // static ecore_s8 check=obj->ins_timer;
+	ecore_su8 ret_val = E_OK;
+ 180:	81 e0       	ldi	r24, 0x01	; 1
+ 182:	0b c0       	rjmp	.+22     	; 0x19a <hal_init_timer+0xac>
+			ret_val = INVALID_ARG;
+		}
+	}
+	else
+	{
+		ret_val = INVALID_ARG;
+ 184:	8d ec       	ldi	r24, 0xCD	; 205
+ 186:	09 c0       	rjmp	.+18     	; 0x19a <hal_init_timer+0xac>
+			  }
+			
+		}
+		else
+		{
+			ret_val = INVALID_ARG;
+ 188:	8d ec       	ldi	r24, 0xCD	; 205
+ 18a:	07 c0       	rjmp	.+14     	; 0x19a <hal_init_timer+0xac>
+ 18c:	8d ec       	ldi	r24, 0xCD	; 205
+ 18e:	05 c0       	rjmp	.+10     	; 0x19a <hal_init_timer+0xac>
+ 190:	8d ec       	ldi	r24, 0xCD	; 205
+ 192:	03 c0       	rjmp	.+6      	; 0x19a <hal_init_timer+0xac>
+ 194:	8d ec       	ldi	r24, 0xCD	; 205
+ 196:	01 c0       	rjmp	.+2      	; 0x19a <hal_init_timer+0xac>
+				   interupt_config();
+				   
+			  }
+			  else
+			  {
+				  ret_val = INVALID_ARG;
+ 198:	8d ec       	ldi	r24, 0xCD	; 205
+	else
+	{
+		ret_val = INVALID_ARG;
+	}
+	return ret_val;
+}
+ 19a:	df 91       	pop	r29
+ 19c:	cf 91       	pop	r28
+ 19e:	08 95       	ret
+
+000001a0 <seven_seg_init>:
+
+bool_t seven_seg_init(enum_port_base_t port_base, enum_seven_seg_type_t seven_seg_type, ecore_u8 * handler )
+{
+	bool_t b_ret_val = E_TRUE;
+
+	if((handler != NULL))
+ 1a0:	41 15       	cp	r20, r1
+ 1a2:	51 05       	cpc	r21, r1
+ 1a4:	d1 f1       	breq	.+116    	; 0x21a <seven_seg_init+0x7a>
+	{
+
+		if(count_deinit !=0)
+ 1a6:	30 91 6d 00 	lds	r19, 0x006D
+ 1aa:	33 23       	and	r19, r19
+ 1ac:	d9 f0       	breq	.+54     	; 0x1e4 <seven_seg_init+0x44>
+ 1ae:	90 e0       	ldi	r25, 0x00	; 0
+		{
+			for(ecore_u8 i=0 ; i < count_deinit ; i++ ,count_deinit --)
+			{
+				*(volatile ecore_u8*)(port_base + 1) = 0xff;
+ 1b0:	a8 2f       	mov	r26, r24
+ 1b2:	b0 e0       	ldi	r27, 0x00	; 0
+ 1b4:	11 96       	adiw	r26, 0x01	; 1
+ 1b6:	4f ef       	ldi	r20, 0xFF	; 255
+ 1b8:	4c 93       	st	X, r20
+				ga_seven_handlers[arr_deinit_num[i]].enum_base_port = port_base;
+ 1ba:	e9 2f       	mov	r30, r25
+ 1bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 1be:	e2 59       	subi	r30, 0x92	; 146
+ 1c0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1c2:	e0 81       	ld	r30, Z
+ 1c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c6:	ee 0f       	add	r30, r30
+ 1c8:	ff 1f       	adc	r31, r31
+ 1ca:	e1 59       	subi	r30, 0x91	; 145
+ 1cc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ce:	80 83       	st	Z, r24
+ 				ga_seven_handlers[arr_deinit_num[i]].enum_type = seven_seg_type;
+ 1d0:	61 83       	std	Z+1, r22	; 0x01
+	if((handler != NULL))
+	{
+
+		if(count_deinit !=0)
+		{
+			for(ecore_u8 i=0 ; i < count_deinit ; i++ ,count_deinit --)
+ 1d2:	9f 5f       	subi	r25, 0xFF	; 255
+static  ecore_u8 arr_deinit_num [] ={0};
+
+ ecore_u8 handler_counter = 0;
+ ecore_u8 element_deinit = 0;
+
+bool_t seven_seg_init(enum_port_base_t port_base, enum_seven_seg_type_t seven_seg_type, ecore_u8 * handler )
+ 1d4:	23 2f       	mov	r18, r19
+ 1d6:	29 1b       	sub	r18, r25
+	if((handler != NULL))
+	{
+
+		if(count_deinit !=0)
+		{
+			for(ecore_u8 i=0 ; i < count_deinit ; i++ ,count_deinit --)
+ 1d8:	92 17       	cp	r25, r18
+ 1da:	70 f3       	brcs	.-36     	; 0x1b8 <seven_seg_init+0x18>
+ 1dc:	20 93 6d 00 	sts	0x006D, r18
+ ecore_u8 handler_counter = 0;
+ ecore_u8 element_deinit = 0;
+
+bool_t seven_seg_init(enum_port_base_t port_base, enum_seven_seg_type_t seven_seg_type, ecore_u8 * handler )
+{
+	bool_t b_ret_val = E_TRUE;
+ 1e0:	81 e0       	ldi	r24, 0x01	; 1
+ 1e2:	08 95       	ret
+				ga_seven_handlers[arr_deinit_num[i]].enum_base_port = port_base;
+ 				ga_seven_handlers[arr_deinit_num[i]].enum_type = seven_seg_type;
+			}
+		}
+
+	   else if(handler_counter < MAX_NUMBER_OF_HANDLERS)
+ 1e4:	90 91 6c 00 	lds	r25, 0x006C
+ 1e8:	94 30       	cpi	r25, 0x04	; 4
+ 1ea:	c8 f4       	brcc	.+50     	; 0x21e <seven_seg_init+0x7e>
+		{
+			*(volatile ecore_u8*)(port_base + 1) = 0xff;
+ 1ec:	e8 2f       	mov	r30, r24
+ 1ee:	f0 e0       	ldi	r31, 0x00	; 0
+ 1f0:	9f ef       	ldi	r25, 0xFF	; 255
+ 1f2:	91 83       	std	Z+1, r25	; 0x01
+			ga_seven_handlers[handler_counter].enum_base_port = port_base;
+ 1f4:	90 91 6c 00 	lds	r25, 0x006C
+ 1f8:	e9 2f       	mov	r30, r25
+ 1fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 1fc:	ee 0f       	add	r30, r30
+ 1fe:	ff 1f       	adc	r31, r31
+ 200:	e1 59       	subi	r30, 0x91	; 145
+ 202:	ff 4f       	sbci	r31, 0xFF	; 255
+ 204:	80 83       	st	Z, r24
+			ga_seven_handlers[handler_counter].enum_type = seven_seg_type;
+ 206:	61 83       	std	Z+1, r22	; 0x01
+			*handler = handler_counter;
+ 208:	fa 01       	movw	r30, r20
+ 20a:	90 83       	st	Z, r25
+			handler_counter++;
+ 20c:	80 91 6c 00 	lds	r24, 0x006C
+ 210:	8f 5f       	subi	r24, 0xFF	; 255
+ 212:	80 93 6c 00 	sts	0x006C, r24
+ ecore_u8 handler_counter = 0;
+ ecore_u8 element_deinit = 0;
+
+bool_t seven_seg_init(enum_port_base_t port_base, enum_seven_seg_type_t seven_seg_type, ecore_u8 * handler )
+{
+	bool_t b_ret_val = E_TRUE;
+ 216:	81 e0       	ldi	r24, 0x01	; 1
+ 218:	08 95       	ret
+			b_ret_val = E_FALSE;
+		}
+	}
+	else
+	{
+		b_ret_val = E_FALSE;
+ 21a:	80 e0       	ldi	r24, 0x00	; 0
+ 21c:	08 95       	ret
+			*handler = handler_counter;
+			handler_counter++;
+		}
+		else
+		{
+			b_ret_val = E_FALSE;
+ 21e:	80 e0       	ldi	r24, 0x00	; 0
+	{
+		b_ret_val = E_FALSE;
+	}
+
+	return b_ret_val;
+}
+ 220:	08 95       	ret
+
+00000222 <seven_seg_display>:
+
+bool_t seven_seg_display(ecore_u8 handler , ecore_u8 dis_no)
+{
+	bool_t b_ret_val = E_TRUE;
+	if((handler_counter < MAX_NUMBER_OF_HANDLERS) && (dis_no < 10))
+ 222:	90 91 6c 00 	lds	r25, 0x006C
+ 226:	94 30       	cpi	r25, 0x04	; 4
+ 228:	50 f5       	brcc	.+84     	; 0x27e <seven_seg_display+0x5c>
+ 22a:	6a 30       	cpi	r22, 0x0A	; 10
+ 22c:	50 f5       	brcc	.+84     	; 0x282 <seven_seg_display+0x60>
+	{
+		if(ga_seven_handlers[handler].enum_base_port != 0)
+ 22e:	90 e0       	ldi	r25, 0x00	; 0
+ 230:	fc 01       	movw	r30, r24
+ 232:	ee 0f       	add	r30, r30
+ 234:	ff 1f       	adc	r31, r31
+ 236:	e1 59       	subi	r30, 0x91	; 145
+ 238:	ff 4f       	sbci	r31, 0xFF	; 255
+ 23a:	20 81       	ld	r18, Z
+ 23c:	22 23       	and	r18, r18
+ 23e:	19 f1       	breq	.+70     	; 0x286 <seven_seg_display+0x64>
+		{
+			if(ga_seven_handlers[handler].enum_type == COMMON_ANOD)
+ 240:	fc 01       	movw	r30, r24
+ 242:	ee 0f       	add	r30, r30
+ 244:	ff 1f       	adc	r31, r31
+ 246:	e1 59       	subi	r30, 0x91	; 145
+ 248:	ff 4f       	sbci	r31, 0xFF	; 255
+ 24a:	81 81       	ldd	r24, Z+1	; 0x01
+ 24c:	81 11       	cpse	r24, r1
+ 24e:	0a c0       	rjmp	.+20     	; 0x264 <seven_seg_display+0x42>
+			{
+				*(volatile ecore_u8*)(ga_seven_handlers[handler].enum_base_port + 2) = pattern[dis_no];
+ 250:	e2 2f       	mov	r30, r18
+ 252:	f0 e0       	ldi	r31, 0x00	; 0
+ 254:	a6 2f       	mov	r26, r22
+ 256:	b0 e0       	ldi	r27, 0x00	; 0
+ 258:	a0 5a       	subi	r26, 0xA0	; 160
+ 25a:	bf 4f       	sbci	r27, 0xFF	; 255
+ 25c:	8c 91       	ld	r24, X
+ 25e:	82 83       	std	Z+2, r24	; 0x02
+	return b_ret_val;
+}
+
+bool_t seven_seg_display(ecore_u8 handler , ecore_u8 dis_no)
+{
+	bool_t b_ret_val = E_TRUE;
+ 260:	81 e0       	ldi	r24, 0x01	; 1
+ 262:	08 95       	ret
+		{
+			if(ga_seven_handlers[handler].enum_type == COMMON_ANOD)
+			{
+				*(volatile ecore_u8*)(ga_seven_handlers[handler].enum_base_port + 2) = pattern[dis_no];
+			}
+			else if(ga_seven_handlers[handler].enum_type == COMMON_CATHOD)
+ 264:	81 30       	cpi	r24, 0x01	; 1
+ 266:	89 f4       	brne	.+34     	; 0x28a <seven_seg_display+0x68>
+			{
+				*(volatile ecore_u8*)(ga_seven_handlers[handler].enum_base_port + 2) = ~pattern[dis_no];
+ 268:	e2 2f       	mov	r30, r18
+ 26a:	f0 e0       	ldi	r31, 0x00	; 0
+ 26c:	a6 2f       	mov	r26, r22
+ 26e:	b0 e0       	ldi	r27, 0x00	; 0
+ 270:	a0 5a       	subi	r26, 0xA0	; 160
+ 272:	bf 4f       	sbci	r27, 0xFF	; 255
+ 274:	8c 91       	ld	r24, X
+ 276:	80 95       	com	r24
+ 278:	82 83       	std	Z+2, r24	; 0x02
+	return b_ret_val;
+}
+
+bool_t seven_seg_display(ecore_u8 handler , ecore_u8 dis_no)
+{
+	bool_t b_ret_val = E_TRUE;
+ 27a:	81 e0       	ldi	r24, 0x01	; 1
+ 27c:	08 95       	ret
+			b_ret_val = E_FALSE;
+		}
+	}
+	else
+	{
+		b_ret_val = E_FALSE;
+ 27e:	80 e0       	ldi	r24, 0x00	; 0
+ 280:	08 95       	ret
+ 282:	80 e0       	ldi	r24, 0x00	; 0
+ 284:	08 95       	ret
+			}
+		}
+		else
+		{
+			/*module not init*/
+			b_ret_val = E_FALSE;
+ 286:	80 e0       	ldi	r24, 0x00	; 0
+ 288:	08 95       	ret
+				*(volatile ecore_u8*)(ga_seven_handlers[handler].enum_base_port + 2) = ~pattern[dis_no];
+			}
+			else
+			{
+				/*invalid parameter*/
+				b_ret_val  = E_FALSE;
+ 28a:	80 e0       	ldi	r24, 0x00	; 0
+	else
+	{
+		b_ret_val = E_FALSE;
+	}
+	return b_ret_val;
+}
+ 28c:	08 95       	ret
+
+0000028e <counter_time>:
+static ecore_u8 used_timers=0;
+static ecore_u8 resolution;
+
+void counter_time()
+{
+	for(ecore_u8 i =0; i<used_timers;i++)
+ 28e:	20 91 7f 00 	lds	r18, 0x007F
+ 292:	22 23       	and	r18, r18
+ 294:	59 f0       	breq	.+22     	; 0x2ac <counter_time+0x1e>
+ 296:	a7 e7       	ldi	r26, 0x77	; 119
+ 298:	b0 e0       	ldi	r27, 0x00	; 0
+ 29a:	80 e0       	ldi	r24, 0x00	; 0
+	{
+		ga_str_t[i]->curent_time--;
+ 29c:	ed 91       	ld	r30, X+
+ 29e:	fd 91       	ld	r31, X+
+ 2a0:	94 81       	ldd	r25, Z+4	; 0x04
+ 2a2:	91 50       	subi	r25, 0x01	; 1
+ 2a4:	94 83       	std	Z+4, r25	; 0x04
+static ecore_u8 used_timers=0;
+static ecore_u8 resolution;
+
+void counter_time()
+{
+	for(ecore_u8 i =0; i<used_timers;i++)
+ 2a6:	8f 5f       	subi	r24, 0xFF	; 255
+ 2a8:	82 17       	cp	r24, r18
+ 2aa:	c0 f3       	brcs	.-16     	; 0x29c <counter_time+0xe>
+ 2ac:	08 95       	ret
+
+000002ae <tmu_init>:
+
+
+bool_t tmu_init(base_timer timer , ecore_u8 res)
+{
+	bool_t ret_val =E_TRUE;
+	if((timer < INVALID_MAX_INDEX)|(timer > INVALID_MAX_INDEX) && (res !=0) && (init_flag==0))
+ 2ae:	86 34       	cpi	r24, 0x46	; 70
+ 2b0:	61 f0       	breq	.+24     	; 0x2ca <tmu_init+0x1c>
+ 2b2:	66 23       	and	r22, r22
+ 2b4:	61 f0       	breq	.+24     	; 0x2ce <tmu_init+0x20>
+ 2b6:	80 91 80 00 	lds	r24, 0x0080
+ 2ba:	81 11       	cpse	r24, r1
+ 2bc:	0a c0       	rjmp	.+20     	; 0x2d2 <tmu_init+0x24>
+//    if(1)
+	{
+	    resolution = res;
+ 2be:	60 93 81 00 	sts	0x0081, r22
+		init_flag=1;
+ 2c2:	81 e0       	ldi	r24, 0x01	; 1
+ 2c4:	80 93 80 00 	sts	0x0080, r24
+ 2c8:	08 95       	ret
+
+	}
+	else
+	{
+		ret_val=E_FALSE;
+ 2ca:	80 e0       	ldi	r24, 0x00	; 0
+ 2cc:	08 95       	ret
+ 2ce:	80 e0       	ldi	r24, 0x00	; 0
+ 2d0:	08 95       	ret
+ 2d2:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	return ret_val;
+}
+ 2d4:	08 95       	ret
+
+000002d6 <start_timer>:
+
+
+
+bool_t start_timer(void(*cb)(), type_timer type, ecore_u8 time, str_obj * obg_adrs)
+{
+ 2d6:	0f 93       	push	r16
+ 2d8:	1f 93       	push	r17
+ 2da:	cf 93       	push	r28
+ 2dc:	df 93       	push	r29
+
+	bool_t ret_val=E_TRUE;
+	if((cb!= NULL) && (type < 2) && (obg_adrs != NULL) && (time>0) && (init_flag!=0))
+ 2de:	00 97       	sbiw	r24, 0x00	; 0
+ 2e0:	09 f4       	brne	.+2      	; 0x2e4 <start_timer+0xe>
+ 2e2:	43 c0       	rjmp	.+134    	; 0x36a <start_timer+0x94>
+ 2e4:	62 30       	cpi	r22, 0x02	; 2
+ 2e6:	08 f0       	brcs	.+2      	; 0x2ea <start_timer+0x14>
+ 2e8:	42 c0       	rjmp	.+132    	; 0x36e <start_timer+0x98>
+ 2ea:	21 15       	cp	r18, r1
+ 2ec:	31 05       	cpc	r19, r1
+ 2ee:	09 f4       	brne	.+2      	; 0x2f2 <start_timer+0x1c>
+ 2f0:	40 c0       	rjmp	.+128    	; 0x372 <start_timer+0x9c>
+ 2f2:	44 23       	and	r20, r20
+ 2f4:	09 f4       	brne	.+2      	; 0x2f8 <start_timer+0x22>
+ 2f6:	3f c0       	rjmp	.+126    	; 0x376 <start_timer+0xa0>
+ 2f8:	50 91 80 00 	lds	r21, 0x0080
+ 2fc:	55 23       	and	r21, r21
+ 2fe:	e9 f1       	breq	.+122    	; 0x37a <start_timer+0xa4>
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+ 300:	70 91 7f 00 	lds	r23, 0x007F
+ 304:	74 30       	cpi	r23, 0x04	; 4
+ 306:	d8 f5       	brcc	.+118    	; 0x37e <start_timer+0xa8>
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+		   {
+			if(ga_str_t[i]==NULL)
+ 308:	e0 91 77 00 	lds	r30, 0x0077
+ 30c:	f0 91 78 00 	lds	r31, 0x0078
+ 310:	30 97       	sbiw	r30, 0x00	; 0
+ 312:	71 f0       	breq	.+28     	; 0x330 <start_timer+0x5a>
+			obg_adrs->type=type;
+			obg_adrs->curent_time=time;
+			used_timers++;
+			break;
+			}
+			else if(ga_str_t[i] ==obg_adrs)
+ 314:	2e 17       	cp	r18, r30
+ 316:	3f 07       	cpc	r19, r31
+ 318:	a1 f1       	breq	.+104    	; 0x382 <start_timer+0xac>
+ 31a:	c9 e7       	ldi	r28, 0x79	; 121
+ 31c:	d0 e0       	ldi	r29, 0x00	; 0
+ 31e:	e1 e0       	ldi	r30, 0x01	; 1
+ 320:	f0 e0       	ldi	r31, 0x00	; 0
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+		   {
+			if(ga_str_t[i]==NULL)
+ 322:	8f 01       	movw	r16, r30
+ 324:	a9 91       	ld	r26, Y+
+ 326:	b9 91       	ld	r27, Y+
+ 328:	10 97       	sbiw	r26, 0x00	; 0
+ 32a:	b1 f4       	brne	.+44     	; 0x358 <start_timer+0x82>
+				break;
+		    }
+
+			else
+			{
+				ret_val=E_FALSE;
+ 32c:	50 e0       	ldi	r21, 0x00	; 0
+ 32e:	03 c0       	rjmp	.+6      	; 0x336 <start_timer+0x60>
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+		   {
+			if(ga_str_t[i]==NULL)
+ 330:	00 e0       	ldi	r16, 0x00	; 0
+ 332:	10 e0       	ldi	r17, 0x00	; 0
+ 334:	51 e0       	ldi	r21, 0x01	; 1
+			{
+			ga_str_t[i]=obg_adrs;
+ 336:	f8 01       	movw	r30, r16
+ 338:	ee 0f       	add	r30, r30
+ 33a:	ff 1f       	adc	r31, r31
+ 33c:	e9 58       	subi	r30, 0x89	; 137
+ 33e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 340:	31 83       	std	Z+1, r19	; 0x01
+ 342:	20 83       	st	Z, r18
+			obg_adrs->cb=cb;
+ 344:	f9 01       	movw	r30, r18
+ 346:	92 83       	std	Z+2, r25	; 0x02
+ 348:	81 83       	std	Z+1, r24	; 0x01
+			obg_adrs->time=time;
+ 34a:	40 83       	st	Z, r20
+			obg_adrs->type=type;
+ 34c:	63 83       	std	Z+3, r22	; 0x03
+			obg_adrs->curent_time=time;
+ 34e:	44 83       	std	Z+4, r20	; 0x04
+			used_timers++;
+ 350:	7f 5f       	subi	r23, 0xFF	; 255
+ 352:	70 93 7f 00 	sts	0x007F, r23
+			break;
+ 356:	18 c0       	rjmp	.+48     	; 0x388 <start_timer+0xb2>
+			}
+			else if(ga_str_t[i] ==obg_adrs)
+ 358:	2a 17       	cp	r18, r26
+ 35a:	3b 07       	cpc	r19, r27
+ 35c:	a1 f0       	breq	.+40     	; 0x386 <start_timer+0xb0>
+ 35e:	31 96       	adiw	r30, 0x01	; 1
+	bool_t ret_val=E_TRUE;
+	if((cb!= NULL) && (type < 2) && (obg_adrs != NULL) && (time>0) && (init_flag!=0))
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+ 360:	e4 30       	cpi	r30, 0x04	; 4
+ 362:	f1 05       	cpc	r31, r1
+ 364:	f1 f6       	brne	.-68     	; 0x322 <start_timer+0x4c>
+				break;
+		    }
+
+			else
+			{
+				ret_val=E_FALSE;
+ 366:	50 e0       	ldi	r21, 0x00	; 0
+ 368:	0f c0       	rjmp	.+30     	; 0x388 <start_timer+0xb2>
+			ret_val=E_FALSE;
+		}
+	}
+	else
+	{
+		ret_val=E_FALSE;
+ 36a:	50 e0       	ldi	r21, 0x00	; 0
+ 36c:	0d c0       	rjmp	.+26     	; 0x388 <start_timer+0xb2>
+ 36e:	50 e0       	ldi	r21, 0x00	; 0
+ 370:	0b c0       	rjmp	.+22     	; 0x388 <start_timer+0xb2>
+ 372:	50 e0       	ldi	r21, 0x00	; 0
+ 374:	09 c0       	rjmp	.+18     	; 0x388 <start_timer+0xb2>
+ 376:	50 e0       	ldi	r21, 0x00	; 0
+ 378:	07 c0       	rjmp	.+14     	; 0x388 <start_timer+0xb2>
+ 37a:	50 e0       	ldi	r21, 0x00	; 0
+ 37c:	05 c0       	rjmp	.+10     	; 0x388 <start_timer+0xb2>
+		   }
+
+	    }
+		else
+		{
+			ret_val=E_FALSE;
+ 37e:	50 e0       	ldi	r21, 0x00	; 0
+ 380:	03 c0       	rjmp	.+6      	; 0x388 <start_timer+0xb2>
+			obg_adrs->type=type;
+			obg_adrs->curent_time=time;
+			used_timers++;
+			break;
+			}
+			else if(ga_str_t[i] ==obg_adrs)
+ 382:	51 e0       	ldi	r21, 0x01	; 1
+ 384:	01 c0       	rjmp	.+2      	; 0x388 <start_timer+0xb2>
+				break;
+		    }
+
+			else
+			{
+				ret_val=E_FALSE;
+ 386:	50 e0       	ldi	r21, 0x00	; 0
+	{
+		ret_val=E_FALSE;
+	}
+
+	return ret_val;
+}
+ 388:	85 2f       	mov	r24, r21
+ 38a:	df 91       	pop	r29
+ 38c:	cf 91       	pop	r28
+ 38e:	1f 91       	pop	r17
+ 390:	0f 91       	pop	r16
+ 392:	08 95       	ret
+
+00000394 <stop_timer>:
+
+
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+	if((obg_adrs !=NULL) && (used_timers!=0))
+ 394:	00 97       	sbiw	r24, 0x00	; 0
+ 396:	59 f1       	breq	.+86     	; 0x3ee <stop_timer+0x5a>
+ 398:	a0 91 7f 00 	lds	r26, 0x007F
+ 39c:	aa 23       	and	r26, r26
+ 39e:	49 f1       	breq	.+82     	; 0x3f2 <stop_timer+0x5e>
+	{
+		for(ecore_u8 i =0; i<used_timers;i++)
+		{
+			if(ga_str_t[i]==obg_adrs)
+ 3a0:	20 91 77 00 	lds	r18, 0x0077
+ 3a4:	30 91 78 00 	lds	r19, 0x0078
+ 3a8:	28 17       	cp	r18, r24
+ 3aa:	39 07       	cpc	r19, r25
+ 3ac:	c1 f4       	brne	.+48     	; 0x3de <stop_timer+0x4a>
+ 3ae:	09 c0       	rjmp	.+18     	; 0x3c2 <stop_timer+0x2e>
+ 3b0:	b9 01       	movw	r22, r18
+ 3b2:	41 91       	ld	r20, Z+
+ 3b4:	51 91       	ld	r21, Z+
+ 3b6:	2f 5f       	subi	r18, 0xFF	; 255
+ 3b8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 3ba:	48 17       	cp	r20, r24
+ 3bc:	59 07       	cpc	r21, r25
+ 3be:	99 f4       	brne	.+38     	; 0x3e6 <stop_timer+0x52>
+ 3c0:	02 c0       	rjmp	.+4      	; 0x3c6 <stop_timer+0x32>
+ 3c2:	60 e0       	ldi	r22, 0x00	; 0
+ 3c4:	70 e0       	ldi	r23, 0x00	; 0
+			{
+				ga_str_t[i]=NULL;
+ 3c6:	fb 01       	movw	r30, r22
+ 3c8:	ee 0f       	add	r30, r30
+ 3ca:	ff 1f       	adc	r31, r31
+ 3cc:	e9 58       	subi	r30, 0x89	; 137
+ 3ce:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3d0:	11 82       	std	Z+1, r1	; 0x01
+ 3d2:	10 82       	st	Z, r1
+				used_timers--;
+ 3d4:	a1 50       	subi	r26, 0x01	; 1
+ 3d6:	a0 93 7f 00 	sts	0x007F, r26
+
+
+
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+ 3da:	81 e0       	ldi	r24, 0x01	; 1
+		{
+			if(ga_str_t[i]==obg_adrs)
+			{
+				ga_str_t[i]=NULL;
+				used_timers--;
+				break;
+ 3dc:	08 95       	ret
+ 3de:	e9 e7       	ldi	r30, 0x79	; 121
+ 3e0:	f0 e0       	ldi	r31, 0x00	; 0
+	bool_t ret_val=E_TRUE;
+	if((obg_adrs !=NULL) && (used_timers!=0))
+	{
+		for(ecore_u8 i =0; i<used_timers;i++)
+		{
+			if(ga_str_t[i]==obg_adrs)
+ 3e2:	21 e0       	ldi	r18, 0x01	; 1
+ 3e4:	30 e0       	ldi	r19, 0x00	; 0
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+	if((obg_adrs !=NULL) && (used_timers!=0))
+	{
+		for(ecore_u8 i =0; i<used_timers;i++)
+ 3e6:	2a 17       	cp	r18, r26
+ 3e8:	18 f3       	brcs	.-58     	; 0x3b0 <stop_timer+0x1c>
+
+
+
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+ 3ea:	81 e0       	ldi	r24, 0x01	; 1
+ 3ec:	08 95       	ret
+			}
+		}
+	}
+	else
+	{
+		ret_val=E_FALSE;
+ 3ee:	80 e0       	ldi	r24, 0x00	; 0
+ 3f0:	08 95       	ret
+ 3f2:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	return ret_val;
+}
+ 3f4:	08 95       	ret
+
+000003f6 <tum_dispatch>:
+
+
+bool_t tum_dispatch()
+{
+ 3f6:	ff 92       	push	r15
+ 3f8:	0f 93       	push	r16
+ 3fa:	1f 93       	push	r17
+ 3fc:	cf 93       	push	r28
+ 3fe:	df 93       	push	r29
+
+	bool_t ret_val=E_TRUE;
+	for(ecore_u8 i =0; i < used_timers; i++)
+ 400:	80 91 7f 00 	lds	r24, 0x007F
+ 404:	88 23       	and	r24, r24
+ 406:	69 f1       	breq	.+90     	; 0x462 <tum_dispatch+0x6c>
+ 408:	10 e0       	ldi	r17, 0x00	; 0
+
+
+bool_t tum_dispatch()
+{
+
+	bool_t ret_val=E_TRUE;
+ 40a:	01 e0       	ldi	r16, 0x01	; 1
+			}
+
+		}
+		else
+		{
+			ret_val = E_FALSE;
+ 40c:	f1 2c       	mov	r15, r1
+
+	bool_t ret_val=E_TRUE;
+	for(ecore_u8 i =0; i < used_timers; i++)
+    {
+		//if((ga_str_t[i]!=NULL) && (ga_str_t[i]->curent_time <=0))
+		if((ga_str_t[i]->curent_time <= 0))
+ 40e:	c1 2f       	mov	r28, r17
+ 410:	d0 e0       	ldi	r29, 0x00	; 0
+ 412:	fe 01       	movw	r30, r28
+ 414:	ee 0f       	add	r30, r30
+ 416:	ff 1f       	adc	r31, r31
+ 418:	e9 58       	subi	r30, 0x89	; 137
+ 41a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 41c:	01 90       	ld	r0, Z+
+ 41e:	f0 81       	ld	r31, Z
+ 420:	e0 2d       	mov	r30, r0
+ 422:	84 81       	ldd	r24, Z+4	; 0x04
+ 424:	18 16       	cp	r1, r24
+ 426:	b4 f0       	brlt	.+44     	; 0x454 <tum_dispatch+0x5e>
+		{
+			(ga_str_t[i]->cb)();
+ 428:	01 80       	ldd	r0, Z+1	; 0x01
+ 42a:	f2 81       	ldd	r31, Z+2	; 0x02
+ 42c:	e0 2d       	mov	r30, r0
+ 42e:	09 95       	icall
+			if(ga_str_t[i]->type==ONE_SHOT)
+ 430:	cc 0f       	add	r28, r28
+ 432:	dd 1f       	adc	r29, r29
+ 434:	c9 58       	subi	r28, 0x89	; 137
+ 436:	df 4f       	sbci	r29, 0xFF	; 255
+ 438:	e8 81       	ld	r30, Y
+ 43a:	f9 81       	ldd	r31, Y+1	; 0x01
+ 43c:	83 81       	ldd	r24, Z+3	; 0x03
+ 43e:	81 11       	cpse	r24, r1
+ 440:	04 c0       	rjmp	.+8      	; 0x44a <tum_dispatch+0x54>
+			{
+				stop_timer(ga_str_t[i]);
+ 442:	cf 01       	movw	r24, r30
+ 444:	0e 94 ca 01 	call	0x394	; 0x394 <stop_timer>
+ 448:	06 c0       	rjmp	.+12     	; 0x456 <tum_dispatch+0x60>
+			}
+			else
+			{
+				ga_str_t[i]->curent_time =ga_str_t[i]->time + ga_str_t[i]->curent_time;
+ 44a:	94 81       	ldd	r25, Z+4	; 0x04
+ 44c:	80 81       	ld	r24, Z
+ 44e:	89 0f       	add	r24, r25
+ 450:	84 83       	std	Z+4, r24	; 0x04
+ 452:	01 c0       	rjmp	.+2      	; 0x456 <tum_dispatch+0x60>
+			}
+
+		}
+		else
+		{
+			ret_val = E_FALSE;
+ 454:	0f 2d       	mov	r16, r15
+
+bool_t tum_dispatch()
+{
+
+	bool_t ret_val=E_TRUE;
+	for(ecore_u8 i =0; i < used_timers; i++)
+ 456:	1f 5f       	subi	r17, 0xFF	; 255
+ 458:	80 91 7f 00 	lds	r24, 0x007F
+ 45c:	18 17       	cp	r17, r24
+ 45e:	b8 f2       	brcs	.-82     	; 0x40e <tum_dispatch+0x18>
+ 460:	01 c0       	rjmp	.+2      	; 0x464 <tum_dispatch+0x6e>
+
+
+bool_t tum_dispatch()
+{
+
+	bool_t ret_val=E_TRUE;
+ 462:	01 e0       	ldi	r16, 0x01	; 1
+			ret_val = E_FALSE;
+		}
+   }
+	return ret_val;
+
+}
+ 464:	80 2f       	mov	r24, r16
+ 466:	df 91       	pop	r29
+ 468:	cf 91       	pop	r28
+ 46a:	1f 91       	pop	r17
+ 46c:	0f 91       	pop	r16
+ 46e:	ff 90       	pop	r15
+ 470:	08 95       	ret
+
+00000472 <watch_fun>:
+	
+	static ecore_u8 sec=0;
+	static ecore_u8 min=0;
+	static ecore_u8 i=0;
+	
+    i++;
+ 472:	60 91 82 00 	lds	r22, 0x0082
+ 476:	6f 5f       	subi	r22, 0xFF	; 255
+ 478:	60 93 82 00 	sts	0x0082, r22
+	seven_seg_display(seg1,i);
+ 47c:	80 91 86 00 	lds	r24, 0x0086
+ 480:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+	if(i>9)
+ 484:	80 91 82 00 	lds	r24, 0x0082
+ 488:	8a 30       	cpi	r24, 0x0A	; 10
+ 48a:	f0 f1       	brcs	.+124    	; 0x508 <watch_fun+0x96>
+	{
+		i=0;
+ 48c:	10 92 82 00 	sts	0x0082, r1
+		seven_seg_display(seg1,i);
+ 490:	60 e0       	ldi	r22, 0x00	; 0
+ 492:	80 91 86 00 	lds	r24, 0x0086
+ 496:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+		seven_seg_display(seg2,++sec);
+ 49a:	60 91 83 00 	lds	r22, 0x0083
+ 49e:	6f 5f       	subi	r22, 0xFF	; 255
+ 4a0:	60 93 83 00 	sts	0x0083, r22
+ 4a4:	80 91 85 00 	lds	r24, 0x0085
+ 4a8:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+		if(sec>6)
+ 4ac:	80 91 83 00 	lds	r24, 0x0083
+ 4b0:	87 30       	cpi	r24, 0x07	; 7
+ 4b2:	50 f1       	brcs	.+84     	; 0x508 <watch_fun+0x96>
+		{
+			sec=0;
+ 4b4:	10 92 83 00 	sts	0x0083, r1
+			seven_seg_display(seg2,sec);
+ 4b8:	60 e0       	ldi	r22, 0x00	; 0
+ 4ba:	80 91 85 00 	lds	r24, 0x0085
+ 4be:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+			seven_seg_display(seg3,min++);
+ 4c2:	60 91 84 00 	lds	r22, 0x0084
+ 4c6:	86 2f       	mov	r24, r22
+ 4c8:	8f 5f       	subi	r24, 0xFF	; 255
+ 4ca:	80 93 84 00 	sts	0x0084, r24
+ 4ce:	80 91 8c 00 	lds	r24, 0x008C
+ 4d2:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+			if(min > 9)
+ 4d6:	80 91 84 00 	lds	r24, 0x0084
+ 4da:	8a 30       	cpi	r24, 0x0A	; 10
+ 4dc:	a8 f0       	brcs	.+42     	; 0x508 <watch_fun+0x96>
+			{
+				i=sec=min=0;
+ 4de:	10 92 84 00 	sts	0x0084, r1
+ 4e2:	10 92 83 00 	sts	0x0083, r1
+ 4e6:	10 92 82 00 	sts	0x0082, r1
+				seven_seg_display(seg1,0);
+ 4ea:	60 e0       	ldi	r22, 0x00	; 0
+ 4ec:	80 91 86 00 	lds	r24, 0x0086
+ 4f0:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+				seven_seg_display(seg2,0);
+ 4f4:	60 e0       	ldi	r22, 0x00	; 0
+ 4f6:	80 91 85 00 	lds	r24, 0x0085
+ 4fa:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+				seven_seg_display(seg3,0);
+ 4fe:	60 e0       	ldi	r22, 0x00	; 0
+ 500:	80 91 8c 00 	lds	r24, 0x008C
+ 504:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+ 508:	08 95       	ret
+
+0000050a <main>:
+
+ecore_u8 seg1, seg2, seg3 ;
+str_obj obg1;   //timer
+
+void counter_time();
+int main(void) {
+ 50a:	cf 93       	push	r28
+ 50c:	df 93       	push	r29
+ 50e:	00 d0       	rcall	.+0      	; 0x510 <main+0x6>
+ 510:	1f 92       	push	r1
+ 512:	cd b7       	in	r28, 0x3d	; 61
+ 514:	de b7       	in	r29, 0x3e	; 62
+	
+	gcfg_hal_timer_t hal_timer_obj=
+ 516:	83 e5       	ldi	r24, 0x53	; 83
+ 518:	89 83       	std	Y+1, r24	; 0x01
+ 51a:	83 e0       	ldi	r24, 0x03	; 3
+ 51c:	8a 83       	std	Y+2, r24	; 0x02
+ 51e:	81 e0       	ldi	r24, 0x01	; 1
+ 520:	8b 83       	std	Y+3, r24	; 0x03
+		.freq=PRESCALER_64,
+		.timer_fun=NORMAL_MODE,
+	};
+	
+
+	seven_seg_init(BASE_D, COMMON_CATHOD, &seg1);
+ 522:	46 e8       	ldi	r20, 0x86	; 134
+ 524:	50 e0       	ldi	r21, 0x00	; 0
+ 526:	61 e0       	ldi	r22, 0x01	; 1
+ 528:	80 e3       	ldi	r24, 0x30	; 48
+ 52a:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <seven_seg_init>
+	seven_seg_init(BASE_C, COMMON_CATHOD, &seg2);
+ 52e:	45 e8       	ldi	r20, 0x85	; 133
+ 530:	50 e0       	ldi	r21, 0x00	; 0
+ 532:	61 e0       	ldi	r22, 0x01	; 1
+ 534:	83 e3       	ldi	r24, 0x33	; 51
+ 536:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <seven_seg_init>
+	seven_seg_init(BASE_B, COMMON_CATHOD, &seg3);
+ 53a:	4c e8       	ldi	r20, 0x8C	; 140
+ 53c:	50 e0       	ldi	r21, 0x00	; 0
+ 53e:	61 e0       	ldi	r22, 0x01	; 1
+ 540:	86 e3       	ldi	r24, 0x36	; 54
+ 542:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <seven_seg_init>
+	tmu_init(TIMER0 , 10);
+ 546:	6a e0       	ldi	r22, 0x0A	; 10
+ 548:	83 e5       	ldi	r24, 0x53	; 83
+ 54a:	0e 94 57 01 	call	0x2ae	; 0x2ae <tmu_init>
+	seven_seg_display(seg1,0);
+ 54e:	60 e0       	ldi	r22, 0x00	; 0
+ 550:	80 91 86 00 	lds	r24, 0x0086
+ 554:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+	seven_seg_display(seg2,0);
+ 558:	60 e0       	ldi	r22, 0x00	; 0
+ 55a:	80 91 85 00 	lds	r24, 0x0085
+ 55e:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+	seven_seg_display(seg3,0);
+ 562:	60 e0       	ldi	r22, 0x00	; 0
+ 564:	80 91 8c 00 	lds	r24, 0x008C
+ 568:	0e 94 11 01 	call	0x222	; 0x222 <seven_seg_display>
+	hal_init_timer(&hal_timer_obj, counter_time);
+ 56c:	67 e4       	ldi	r22, 0x47	; 71
+ 56e:	71 e0       	ldi	r23, 0x01	; 1
+ 570:	ce 01       	movw	r24, r28
+ 572:	01 96       	adiw	r24, 0x01	; 1
+ 574:	0e 94 77 00 	call	0xee	; 0xee <hal_init_timer>
+	start_timer(watch_fun, PERIODIC, 100, &obg1);
+ 578:	27 e8       	ldi	r18, 0x87	; 135
+ 57a:	30 e0       	ldi	r19, 0x00	; 0
+ 57c:	44 e6       	ldi	r20, 0x64	; 100
+ 57e:	61 e0       	ldi	r22, 0x01	; 1
+ 580:	89 e3       	ldi	r24, 0x39	; 57
+ 582:	92 e0       	ldi	r25, 0x02	; 2
+ 584:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <start_timer>
+	while(1)
+	{
+		tum_dispatch();
+ 588:	0e 94 fb 01 	call	0x3f6	; 0x3f6 <tum_dispatch>
+ 58c:	fd cf       	rjmp	.-6      	; 0x588 <main+0x7e>
+
+0000058e <_exit>:
+ 58e:	f8 94       	cli
+
+00000590 <__stop_program>:
+ 590:	ff cf       	rjmp	.-2      	; 0x590 <__stop_program>

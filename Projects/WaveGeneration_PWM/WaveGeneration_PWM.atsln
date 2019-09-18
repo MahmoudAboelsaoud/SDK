@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "WaveGeneration_PWM", "WaveGeneration_PWM\WaveGeneration_PWM.cproj", "{42ED3833-0227-467D-8563-B63651B6A95A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42ED3833-0227-467D-8563-B63651B6A95A}.Debug|AVR.ActiveCfg = Debug|AVR
+		{42ED3833-0227-467D-8563-B63651B6A95A}.Debug|AVR.Build.0 = Debug|AVR
+		{42ED3833-0227-467D-8563-B63651B6A95A}.Release|AVR.ActiveCfg = Release|AVR
+		{42ED3833-0227-467D-8563-B63651B6A95A}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
