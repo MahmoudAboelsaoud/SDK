@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "com_uart_hal_com_rx", "com_uart_hal_com_rx\com_uart_hal_com_rx.cproj", "{730B84E4-1A3C-4952-830B-ECBD75E83EA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{730B84E4-1A3C-4952-830B-ECBD75E83EA6}.Debug|AVR.ActiveCfg = Debug|AVR
+		{730B84E4-1A3C-4952-830B-ECBD75E83EA6}.Debug|AVR.Build.0 = Debug|AVR
+		{730B84E4-1A3C-4952-830B-ECBD75E83EA6}.Release|AVR.ActiveCfg = Release|AVR
+		{730B84E4-1A3C-4952-830B-ECBD75E83EA6}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

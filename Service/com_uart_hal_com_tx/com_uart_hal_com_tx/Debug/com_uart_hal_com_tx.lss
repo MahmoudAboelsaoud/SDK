@@ -1,0 +1,551 @@
+
+com_uart_hal_com_tx.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000284  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  00000284  00000318  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000a  00800062  00800062  0000031a  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  0000031c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  000009e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000a7f  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000098  00000000  00000000  00000aae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000631  00000000  00000000  00000b46  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000003b6  00000000  00000000  00001177  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000274  00000000  00000000  0000152d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000134  00000000  00000000  000017a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    0000028d  00000000  00000000  000018d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000002a9  00000000  00000000  00001b65  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000068  00000000  00000000  00001e0e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 da 00 	jmp	0x1b4	; 0x1b4 <__vector_14>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 e8       	ldi	r30, 0x84	; 132
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 36       	cpi	r26, 0x62	; 98
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 e6       	ldi	r26, 0x62	; 98
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ac 36       	cpi	r26, 0x6C	; 108
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 c4 00 	call	0x188	; 0x188 <main>
+  8a:	0c 94 40 01 	jmp	0x280	; 0x280 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <comm_cb_tx>:
+Comm_state Comm_state_g = IDLE;
+
+/*call back function at tx byte complete*/
+void comm_cb_tx()
+{
+	Comm_state_g=SEND_DONE;
+  92:	83 e0       	ldi	r24, 0x03	; 3
+  94:	80 93 62 00 	sts	0x0062, r24
+  98:	08 95       	ret
+
+0000009a <comm_init>:
+
+bool_t comm_init(void)
+{
+	bool_t ret_val=E_TRUE;
+
+	hal_init_uart(&obj,comm_cb_tx);
+  9a:	69 e4       	ldi	r22, 0x49	; 73
+  9c:	70 e0       	ldi	r23, 0x00	; 0
+  9e:	80 e6       	ldi	r24, 0x60	; 96
+  a0:	90 e0       	ldi	r25, 0x00	; 0
+  a2:	0e 94 01 01 	call	0x202	; 0x202 <hal_init_uart>
+		
+   return ret_val;
+}
+  a6:	81 e0       	ldi	r24, 0x01	; 1
+  a8:	08 95       	ret
+
+000000aa <comm_send>:
+
+bool_t comm_send (ecore_u8 * data_ptr, ecore_u16 size)
+{
+	bool_t ret_val=E_TRUE;
+
+	if ((data_ptr != NULL) && (size > 0 && size <= MAX_SIZE_DATA) && (gstr_comm.lock_flag == 0))
+  aa:	00 97       	sbiw	r24, 0x00	; 0
+  ac:	d1 f0       	breq	.+52     	; 0xe2 <comm_send+0x38>
+  ae:	9b 01       	movw	r18, r22
+  b0:	21 50       	subi	r18, 0x01	; 1
+  b2:	31 09       	sbc	r19, r1
+  b4:	20 32       	cpi	r18, 0x20	; 32
+  b6:	33 40       	sbci	r19, 0x03	; 3
+  b8:	b0 f4       	brcc	.+44     	; 0xe6 <comm_send+0x3c>
+  ba:	20 91 67 00 	lds	r18, 0x0067
+  be:	21 11       	cpse	r18, r1
+  c0:	14 c0       	rjmp	.+40     	; 0xea <comm_send+0x40>
+	{
+		/*Header construction ..command ..size.. */
+		/*hal_sent_uart(&command);
+		hal_sent_uart(&size);  */       /*  should send two bytes  */
+		gstr_comm.data_ptr = data_ptr;
+  c2:	90 93 64 00 	sts	0x0064, r25
+  c6:	80 93 63 00 	sts	0x0063, r24
+		gstr_comm.size = size;
+  ca:	70 93 66 00 	sts	0x0066, r23
+  ce:	60 93 65 00 	sts	0x0065, r22
+		gstr_comm.lock_flag = 1;
+  d2:	81 e0       	ldi	r24, 0x01	; 1
+  d4:	80 93 67 00 	sts	0x0067, r24
+		Comm_state_g = SEND_FRAME;
+  d8:	82 e0       	ldi	r24, 0x02	; 2
+  da:	80 93 62 00 	sts	0x0062, r24
+
+
+
+bool_t comm_send (ecore_u8 * data_ptr, ecore_u16 size)
+{
+	bool_t ret_val=E_TRUE;
+  de:	81 e0       	ldi	r24, 0x01	; 1
+		/*hal_sent_uart(&command);
+		hal_sent_uart(&size);  */       /*  should send two bytes  */
+		gstr_comm.data_ptr = data_ptr;
+		gstr_comm.size = size;
+		gstr_comm.lock_flag = 1;
+		Comm_state_g = SEND_FRAME;
+  e0:	08 95       	ret
+
+	}
+	else
+	{
+		ret_val = E_FALSE;
+  e2:	80 e0       	ldi	r24, 0x00	; 0
+  e4:	08 95       	ret
+  e6:	80 e0       	ldi	r24, 0x00	; 0
+  e8:	08 95       	ret
+  ea:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	return ret_val;
+
+}
+  ec:	08 95       	ret
+
+000000ee <comm_dispatch>:
+
+
+bool_t comm_dispatch ()
+{
+	bool_t ret_val=E_TRUE;
+if(gstr_comm.lock_flag == 1)
+  ee:	80 91 67 00 	lds	r24, 0x0067
+  f2:	81 30       	cpi	r24, 0x01	; 1
+  f4:	09 f0       	breq	.+2      	; 0xf8 <comm_dispatch+0xa>
+  f6:	46 c0       	rjmp	.+140    	; 0x184 <comm_dispatch+0x96>
+{
+		switch (Comm_state_g)
+  f8:	80 91 62 00 	lds	r24, 0x0062
+  fc:	82 30       	cpi	r24, 0x02	; 2
+  fe:	21 f0       	breq	.+8      	; 0x108 <comm_dispatch+0x1a>
+ 100:	83 30       	cpi	r24, 0x03	; 3
+ 102:	09 f0       	breq	.+2      	; 0x106 <comm_dispatch+0x18>
+ 104:	3f c0       	rjmp	.+126    	; 0x184 <comm_dispatch+0x96>
+ 106:	13 c0       	rjmp	.+38     	; 0x12e <comm_dispatch+0x40>
+		{
+
+	
+		case SEND_FRAME :
+					{
+						Comm_state_g = SEND_BYTE;
+ 108:	81 e0       	ldi	r24, 0x01	; 1
+ 10a:	80 93 62 00 	sts	0x0062, r24
+						hal_sent_uart (gstr_comm.data_ptr);
+ 10e:	80 91 63 00 	lds	r24, 0x0063
+ 112:	90 91 64 00 	lds	r25, 0x0064
+ 116:	0e 94 35 01 	call	0x26a	; 0x26a <hal_sent_uart>
+						tx_counter++;
+ 11a:	80 91 68 00 	lds	r24, 0x0068
+ 11e:	90 91 69 00 	lds	r25, 0x0069
+ 122:	01 96       	adiw	r24, 0x01	; 1
+ 124:	90 93 69 00 	sts	0x0069, r25
+ 128:	80 93 68 00 	sts	0x0068, r24
+						break;
+ 12c:	2b c0       	rjmp	.+86     	; 0x184 <comm_dispatch+0x96>
+					}
+					
+		case SEND_DONE:
+				{
+					if(tx_counter < gstr_comm.size)
+ 12e:	20 91 65 00 	lds	r18, 0x0065
+ 132:	30 91 66 00 	lds	r19, 0x0066
+ 136:	80 91 68 00 	lds	r24, 0x0068
+ 13a:	90 91 69 00 	lds	r25, 0x0069
+ 13e:	82 17       	cp	r24, r18
+ 140:	93 07       	cpc	r25, r19
+ 142:	c0 f4       	brcc	.+48     	; 0x174 <comm_dispatch+0x86>
+					{
+						Comm_state_g = SEND_BYTE;
+ 144:	81 e0       	ldi	r24, 0x01	; 1
+ 146:	80 93 62 00 	sts	0x0062, r24
+						/*gstr_comm.data_ptr++;*/
+						hal_sent_uart (gstr_comm.data_ptr++);
+ 14a:	e3 e6       	ldi	r30, 0x63	; 99
+ 14c:	f0 e0       	ldi	r31, 0x00	; 0
+ 14e:	80 81       	ld	r24, Z
+ 150:	91 81       	ldd	r25, Z+1	; 0x01
+ 152:	9c 01       	movw	r18, r24
+ 154:	2f 5f       	subi	r18, 0xFF	; 255
+ 156:	3f 4f       	sbci	r19, 0xFF	; 255
+ 158:	31 83       	std	Z+1, r19	; 0x01
+ 15a:	20 83       	st	Z, r18
+ 15c:	0e 94 35 01 	call	0x26a	; 0x26a <hal_sent_uart>
+						tx_counter++; /*modfiy*/
+ 160:	80 91 68 00 	lds	r24, 0x0068
+ 164:	90 91 69 00 	lds	r25, 0x0069
+ 168:	01 96       	adiw	r24, 0x01	; 1
+ 16a:	90 93 69 00 	sts	0x0069, r25
+ 16e:	80 93 68 00 	sts	0x0068, r24
+ 172:	08 c0       	rjmp	.+16     	; 0x184 <comm_dispatch+0x96>
+					}
+					else
+					{
+						Comm_state_g = IDLE;
+ 174:	10 92 62 00 	sts	0x0062, r1
+						gstr_comm.lock_flag = 0;
+ 178:	10 92 67 00 	sts	0x0067, r1
+						tx_counter=0;
+ 17c:	10 92 69 00 	sts	0x0069, r1
+ 180:	10 92 68 00 	sts	0x0068, r1
+				}
+				
+			}
+		}
+	return ret_val;
+}
+ 184:	81 e0       	ldi	r24, 0x01	; 1
+ 186:	08 95       	ret
+
+00000188 <main>:
+void test()
+{
+	//DDRB=1;
+	//PORTB=x;
+}
+int main(void) {
+ 188:	cf 93       	push	r28
+ 18a:	df 93       	push	r29
+ 18c:	1f 92       	push	r1
+ 18e:	cd b7       	in	r28, 0x3d	; 61
+ 190:	de b7       	in	r29, 0x3e	; 62
+	
+	DDRC=0xff;
+ 192:	8f ef       	ldi	r24, 0xFF	; 255
+ 194:	84 bb       	out	0x14, r24	; 20
+	//ecore_u8 arr[]={"Mahmoud Aboelsaoud"};
+	ecore_u8 arr='5';
+ 196:	85 e3       	ldi	r24, 0x35	; 53
+ 198:	89 83       	std	Y+1, r24	; 0x01
+	//hal_init_uart(&obj,comm_cb_tx);
+	comm_init();
+ 19a:	0e 94 4d 00 	call	0x9a	; 0x9a <comm_init>
+	comm_send(&arr,sizeof(arr));
+ 19e:	61 e0       	ldi	r22, 0x01	; 1
+ 1a0:	70 e0       	ldi	r23, 0x00	; 0
+ 1a2:	ce 01       	movw	r24, r28
+ 1a4:	01 96       	adiw	r24, 0x01	; 1
+ 1a6:	0e 94 55 00 	call	0xaa	; 0xaa <comm_send>
+
+	while(1)
+	{
+		comm_dispatch();
+ 1aa:	0e 94 77 00 	call	0xee	; 0xee <comm_dispatch>
+		PORTC=UDR;
+ 1ae:	8c b1       	in	r24, 0x0c	; 12
+ 1b0:	85 bb       	out	0x15, r24	; 21
+ 1b2:	fb cf       	rjmp	.-10     	; 0x1aa <main+0x22>
+
+000001b4 <__vector_14>:
+	(*tx)();
+}
+*/
+#ifdef TX
+ISR(USART_UDRE_vect)
+{
+ 1b4:	1f 92       	push	r1
+ 1b6:	0f 92       	push	r0
+ 1b8:	0f b6       	in	r0, 0x3f	; 63
+ 1ba:	0f 92       	push	r0
+ 1bc:	11 24       	eor	r1, r1
+ 1be:	2f 93       	push	r18
+ 1c0:	3f 93       	push	r19
+ 1c2:	4f 93       	push	r20
+ 1c4:	5f 93       	push	r21
+ 1c6:	6f 93       	push	r22
+ 1c8:	7f 93       	push	r23
+ 1ca:	8f 93       	push	r24
+ 1cc:	9f 93       	push	r25
+ 1ce:	af 93       	push	r26
+ 1d0:	bf 93       	push	r27
+ 1d2:	ef 93       	push	r30
+ 1d4:	ff 93       	push	r31
+	(*udr_emp)();
+ 1d6:	e0 91 6a 00 	lds	r30, 0x006A
+ 1da:	f0 91 6b 00 	lds	r31, 0x006B
+ 1de:	09 95       	icall
+}
+ 1e0:	ff 91       	pop	r31
+ 1e2:	ef 91       	pop	r30
+ 1e4:	bf 91       	pop	r27
+ 1e6:	af 91       	pop	r26
+ 1e8:	9f 91       	pop	r25
+ 1ea:	8f 91       	pop	r24
+ 1ec:	7f 91       	pop	r23
+ 1ee:	6f 91       	pop	r22
+ 1f0:	5f 91       	pop	r21
+ 1f2:	4f 91       	pop	r20
+ 1f4:	3f 91       	pop	r19
+ 1f6:	2f 91       	pop	r18
+ 1f8:	0f 90       	pop	r0
+ 1fa:	0f be       	out	0x3f, r0	; 63
+ 1fc:	0f 90       	pop	r0
+ 1fe:	1f 90       	pop	r1
+ 200:	18 95       	reti
+
+00000202 <hal_init_uart>:
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+	if((obj!=NULL)&&(tx_rx_cb!=NULL))
+ 202:	00 97       	sbiw	r24, 0x00	; 0
+ 204:	61 f1       	breq	.+88     	; 0x25e <hal_init_uart+0x5c>
+ 206:	61 15       	cp	r22, r1
+ 208:	71 05       	cpc	r23, r1
+ 20a:	59 f1       	breq	.+86     	; 0x262 <hal_init_uart+0x60>
+	{
+#ifdef TX
+		udr_emp = tx_rx_cb;
+ 20c:	70 93 6b 00 	sts	0x006B, r23
+ 210:	60 93 6a 00 	sts	0x006A, r22
+		rx = tx_rx_cb;
+#endif
+
+		
+		/*UCSRB RXEN TXEN*/
+		UCSRB |=(1<<3)|(1<<4);
+ 214:	2a b1       	in	r18, 0x0a	; 10
+ 216:	28 61       	ori	r18, 0x18	; 24
+ 218:	2a b9       	out	0x0a, r18	; 10
+		/*UCSRC 8 bit*/
+		UCSRC |=(1<<1)|(1<<2)|(1<<7);
+ 21a:	20 b5       	in	r18, 0x20	; 32
+ 21c:	26 68       	ori	r18, 0x86	; 134
+ 21e:	20 bd       	out	0x20, r18	; 32
+
+	
+		if(obj->speed==BAUD_RATE_9600)
+ 220:	fc 01       	movw	r30, r24
+ 222:	80 81       	ld	r24, Z
+ 224:	91 81       	ldd	r25, Z+1	; 0x01
+ 226:	80 38       	cpi	r24, 0x80	; 128
+ 228:	f5 e2       	ldi	r31, 0x25	; 37
+ 22a:	9f 07       	cpc	r25, r31
+ 22c:	59 f4       	brne	.+22     	; 0x244 <hal_init_uart+0x42>
+		{
+		/*baud rate 9600   UBRRH UBRRL 0x0033*/
+			UBRL =0x33;
+ 22e:	83 e3       	ldi	r24, 0x33	; 51
+ 230:	89 b9       	out	0x09, r24	; 9
+			UBRH =0x00;
+ 232:	10 bc       	out	0x20, r1	; 32
+}
+#endif
+
+static void interrput_config()
+{
+	SREG|=(1<<7);
+ 234:	8f b7       	in	r24, 0x3f	; 63
+ 236:	80 68       	ori	r24, 0x80	; 128
+ 238:	8f bf       	out	0x3f, r24	; 63
+	UCSRB |=(1<<5)|(1<<6)|(1<<7);
+ 23a:	8a b1       	in	r24, 0x0a	; 10
+ 23c:	80 6e       	ori	r24, 0xE0	; 224
+ 23e:	8a b9       	out	0x0a, r24	; 10
+
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+ 240:	81 e0       	ldi	r24, 0x01	; 1
+ 242:	08 95       	ret
+		/*baud rate 9600   UBRRH UBRRL 0x0033*/
+			UBRL =0x33;
+			UBRH =0x00;
+			interrput_config();
+		}
+		else if(obj->speed==BAUD_RATE_2400)
+ 244:	80 36       	cpi	r24, 0x60	; 96
+ 246:	29 e0       	ldi	r18, 0x09	; 9
+ 248:	92 07       	cpc	r25, r18
+ 24a:	19 f4       	brne	.+6      	; 0x252 <hal_init_uart+0x50>
+		{
+			UBRL =0x00;
+ 24c:	19 b8       	out	0x09, r1	; 9
+
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+ 24e:	81 e0       	ldi	r24, 0x01	; 1
+ 250:	08 95       	ret
+		else if(obj->speed==BAUD_RATE_2400)
+		{
+			UBRL =0x00;
+
+		}
+	    else if(obj->speed==BAUD_RATE_4800)
+ 252:	80 3c       	cpi	r24, 0xC0	; 192
+ 254:	92 41       	sbci	r25, 0x12	; 18
+ 256:	39 f4       	brne	.+14     	; 0x266 <hal_init_uart+0x64>
+		{
+	    	UBRL =0x00;
+ 258:	19 b8       	out	0x09, r1	; 9
+
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+ 25a:	81 e0       	ldi	r24, 0x01	; 1
+ 25c:	08 95       	ret
+		}
+
+	}
+	else
+	{
+		 ret_val=E_FALSE;
+ 25e:	80 e0       	ldi	r24, 0x00	; 0
+ 260:	08 95       	ret
+ 262:	80 e0       	ldi	r24, 0x00	; 0
+ 264:	08 95       	ret
+	    	UBRL =0x00;
+
+		}
+		else
+		{
+			 ret_val=E_FALSE;
+ 266:	80 e0       	ldi	r24, 0x00	; 0
+		 ret_val=E_FALSE;
+	}
+
+	return ret_val;
+
+}
+ 268:	08 95       	ret
+
+0000026a <hal_sent_uart>:
+
+#ifdef TX
+bool_t hal_sent_uart(ecore_u8* tx_data)
+{
+  bool_t ret_val=E_TRUE;
+  if(tx_data!=NULL)
+ 26a:	00 97       	sbiw	r24, 0x00	; 0
+ 26c:	39 f0       	breq	.+14     	; 0x27c <hal_sent_uart+0x12>
+  {
+	  while(IS_BIT_CLEAR(UCSRA,5));
+ 26e:	5d 9b       	sbis	0x0b, 5	; 11
+ 270:	fe cf       	rjmp	.-4      	; 0x26e <hal_sent_uart+0x4>
+	  UDR=*tx_data;
+ 272:	fc 01       	movw	r30, r24
+ 274:	80 81       	ld	r24, Z
+ 276:	8c b9       	out	0x0c, r24	; 12
+}
+
+#ifdef TX
+bool_t hal_sent_uart(ecore_u8* tx_data)
+{
+  bool_t ret_val=E_TRUE;
+ 278:	81 e0       	ldi	r24, 0x01	; 1
+ 27a:	08 95       	ret
+	  while(IS_BIT_CLEAR(UCSRA,5));
+	  UDR=*tx_data;
+  }
+  else
+  {
+	  ret_val=E_FALSE;
+ 27c:	80 e0       	ldi	r24, 0x00	; 0
+  }
+
+  return ret_val;
+}
+ 27e:	08 95       	ret
+
+00000280 <_exit>:
+ 280:	f8 94       	cli
+
+00000282 <__stop_program>:
+ 282:	ff cf       	rjmp	.-2      	; 0x282 <__stop_program>

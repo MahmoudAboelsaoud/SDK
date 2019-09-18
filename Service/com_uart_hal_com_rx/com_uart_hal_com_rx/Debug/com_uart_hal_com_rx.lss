@@ -1,0 +1,533 @@
+
+com_uart_hal_com_rx.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000022a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  0000022a  000002be  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000f  00800062  00800062  000002c0  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000002c0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  0000098c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000a23  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 000000e0  00000000  00000000  00000a52  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000b74  00000000  00000000  00000b32  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000004fc  00000000  00000000  000016a6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000004ca  00000000  00000000  00001ba2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000001b0  00000000  00000000  0000206c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    0000038b  00000000  00000000  0000221c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    0000037d  00000000  00000000  000025a7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 000000a0  00000000  00000000  00002924  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+
+bool_t Lcd_Display_Character(ecore_u8 ch)
+{
+	bool_t ret_val=E_TRUE;
+	/* Clear RS, RW */
+	SET_BIT(LCD_CNTR_PORT_PORT, RS);
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, RW);
+	_delay_ms(1);
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, E);
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+#elif(DATA_BITS_MODE==8)
+		LCD_DATA_PORT_PORT=ch;
+		_delay_ms(1);
+		/*SET the enable pulse*/
+		SET_BIT(LCD_CNTR_PORT_PORT, E);
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 ad 00 	jmp	0x15a	; 0x15a <__vector_13>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+
+#endif
+
+	return ret_val;
+}
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e2       	ldi	r30, 0x2A	; 42
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 36       	cpi	r26, 0x62	; 98
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 e6       	ldi	r26, 0x62	; 98
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a1 37       	cpi	r26, 0x71	; 113
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 a2 00 	call	0x144	; 0x144 <main>
+  8a:	0c 94 13 01 	jmp	0x226	; 0x226 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <comm_cb_rx>:
+
+/*call back function at rx byte complete*/
+void comm_cb_rx()
+{
+	/*store data byte*/
+	hal_recive_uart(&rx_buffer[rx_buffer_conuter++]);
+  92:	80 91 63 00 	lds	r24, 0x0063
+  96:	90 91 64 00 	lds	r25, 0x0064
+  9a:	9c 01       	movw	r18, r24
+  9c:	2f 5f       	subi	r18, 0xFF	; 255
+  9e:	3f 4f       	sbci	r19, 0xFF	; 255
+  a0:	30 93 64 00 	sts	0x0064, r19
+  a4:	20 93 63 00 	sts	0x0063, r18
+  a8:	8b 59       	subi	r24, 0x9B	; 155
+  aa:	9f 4f       	sbci	r25, 0xFF	; 255
+  ac:	0e 94 08 01 	call	0x210	; 0x210 <hal_recive_uart>
+	rx_flag_new_data =1;
+  b0:	81 e0       	ldi	r24, 0x01	; 1
+  b2:	80 93 6c 00 	sts	0x006C, r24
+  b6:	08 95       	ret
+
+000000b8 <comm_init>:
+
+bool_t comm_init(void)
+{
+	bool_t ret_val=E_TRUE;
+	
+	hal_init_uart(&obj,comm_cb_rx);
+  b8:	69 e4       	ldi	r22, 0x49	; 73
+  ba:	70 e0       	ldi	r23, 0x00	; 0
+  bc:	80 e6       	ldi	r24, 0x60	; 96
+  be:	90 e0       	ldi	r25, 0x00	; 0
+  c0:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <hal_init_uart>
+	//rx_flag_new_data=1;
+
+	return ret_val;
+}
+  c4:	81 e0       	ldi	r24, 0x01	; 1
+  c6:	08 95       	ret
+
+000000c8 <comm_recieve>:
+
+
+bool_t comm_recieve()
+{
+	bool_t ret_val=E_TRUE;
+		Comm_state_g = IDLE;
+  c8:	10 92 62 00 	sts	0x0062, r1
+		
+	return ret_val;
+}
+  cc:	81 e0       	ldi	r24, 0x01	; 1
+  ce:	08 95       	ret
+
+000000d0 <comm_dispatch>:
+
+
+bool_t comm_dispatch ()
+{
+	bool_t ret_val=E_TRUE;
+if(rx_flag_new_data ==1)
+  d0:	80 91 6c 00 	lds	r24, 0x006C
+  d4:	81 30       	cpi	r24, 0x01	; 1
+  d6:	a1 f5       	brne	.+104    	; 0x140 <comm_dispatch+0x70>
+{
+	switch (Comm_state_g)
+  d8:	80 91 62 00 	lds	r24, 0x0062
+  dc:	82 30       	cpi	r24, 0x02	; 2
+  de:	81 f0       	breq	.+32     	; 0x100 <comm_dispatch+0x30>
+  e0:	83 30       	cpi	r24, 0x03	; 3
+  e2:	f1 f0       	breq	.+60     	; 0x120 <comm_dispatch+0x50>
+  e4:	81 11       	cpse	r24, r1
+  e6:	2c c0       	rjmp	.+88     	; 0x140 <comm_dispatch+0x70>
+	{
+		
+     	case IDLE:
+				{
+					if(rx_buffer_conuter < MAX_SIZE_DATA)
+  e8:	80 91 63 00 	lds	r24, 0x0063
+  ec:	90 91 64 00 	lds	r25, 0x0064
+  f0:	07 97       	sbiw	r24, 0x07	; 7
+  f2:	18 f4       	brcc	.+6      	; 0xfa <comm_dispatch+0x2a>
+						{
+						Comm_state_g = RECIEVING_DATA;
+  f4:	82 e0       	ldi	r24, 0x02	; 2
+  f6:	80 93 62 00 	sts	0x0062, r24
+						}
+					rx_flag_new_data=0;
+  fa:	10 92 6c 00 	sts	0x006C, r1
+					break;
+  fe:	20 c0       	rjmp	.+64     	; 0x140 <comm_dispatch+0x70>
+				}
+				
+		case RECIEVING_DATA:
+				{
+
+						if( rx_buffer_conuter >= MAX_SIZE_DATA)
+ 100:	80 91 63 00 	lds	r24, 0x0063
+ 104:	90 91 64 00 	lds	r25, 0x0064
+ 108:	07 97       	sbiw	r24, 0x07	; 7
+ 10a:	20 f0       	brcs	.+8      	; 0x114 <comm_dispatch+0x44>
+						{
+							Comm_state_g = RECIEVING_COMPLETE;	
+ 10c:	83 e0       	ldi	r24, 0x03	; 3
+ 10e:	80 93 62 00 	sts	0x0062, r24
+ 112:	03 c0       	rjmp	.+6      	; 0x11a <comm_dispatch+0x4a>
+						}
+						else
+						{
+							Comm_state_g = RECIEVING_DATA;
+ 114:	82 e0       	ldi	r24, 0x02	; 2
+ 116:	80 93 62 00 	sts	0x0062, r24
+						}
+
+
+					rx_flag_new_data=0;
+ 11a:	10 92 6c 00 	sts	0x006C, r1
+					break;
+ 11e:	10 c0       	rjmp	.+32     	; 0x140 <comm_dispatch+0x70>
+				 }
+				
+		case RECIEVING_COMPLETE:
+				{	
+					if(rx_buffer_conuter >= MAX_SIZE_DATA)
+ 120:	80 91 63 00 	lds	r24, 0x0063
+ 124:	90 91 64 00 	lds	r25, 0x0064
+ 128:	07 97       	sbiw	r24, 0x07	; 7
+ 12a:	40 f0       	brcs	.+16     	; 0x13c <comm_dispatch+0x6c>
+					{
+						/*pointer on the rx buffer*/
+						ptr_rx = rx_buffer;
+ 12c:	85 e6       	ldi	r24, 0x65	; 101
+ 12e:	90 e0       	ldi	r25, 0x00	; 0
+ 130:	90 93 6e 00 	sts	0x006E, r25
+ 134:	80 93 6d 00 	sts	0x006D, r24
+						Comm_state_g = IDLE;
+ 138:	10 92 62 00 	sts	0x0062, r1
+						
+					}	
+
+					rx_flag_new_data=0;
+ 13c:	10 92 6c 00 	sts	0x006C, r1
+
+		}
+}
+	return ret_val;
+
+}
+ 140:	81 e0       	ldi	r24, 0x01	; 1
+ 142:	08 95       	ret
+
+00000144 <main>:
+#include"comm.h"
+#include"hal_uart.h"
+#include "lcd_driver.h"
+int main(void) 
+{
+	DDRC=0xff;
+ 144:	8f ef       	ldi	r24, 0xFF	; 255
+ 146:	84 bb       	out	0x14, r24	; 20
+	
+	//Lcd_Init();
+	
+	comm_init();
+ 148:	0e 94 5c 00 	call	0xb8	; 0xb8 <comm_init>
+	comm_recieve();
+ 14c:	0e 94 64 00 	call	0xc8	; 0xc8 <comm_recieve>
+	
+   
+	
+	while(1)
+	{
+		comm_dispatch();
+ 150:	0e 94 68 00 	call	0xd0	; 0xd0 <comm_dispatch>
+		PORTC=UDR;
+ 154:	8c b1       	in	r24, 0x0c	; 12
+ 156:	85 bb       	out	0x15, r24	; 21
+ 158:	fb cf       	rjmp	.-10     	; 0x150 <main+0xc>
+
+0000015a <__vector_13>:
+//static void(*tx)();
+static void(*udr_emp)();
+
+#ifdef RX
+ISR(USART_RXC_vect)
+{
+ 15a:	1f 92       	push	r1
+ 15c:	0f 92       	push	r0
+ 15e:	0f b6       	in	r0, 0x3f	; 63
+ 160:	0f 92       	push	r0
+ 162:	11 24       	eor	r1, r1
+ 164:	2f 93       	push	r18
+ 166:	3f 93       	push	r19
+ 168:	4f 93       	push	r20
+ 16a:	5f 93       	push	r21
+ 16c:	6f 93       	push	r22
+ 16e:	7f 93       	push	r23
+ 170:	8f 93       	push	r24
+ 172:	9f 93       	push	r25
+ 174:	af 93       	push	r26
+ 176:	bf 93       	push	r27
+ 178:	ef 93       	push	r30
+ 17a:	ff 93       	push	r31
+	(*rx)();
+ 17c:	e0 91 6f 00 	lds	r30, 0x006F
+ 180:	f0 91 70 00 	lds	r31, 0x0070
+ 184:	09 95       	icall
+}
+ 186:	ff 91       	pop	r31
+ 188:	ef 91       	pop	r30
+ 18a:	bf 91       	pop	r27
+ 18c:	af 91       	pop	r26
+ 18e:	9f 91       	pop	r25
+ 190:	8f 91       	pop	r24
+ 192:	7f 91       	pop	r23
+ 194:	6f 91       	pop	r22
+ 196:	5f 91       	pop	r21
+ 198:	4f 91       	pop	r20
+ 19a:	3f 91       	pop	r19
+ 19c:	2f 91       	pop	r18
+ 19e:	0f 90       	pop	r0
+ 1a0:	0f be       	out	0x3f, r0	; 63
+ 1a2:	0f 90       	pop	r0
+ 1a4:	1f 90       	pop	r1
+ 1a6:	18 95       	reti
+
+000001a8 <hal_init_uart>:
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+	if((obj!=NULL)&&(tx_rx_cb!=NULL))
+ 1a8:	00 97       	sbiw	r24, 0x00	; 0
+ 1aa:	61 f1       	breq	.+88     	; 0x204 <hal_init_uart+0x5c>
+ 1ac:	61 15       	cp	r22, r1
+ 1ae:	71 05       	cpc	r23, r1
+ 1b0:	59 f1       	breq	.+86     	; 0x208 <hal_init_uart+0x60>
+	{
+#ifdef TX
+		udr_emp = tx_rx_cb;
+#else
+		rx = tx_rx_cb;
+ 1b2:	70 93 70 00 	sts	0x0070, r23
+ 1b6:	60 93 6f 00 	sts	0x006F, r22
+#endif
+
+		
+		/*UCSRB RXEN TXEN*/
+		UCSRB |=(1<<3)|(1<<4);
+ 1ba:	2a b1       	in	r18, 0x0a	; 10
+ 1bc:	28 61       	ori	r18, 0x18	; 24
+ 1be:	2a b9       	out	0x0a, r18	; 10
+		/*UCSRC 8 bit*/
+		UCSRC |=(1<<1)|(1<<2)|(1<<7);
+ 1c0:	20 b5       	in	r18, 0x20	; 32
+ 1c2:	26 68       	ori	r18, 0x86	; 134
+ 1c4:	20 bd       	out	0x20, r18	; 32
+
+	
+		if(obj->speed==BAUD_RATE_9600)
+ 1c6:	fc 01       	movw	r30, r24
+ 1c8:	80 81       	ld	r24, Z
+ 1ca:	91 81       	ldd	r25, Z+1	; 0x01
+ 1cc:	80 38       	cpi	r24, 0x80	; 128
+ 1ce:	f5 e2       	ldi	r31, 0x25	; 37
+ 1d0:	9f 07       	cpc	r25, r31
+ 1d2:	59 f4       	brne	.+22     	; 0x1ea <hal_init_uart+0x42>
+		{
+		/*baud rate 9600   UBRRH UBRRL 0x0033*/
+			UBRL =0x33;
+ 1d4:	83 e3       	ldi	r24, 0x33	; 51
+ 1d6:	89 b9       	out	0x09, r24	; 9
+			UBRH =0x00;
+ 1d8:	10 bc       	out	0x20, r1	; 32
+#endif
+
+static void interrput_config()
+{
+	
+	UCSRB |=(1<<5)|(1<<6)|(1<<7);
+ 1da:	8a b1       	in	r24, 0x0a	; 10
+ 1dc:	80 6e       	ori	r24, 0xE0	; 224
+ 1de:	8a b9       	out	0x0a, r24	; 10
+	SREG|=(1<<7);
+ 1e0:	8f b7       	in	r24, 0x3f	; 63
+ 1e2:	80 68       	ori	r24, 0x80	; 128
+ 1e4:	8f bf       	out	0x3f, r24	; 63
+
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+ 1e6:	81 e0       	ldi	r24, 0x01	; 1
+ 1e8:	08 95       	ret
+		/*baud rate 9600   UBRRH UBRRL 0x0033*/
+			UBRL =0x33;
+			UBRH =0x00;
+			interrput_config();
+		}
+		else if(obj->speed==BAUD_RATE_2400)
+ 1ea:	80 36       	cpi	r24, 0x60	; 96
+ 1ec:	29 e0       	ldi	r18, 0x09	; 9
+ 1ee:	92 07       	cpc	r25, r18
+ 1f0:	19 f4       	brne	.+6      	; 0x1f8 <hal_init_uart+0x50>
+		{
+			UBRL =0x00;
+ 1f2:	19 b8       	out	0x09, r1	; 9
+
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+ 1f4:	81 e0       	ldi	r24, 0x01	; 1
+ 1f6:	08 95       	ret
+		else if(obj->speed==BAUD_RATE_2400)
+		{
+			UBRL =0x00;
+
+		}
+	    else if(obj->speed==BAUD_RATE_4800)
+ 1f8:	80 3c       	cpi	r24, 0xC0	; 192
+ 1fa:	92 41       	sbci	r25, 0x12	; 18
+ 1fc:	39 f4       	brne	.+14     	; 0x20c <hal_init_uart+0x64>
+		{
+	    	UBRL =0x00;
+ 1fe:	19 b8       	out	0x09, r1	; 9
+
+}
+bool_t hal_init_uart(gstr_uart_t *obj, void*tx_rx_cb)
+{
+
+	bool_t ret_val=E_TRUE;
+ 200:	81 e0       	ldi	r24, 0x01	; 1
+ 202:	08 95       	ret
+		}
+
+	}
+	else
+	{
+		 ret_val=E_FALSE;
+ 204:	80 e0       	ldi	r24, 0x00	; 0
+ 206:	08 95       	ret
+ 208:	80 e0       	ldi	r24, 0x00	; 0
+ 20a:	08 95       	ret
+	    	UBRL =0x00;
+
+		}
+		else
+		{
+			 ret_val=E_FALSE;
+ 20c:	80 e0       	ldi	r24, 0x00	; 0
+		 ret_val=E_FALSE;
+	}
+
+	return ret_val;
+
+}
+ 20e:	08 95       	ret
+
+00000210 <hal_recive_uart>:
+
+#ifdef RX
+bool_t hal_recive_uart(ecore_u8 *rx_data)
+{
+bool_t ret_val=E_TRUE;
+	if(rx_data!=NULL)
+ 210:	00 97       	sbiw	r24, 0x00	; 0
+ 212:	39 f0       	breq	.+14     	; 0x222 <hal_recive_uart+0x12>
+	{ 
+		//*rx_data=0;         /* why ?!*/
+		while(IS_BIT_CLEAR(UCSRA,7));
+ 214:	5f 9b       	sbis	0x0b, 7	; 11
+ 216:	fe cf       	rjmp	.-4      	; 0x214 <hal_recive_uart+0x4>
+		*rx_data=UDR;
+ 218:	2c b1       	in	r18, 0x0c	; 12
+ 21a:	fc 01       	movw	r30, r24
+ 21c:	20 83       	st	Z, r18
+#endif
+
+#ifdef RX
+bool_t hal_recive_uart(ecore_u8 *rx_data)
+{
+bool_t ret_val=E_TRUE;
+ 21e:	81 e0       	ldi	r24, 0x01	; 1
+ 220:	08 95       	ret
+		while(IS_BIT_CLEAR(UCSRA,7));
+		*rx_data=UDR;
+	}
+	else
+	{
+		 ret_val=E_FALSE;
+ 222:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	return ret_val;
+}
+ 224:	08 95       	ret
+
+00000226 <_exit>:
+ 226:	f8 94       	cli
+
+00000228 <__stop_program>:
+ 228:	ff cf       	rjmp	.-2      	; 0x228 <__stop_program>

@@ -1,0 +1,678 @@
+
+TMU_module.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002f8  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  000002f8  0000038c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  00800060  00800060  0000038c  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  0000038c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  00000a58  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000aef  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000078  00000000  00000000  00000b1e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000610  00000000  00000000  00000b96  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000002b9  00000000  00000000  000011a6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000197  00000000  00000000  0000145f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  0000011c  00000000  00000000  000015f8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000214  00000000  00000000  00001714  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    0000040e  00000000  00000000  00001928  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000070  00000000  00000000  00001d36  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__vector_11>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a9 36       	cpi	r26, 0x69	; 105
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 56 01 	call	0x2ac	; 0x2ac <main>
+  74:	0c 94 7a 01 	jmp	0x2f4	; 0x2f4 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <__vector_11>:
+static ecore_u8 init_flag=0;
+static ecore_u8 used_timers=0;
+static ecore_u8 resolution;
+
+ISR(TIMER0_OVF_vect)
+{
+  7c:	1f 92       	push	r1
+  7e:	0f 92       	push	r0
+  80:	0f b6       	in	r0, 0x3f	; 63
+  82:	0f 92       	push	r0
+  84:	11 24       	eor	r1, r1
+  86:	2f 93       	push	r18
+  88:	8f 93       	push	r24
+  8a:	9f 93       	push	r25
+  8c:	af 93       	push	r26
+  8e:	bf 93       	push	r27
+  90:	ef 93       	push	r30
+  92:	ff 93       	push	r31
+
+	for(ecore_u8 i =0; i<used_timers;i++)
+  94:	20 91 66 00 	lds	r18, 0x0066
+  98:	22 23       	and	r18, r18
+  9a:	59 f0       	breq	.+22     	; 0xb2 <__vector_11+0x36>
+  9c:	a0 e6       	ldi	r26, 0x60	; 96
+  9e:	b0 e0       	ldi	r27, 0x00	; 0
+  a0:	80 e0       	ldi	r24, 0x00	; 0
+	{
+		ga_str_t[i]->curent_time--;
+  a2:	ed 91       	ld	r30, X+
+  a4:	fd 91       	ld	r31, X+
+  a6:	94 81       	ldd	r25, Z+4	; 0x04
+  a8:	91 50       	subi	r25, 0x01	; 1
+  aa:	94 83       	std	Z+4, r25	; 0x04
+static ecore_u8 resolution;
+
+ISR(TIMER0_OVF_vect)
+{
+
+	for(ecore_u8 i =0; i<used_timers;i++)
+  ac:	8f 5f       	subi	r24, 0xFF	; 255
+  ae:	82 17       	cp	r24, r18
+  b0:	c0 f3       	brcs	.-16     	; 0xa2 <__vector_11+0x26>
+	{
+		ga_str_t[i]->curent_time--;
+	}
+
+}
+  b2:	ff 91       	pop	r31
+  b4:	ef 91       	pop	r30
+  b6:	bf 91       	pop	r27
+  b8:	af 91       	pop	r26
+  ba:	9f 91       	pop	r25
+  bc:	8f 91       	pop	r24
+  be:	2f 91       	pop	r18
+  c0:	0f 90       	pop	r0
+  c2:	0f be       	out	0x3f, r0	; 63
+  c4:	0f 90       	pop	r0
+  c6:	1f 90       	pop	r1
+  c8:	18 95       	reti
+
+000000ca <config_timer>:
+
+void config_timer ()
+{
+	//configure the timer
+
+	TCCR0_t |=(1<<1); // no pre_scaler 1us for each increase in timer0 256us
+  ca:	83 b7       	in	r24, 0x33	; 51
+  cc:	82 60       	ori	r24, 0x02	; 2
+  ce:	83 bf       	out	0x33, r24	; 51
+	TCNT0_t  =0;
+  d0:	12 be       	out	0x32, r1	; 50
+	TIMSK_t |=(1<<0); // interrupt enable TOIE0
+  d2:	89 b7       	in	r24, 0x39	; 57
+  d4:	81 60       	ori	r24, 0x01	; 1
+  d6:	89 bf       	out	0x39, r24	; 57
+	SREG_t  |=(1<<7);
+  d8:	8f b7       	in	r24, 0x3f	; 63
+  da:	80 68       	ori	r24, 0x80	; 128
+  dc:	8f bf       	out	0x3f, r24	; 63
+  de:	08 95       	ret
+
+000000e0 <tmu_init>:
+}
+
+
+
+bool_t tmu_init(base_timer timer , ecore_u8 res)
+{
+  e0:	cf 93       	push	r28
+  e2:	c6 2f       	mov	r28, r22
+	bool_t ret_val =E_TRUE;
+	if((timer < INVALID_MAX_INDEX)|(timer > INVALID_MAX_INDEX) && (res !=0) && (init_flag==0))
+  e4:	86 34       	cpi	r24, 0x46	; 70
+  e6:	71 f0       	breq	.+28     	; 0x104 <tmu_init+0x24>
+  e8:	66 23       	and	r22, r22
+  ea:	71 f0       	breq	.+28     	; 0x108 <tmu_init+0x28>
+  ec:	80 91 67 00 	lds	r24, 0x0067
+  f0:	81 11       	cpse	r24, r1
+  f2:	0c c0       	rjmp	.+24     	; 0x10c <tmu_init+0x2c>
+//    if(1)
+	{
+
+	    config_timer();
+  f4:	0e 94 65 00 	call	0xca	; 0xca <config_timer>
+	    resolution = res;
+  f8:	c0 93 68 00 	sts	0x0068, r28
+		init_flag=1;
+  fc:	81 e0       	ldi	r24, 0x01	; 1
+  fe:	80 93 67 00 	sts	0x0067, r24
+ 102:	05 c0       	rjmp	.+10     	; 0x10e <tmu_init+0x2e>
+
+	}
+	else
+	{
+		ret_val=E_FALSE;
+ 104:	80 e0       	ldi	r24, 0x00	; 0
+ 106:	03 c0       	rjmp	.+6      	; 0x10e <tmu_init+0x2e>
+ 108:	80 e0       	ldi	r24, 0x00	; 0
+ 10a:	01 c0       	rjmp	.+2      	; 0x10e <tmu_init+0x2e>
+ 10c:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	return ret_val;
+}
+ 10e:	cf 91       	pop	r28
+ 110:	08 95       	ret
+
+00000112 <start_timer>:
+
+bool_t start_timer(void(*cb)(), type_timer type, ecore_u8 time, str_obj * obg_adrs)
+{
+
+	bool_t ret_val=E_TRUE;
+	if((cb!= NULL) && (type < 2) && (obg_adrs != NULL) && (time>0) && (init_flag!=0))
+ 112:	00 97       	sbiw	r24, 0x00	; 0
+ 114:	09 f4       	brne	.+2      	; 0x118 <start_timer+0x6>
+ 116:	44 c0       	rjmp	.+136    	; 0x1a0 <start_timer+0x8e>
+ 118:	62 30       	cpi	r22, 0x02	; 2
+ 11a:	08 f0       	brcs	.+2      	; 0x11e <start_timer+0xc>
+ 11c:	43 c0       	rjmp	.+134    	; 0x1a4 <start_timer+0x92>
+ 11e:	21 15       	cp	r18, r1
+ 120:	31 05       	cpc	r19, r1
+ 122:	09 f4       	brne	.+2      	; 0x126 <start_timer+0x14>
+ 124:	41 c0       	rjmp	.+130    	; 0x1a8 <start_timer+0x96>
+ 126:	44 23       	and	r20, r20
+ 128:	09 f4       	brne	.+2      	; 0x12c <start_timer+0x1a>
+ 12a:	40 c0       	rjmp	.+128    	; 0x1ac <start_timer+0x9a>
+ 12c:	50 91 67 00 	lds	r21, 0x0067
+ 130:	55 23       	and	r21, r21
+ 132:	f1 f1       	breq	.+124    	; 0x1b0 <start_timer+0x9e>
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+ 134:	70 91 66 00 	lds	r23, 0x0066
+ 138:	73 30       	cpi	r23, 0x03	; 3
+ 13a:	e0 f5       	brcc	.+120    	; 0x1b4 <start_timer+0xa2>
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+		   {
+			if(ga_str_t[i]==NULL)
+ 13c:	e0 91 60 00 	lds	r30, 0x0060
+ 140:	f0 91 61 00 	lds	r31, 0x0061
+ 144:	30 97       	sbiw	r30, 0x00	; 0
+ 146:	c9 f0       	breq	.+50     	; 0x17a <start_timer+0x68>
+			obg_adrs->type=type;
+			obg_adrs->curent_time=time;
+			used_timers++;
+			break;
+			}
+			else if(ga_str_t[i] ==obg_adrs)
+ 148:	2e 17       	cp	r18, r30
+ 14a:	3f 07       	cpc	r19, r31
+ 14c:	a9 f1       	breq	.+106    	; 0x1b8 <start_timer+0xa6>
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+		   {
+			if(ga_str_t[i]==NULL)
+ 14e:	e0 91 62 00 	lds	r30, 0x0062
+ 152:	f0 91 63 00 	lds	r31, 0x0063
+ 156:	30 97       	sbiw	r30, 0x00	; 0
+ 158:	61 f0       	breq	.+24     	; 0x172 <start_timer+0x60>
+			obg_adrs->type=type;
+			obg_adrs->curent_time=time;
+			used_timers++;
+			break;
+			}
+			else if(ga_str_t[i] ==obg_adrs)
+ 15a:	2e 17       	cp	r18, r30
+ 15c:	3f 07       	cpc	r19, r31
+ 15e:	71 f1       	breq	.+92     	; 0x1bc <start_timer+0xaa>
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+		   {
+			if(ga_str_t[i]==NULL)
+ 160:	e0 91 64 00 	lds	r30, 0x0064
+ 164:	f0 91 65 00 	lds	r31, 0x0065
+ 168:	ef 2b       	or	r30, r31
+ 16a:	51 f5       	brne	.+84     	; 0x1c0 <start_timer+0xae>
+ 16c:	e2 e0       	ldi	r30, 0x02	; 2
+ 16e:	f0 e0       	ldi	r31, 0x00	; 0
+ 170:	02 c0       	rjmp	.+4      	; 0x176 <start_timer+0x64>
+ 172:	e1 e0       	ldi	r30, 0x01	; 1
+ 174:	f0 e0       	ldi	r31, 0x00	; 0
+				break;
+		    }
+
+			else
+			{
+				ret_val=E_FALSE;
+ 176:	50 e0       	ldi	r21, 0x00	; 0
+ 178:	03 c0       	rjmp	.+6      	; 0x180 <start_timer+0x6e>
+	{
+		if(used_timers < NO_AVAILABLE_TIMERS)
+		{
+		  for(ecore_u8 i =0; i < NO_AVAILABLE_TIMERS; i++)
+		   {
+			if(ga_str_t[i]==NULL)
+ 17a:	e0 e0       	ldi	r30, 0x00	; 0
+ 17c:	f0 e0       	ldi	r31, 0x00	; 0
+ 17e:	51 e0       	ldi	r21, 0x01	; 1
+			{
+			ga_str_t[i]=obg_adrs;
+ 180:	ee 0f       	add	r30, r30
+ 182:	ff 1f       	adc	r31, r31
+ 184:	e0 5a       	subi	r30, 0xA0	; 160
+ 186:	ff 4f       	sbci	r31, 0xFF	; 255
+ 188:	31 83       	std	Z+1, r19	; 0x01
+ 18a:	20 83       	st	Z, r18
+			obg_adrs->cb=cb;
+ 18c:	f9 01       	movw	r30, r18
+ 18e:	92 83       	std	Z+2, r25	; 0x02
+ 190:	81 83       	std	Z+1, r24	; 0x01
+			obg_adrs->time=time;
+ 192:	40 83       	st	Z, r20
+			obg_adrs->type=type;
+ 194:	63 83       	std	Z+3, r22	; 0x03
+			obg_adrs->curent_time=time;
+ 196:	44 83       	std	Z+4, r20	; 0x04
+			used_timers++;
+ 198:	7f 5f       	subi	r23, 0xFF	; 255
+ 19a:	70 93 66 00 	sts	0x0066, r23
+			break;
+ 19e:	11 c0       	rjmp	.+34     	; 0x1c2 <start_timer+0xb0>
+			ret_val=E_FALSE;
+		}
+	}
+	else
+	{
+		ret_val=E_FALSE;
+ 1a0:	50 e0       	ldi	r21, 0x00	; 0
+ 1a2:	0f c0       	rjmp	.+30     	; 0x1c2 <start_timer+0xb0>
+ 1a4:	50 e0       	ldi	r21, 0x00	; 0
+ 1a6:	0d c0       	rjmp	.+26     	; 0x1c2 <start_timer+0xb0>
+ 1a8:	50 e0       	ldi	r21, 0x00	; 0
+ 1aa:	0b c0       	rjmp	.+22     	; 0x1c2 <start_timer+0xb0>
+ 1ac:	50 e0       	ldi	r21, 0x00	; 0
+ 1ae:	09 c0       	rjmp	.+18     	; 0x1c2 <start_timer+0xb0>
+ 1b0:	50 e0       	ldi	r21, 0x00	; 0
+ 1b2:	07 c0       	rjmp	.+14     	; 0x1c2 <start_timer+0xb0>
+		   }
+
+	    }
+		else
+		{
+			ret_val=E_FALSE;
+ 1b4:	50 e0       	ldi	r21, 0x00	; 0
+ 1b6:	05 c0       	rjmp	.+10     	; 0x1c2 <start_timer+0xb0>
+			obg_adrs->type=type;
+			obg_adrs->curent_time=time;
+			used_timers++;
+			break;
+			}
+			else if(ga_str_t[i] ==obg_adrs)
+ 1b8:	51 e0       	ldi	r21, 0x01	; 1
+ 1ba:	03 c0       	rjmp	.+6      	; 0x1c2 <start_timer+0xb0>
+				break;
+		    }
+
+			else
+			{
+				ret_val=E_FALSE;
+ 1bc:	50 e0       	ldi	r21, 0x00	; 0
+ 1be:	01 c0       	rjmp	.+2      	; 0x1c2 <start_timer+0xb0>
+ 1c0:	50 e0       	ldi	r21, 0x00	; 0
+	{
+		ret_val=E_FALSE;
+	}
+
+	return ret_val;
+}
+ 1c2:	85 2f       	mov	r24, r21
+ 1c4:	08 95       	ret
+
+000001c6 <stop_timer>:
+
+
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+	if((obg_adrs !=NULL) && (used_timers!=0))
+ 1c6:	00 97       	sbiw	r24, 0x00	; 0
+ 1c8:	59 f1       	breq	.+86     	; 0x220 <stop_timer+0x5a>
+ 1ca:	a0 91 66 00 	lds	r26, 0x0066
+ 1ce:	aa 23       	and	r26, r26
+ 1d0:	49 f1       	breq	.+82     	; 0x224 <stop_timer+0x5e>
+	{
+		for(ecore_u8 i =0; i<used_timers;i++)
+		{
+			if(ga_str_t[i]==obg_adrs)
+ 1d2:	20 91 60 00 	lds	r18, 0x0060
+ 1d6:	30 91 61 00 	lds	r19, 0x0061
+ 1da:	28 17       	cp	r18, r24
+ 1dc:	39 07       	cpc	r19, r25
+ 1de:	c1 f4       	brne	.+48     	; 0x210 <stop_timer+0x4a>
+ 1e0:	09 c0       	rjmp	.+18     	; 0x1f4 <stop_timer+0x2e>
+ 1e2:	b9 01       	movw	r22, r18
+ 1e4:	41 91       	ld	r20, Z+
+ 1e6:	51 91       	ld	r21, Z+
+ 1e8:	2f 5f       	subi	r18, 0xFF	; 255
+ 1ea:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1ec:	48 17       	cp	r20, r24
+ 1ee:	59 07       	cpc	r21, r25
+ 1f0:	99 f4       	brne	.+38     	; 0x218 <stop_timer+0x52>
+ 1f2:	02 c0       	rjmp	.+4      	; 0x1f8 <stop_timer+0x32>
+ 1f4:	60 e0       	ldi	r22, 0x00	; 0
+ 1f6:	70 e0       	ldi	r23, 0x00	; 0
+			{
+				ga_str_t[i]=NULL;
+ 1f8:	fb 01       	movw	r30, r22
+ 1fa:	ee 0f       	add	r30, r30
+ 1fc:	ff 1f       	adc	r31, r31
+ 1fe:	e0 5a       	subi	r30, 0xA0	; 160
+ 200:	ff 4f       	sbci	r31, 0xFF	; 255
+ 202:	11 82       	std	Z+1, r1	; 0x01
+ 204:	10 82       	st	Z, r1
+				used_timers--;
+ 206:	a1 50       	subi	r26, 0x01	; 1
+ 208:	a0 93 66 00 	sts	0x0066, r26
+
+
+
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+ 20c:	81 e0       	ldi	r24, 0x01	; 1
+		{
+			if(ga_str_t[i]==obg_adrs)
+			{
+				ga_str_t[i]=NULL;
+				used_timers--;
+				break;
+ 20e:	08 95       	ret
+ 210:	e2 e6       	ldi	r30, 0x62	; 98
+ 212:	f0 e0       	ldi	r31, 0x00	; 0
+	bool_t ret_val=E_TRUE;
+	if((obg_adrs !=NULL) && (used_timers!=0))
+	{
+		for(ecore_u8 i =0; i<used_timers;i++)
+		{
+			if(ga_str_t[i]==obg_adrs)
+ 214:	21 e0       	ldi	r18, 0x01	; 1
+ 216:	30 e0       	ldi	r19, 0x00	; 0
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+	if((obg_adrs !=NULL) && (used_timers!=0))
+	{
+		for(ecore_u8 i =0; i<used_timers;i++)
+ 218:	2a 17       	cp	r18, r26
+ 21a:	18 f3       	brcs	.-58     	; 0x1e2 <stop_timer+0x1c>
+
+
+
+bool_t stop_timer(str_obj * obg_adrs)
+{
+	bool_t ret_val=E_TRUE;
+ 21c:	81 e0       	ldi	r24, 0x01	; 1
+ 21e:	08 95       	ret
+			}
+		}
+	}
+	else
+	{
+		ret_val=E_FALSE;
+ 220:	80 e0       	ldi	r24, 0x00	; 0
+ 222:	08 95       	ret
+ 224:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	return ret_val;
+}
+ 226:	08 95       	ret
+
+00000228 <tum_dispatch>:
+
+
+bool_t tum_dispatch()
+{
+ 228:	ff 92       	push	r15
+ 22a:	0f 93       	push	r16
+ 22c:	1f 93       	push	r17
+ 22e:	cf 93       	push	r28
+ 230:	df 93       	push	r29
+
+	bool_t ret_val=E_TRUE;
+	for(ecore_u8 i =0; i < used_timers; i++)
+ 232:	80 91 66 00 	lds	r24, 0x0066
+ 236:	88 23       	and	r24, r24
+ 238:	69 f1       	breq	.+90     	; 0x294 <tum_dispatch+0x6c>
+ 23a:	10 e0       	ldi	r17, 0x00	; 0
+
+
+bool_t tum_dispatch()
+{
+
+	bool_t ret_val=E_TRUE;
+ 23c:	01 e0       	ldi	r16, 0x01	; 1
+			}
+
+		}
+		else
+		{
+			ret_val = E_FALSE;
+ 23e:	f1 2c       	mov	r15, r1
+
+	bool_t ret_val=E_TRUE;
+	for(ecore_u8 i =0; i < used_timers; i++)
+    {
+		//if((ga_str_t[i]!=NULL) && (ga_str_t[i]->curent_time <=0))
+		if((ga_str_t[i]->curent_time <= 0))
+ 240:	c1 2f       	mov	r28, r17
+ 242:	d0 e0       	ldi	r29, 0x00	; 0
+ 244:	fe 01       	movw	r30, r28
+ 246:	ee 0f       	add	r30, r30
+ 248:	ff 1f       	adc	r31, r31
+ 24a:	e0 5a       	subi	r30, 0xA0	; 160
+ 24c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 24e:	01 90       	ld	r0, Z+
+ 250:	f0 81       	ld	r31, Z
+ 252:	e0 2d       	mov	r30, r0
+ 254:	84 81       	ldd	r24, Z+4	; 0x04
+ 256:	18 16       	cp	r1, r24
+ 258:	b4 f0       	brlt	.+44     	; 0x286 <tum_dispatch+0x5e>
+		{
+			(ga_str_t[i]->cb)();
+ 25a:	01 80       	ldd	r0, Z+1	; 0x01
+ 25c:	f2 81       	ldd	r31, Z+2	; 0x02
+ 25e:	e0 2d       	mov	r30, r0
+ 260:	09 95       	icall
+			if(ga_str_t[i]->type==ONE_SHOT)
+ 262:	cc 0f       	add	r28, r28
+ 264:	dd 1f       	adc	r29, r29
+ 266:	c0 5a       	subi	r28, 0xA0	; 160
+ 268:	df 4f       	sbci	r29, 0xFF	; 255
+ 26a:	e8 81       	ld	r30, Y
+ 26c:	f9 81       	ldd	r31, Y+1	; 0x01
+ 26e:	83 81       	ldd	r24, Z+3	; 0x03
+ 270:	81 11       	cpse	r24, r1
+ 272:	04 c0       	rjmp	.+8      	; 0x27c <tum_dispatch+0x54>
+			{
+				stop_timer(ga_str_t[i]);
+ 274:	cf 01       	movw	r24, r30
+ 276:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <stop_timer>
+ 27a:	06 c0       	rjmp	.+12     	; 0x288 <tum_dispatch+0x60>
+			}
+			else
+			{
+				ga_str_t[i]->curent_time =ga_str_t[i]->time + ga_str_t[i]->curent_time;
+ 27c:	94 81       	ldd	r25, Z+4	; 0x04
+ 27e:	80 81       	ld	r24, Z
+ 280:	89 0f       	add	r24, r25
+ 282:	84 83       	std	Z+4, r24	; 0x04
+ 284:	01 c0       	rjmp	.+2      	; 0x288 <tum_dispatch+0x60>
+			}
+
+		}
+		else
+		{
+			ret_val = E_FALSE;
+ 286:	0f 2d       	mov	r16, r15
+
+bool_t tum_dispatch()
+{
+
+	bool_t ret_val=E_TRUE;
+	for(ecore_u8 i =0; i < used_timers; i++)
+ 288:	1f 5f       	subi	r17, 0xFF	; 255
+ 28a:	80 91 66 00 	lds	r24, 0x0066
+ 28e:	18 17       	cp	r17, r24
+ 290:	b8 f2       	brcs	.-82     	; 0x240 <tum_dispatch+0x18>
+ 292:	01 c0       	rjmp	.+2      	; 0x296 <tum_dispatch+0x6e>
+
+
+bool_t tum_dispatch()
+{
+
+	bool_t ret_val=E_TRUE;
+ 294:	01 e0       	ldi	r16, 0x01	; 1
+			ret_val = E_FALSE;
+		}
+   }
+	return ret_val;
+
+}
+ 296:	80 2f       	mov	r24, r16
+ 298:	df 91       	pop	r29
+ 29a:	cf 91       	pop	r28
+ 29c:	1f 91       	pop	r17
+ 29e:	0f 91       	pop	r16
+ 2a0:	ff 90       	pop	r15
+ 2a2:	08 95       	ret
+
+000002a4 <fun1>:
+    }
+}
+
+void fun1()
+{
+	SET_PIN(OUTPUT_PORTA, 0);
+ 2a4:	d8 9a       	sbi	0x1b, 0	; 27
+ 2a6:	08 95       	ret
+
+000002a8 <fun2>:
+}
+
+
+void fun2()
+{
+	CLEAR_PIN(OUTPUT_PORTA, 0);
+ 2a8:	d8 98       	cbi	0x1b, 0	; 27
+ 2aa:	08 95       	ret
+
+000002ac <main>:
+
+#define SET_PIN(reg ,pin) (reg |=(1<<pin))
+#define CLEAR_PIN(reg ,pin) (reg &= ~(1<<pin))
+
+int main(void)
+{
+ 2ac:	cf 93       	push	r28
+ 2ae:	df 93       	push	r29
+ 2b0:	cd b7       	in	r28, 0x3d	; 61
+ 2b2:	de b7       	in	r29, 0x3e	; 62
+ 2b4:	2a 97       	sbiw	r28, 0x0a	; 10
+ 2b6:	0f b6       	in	r0, 0x3f	; 63
+ 2b8:	f8 94       	cli
+ 2ba:	de bf       	out	0x3e, r29	; 62
+ 2bc:	0f be       	out	0x3f, r0	; 63
+ 2be:	cd bf       	out	0x3d, r28	; 61
+	 str_obj obg1, obg2;
+	 tmu_init(TIMER0, 100);
+ 2c0:	64 e6       	ldi	r22, 0x64	; 100
+ 2c2:	83 e5       	ldi	r24, 0x53	; 83
+ 2c4:	0e 94 70 00 	call	0xe0	; 0xe0 <tmu_init>
+	 
+	SET_PIN(DIR_PORTA, 0);
+ 2c8:	d0 9a       	sbi	0x1a, 0	; 26
+	start_timer(fun1, PERIODIC, 100, &obg1);
+ 2ca:	9e 01       	movw	r18, r28
+ 2cc:	2f 5f       	subi	r18, 0xFF	; 255
+ 2ce:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2d0:	44 e6       	ldi	r20, 0x64	; 100
+ 2d2:	61 e0       	ldi	r22, 0x01	; 1
+ 2d4:	82 e5       	ldi	r24, 0x52	; 82
+ 2d6:	91 e0       	ldi	r25, 0x01	; 1
+ 2d8:	0e 94 89 00 	call	0x112	; 0x112 <start_timer>
+	start_timer(fun2, PERIODIC, 100, &obg2);
+ 2dc:	9e 01       	movw	r18, r28
+ 2de:	2a 5f       	subi	r18, 0xFA	; 250
+ 2e0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2e2:	44 e6       	ldi	r20, 0x64	; 100
+ 2e4:	61 e0       	ldi	r22, 0x01	; 1
+ 2e6:	84 e5       	ldi	r24, 0x54	; 84
+ 2e8:	91 e0       	ldi	r25, 0x01	; 1
+ 2ea:	0e 94 89 00 	call	0x112	; 0x112 <start_timer>
+    while(1)
+    {
+       
+	 tum_dispatch();
+ 2ee:	0e 94 14 01 	call	0x228	; 0x228 <tum_dispatch>
+ 2f2:	fd cf       	rjmp	.-6      	; 0x2ee <main+0x42>
+
+000002f4 <_exit>:
+ 2f4:	f8 94       	cli
+
+000002f6 <__stop_program>:
+ 2f6:	ff cf       	rjmp	.-2      	; 0x2f6 <__stop_program>
