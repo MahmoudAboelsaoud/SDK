@@ -1,0 +1,156 @@
+
+MAX_7221_spi.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000d6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  000000d6  0000014a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000006cc  00000000  00000000  0000014c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000097  00000000  00000000  00000818  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .comment      0000002f  00000000  00000000  000008af  2**0
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000030  00000000  00000000  000008de  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000198  00000000  00000000  0000090e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000000c3  00000000  00000000  00000aa6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000110  00000000  00000000  00000b69  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000044  00000000  00000000  00000c7c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000000db  00000000  00000000  00000cc0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000020  00000000  00000000  00000d9b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 46 00 	call	0x8c	; 0x8c <main>
+  64:	0c 94 69 00 	jmp	0xd2	; 0xd2 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <spi_init_master>:
+
+
+
+void spi_init_master(void)
+{
+	DDRB |=(1<<MOSI)|(1<<SCK)|(1<<SS);
+  6c:	87 b3       	in	r24, 0x17	; 23
+  6e:	80 6b       	ori	r24, 0xB0	; 176
+  70:	87 bb       	out	0x17, r24	; 23
+	DDRB &=~(1<<MISO);
+  72:	be 98       	cbi	0x17, 6	; 23
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR0);
+  74:	81 e5       	ldi	r24, 0x51	; 81
+  76:	8d b9       	out	0x0d, r24	; 13
+  78:	08 95       	ret
+
+0000007a <spi_excute_tx>:
+
+}
+
+void spi_excute_tx(unsigned char cmd ,unsigned char num)
+{
+	PORTB &=~(1<<SS);
+  7a:	c4 98       	cbi	0x18, 4	; 24
+	SPDR=cmd;
+  7c:	8f b9       	out	0x0f, r24	; 15
+	while(!(SPSR &(1<<SPIF)));
+  7e:	77 9b       	sbis	0x0e, 7	; 14
+  80:	fe cf       	rjmp	.-4      	; 0x7e <spi_excute_tx+0x4>
+	
+	SPDR=num;
+  82:	6f b9       	out	0x0f, r22	; 15
+	while(!(SPSR &(1<<SPIF)));
+  84:	77 9b       	sbis	0x0e, 7	; 14
+  86:	fe cf       	rjmp	.-4      	; 0x84 <spi_excute_tx+0xa>
+	PORTB |=(1<<SS);
+  88:	c4 9a       	sbi	0x18, 4	; 24
+  8a:	08 95       	ret
+
+0000008c <main>:
+
+}
+int main(void)
+{
+	spi_init_master();
+  8c:	0e 94 36 00 	call	0x6c	; 0x6c <spi_init_master>
+	
+	spi_excute_tx(0x09,0x0);
+  90:	60 e0       	ldi	r22, 0x00	; 0
+  92:	89 e0       	ldi	r24, 0x09	; 9
+  94:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+    spi_excute_tx(0x0B,0x0);
+  98:	60 e0       	ldi	r22, 0x00	; 0
+  9a:	8b e0       	ldi	r24, 0x0B	; 11
+  9c:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+	spi_excute_tx(0x0A,0x0);
+  a0:	60 e0       	ldi	r22, 0x00	; 0
+  a2:	8a e0       	ldi	r24, 0x0A	; 10
+  a4:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+	spi_excute_tx(0x0C,0x0);
+  a8:	60 e0       	ldi	r22, 0x00	; 0
+  aa:	8c e0       	ldi	r24, 0x0C	; 12
+  ac:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+	//spi_excute_tx(0x0f,5);
+	spi_excute_tx(1,5);
+  b0:	65 e0       	ldi	r22, 0x05	; 5
+  b2:	81 e0       	ldi	r24, 0x01	; 1
+  b4:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+	spi_excute_tx(2,6);
+  b8:	66 e0       	ldi	r22, 0x06	; 6
+  ba:	82 e0       	ldi	r24, 0x02	; 2
+  bc:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+	spi_excute_tx(3,7);
+  c0:	67 e0       	ldi	r22, 0x07	; 7
+  c2:	83 e0       	ldi	r24, 0x03	; 3
+  c4:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+	spi_excute_tx(4,8);
+  c8:	68 e0       	ldi	r22, 0x08	; 8
+  ca:	84 e0       	ldi	r24, 0x04	; 4
+  cc:	0e 94 3d 00 	call	0x7a	; 0x7a <spi_excute_tx>
+  d0:	ff cf       	rjmp	.-2      	; 0xd0 <main+0x44>
+
+000000d2 <_exit>:
+  d2:	f8 94       	cli
+
+000000d4 <__stop_program>:
+  d4:	ff cf       	rjmp	.-2      	; 0xd4 <__stop_program>

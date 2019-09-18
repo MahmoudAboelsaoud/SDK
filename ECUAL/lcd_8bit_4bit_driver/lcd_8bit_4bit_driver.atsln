@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "lcd_8bit_4bit_driver", "lcd_8bit_4bit_driver\lcd_8bit_4bit_driver.cproj", "{42B4B6C0-E9B7-4816-BBA1-3DD5E1124B4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42B4B6C0-E9B7-4816-BBA1-3DD5E1124B4B}.Debug|AVR.ActiveCfg = Debug|AVR
+		{42B4B6C0-E9B7-4816-BBA1-3DD5E1124B4B}.Debug|AVR.Build.0 = Debug|AVR
+		{42B4B6C0-E9B7-4816-BBA1-3DD5E1124B4B}.Release|AVR.ActiveCfg = Release|AVR
+		{42B4B6C0-E9B7-4816-BBA1-3DD5E1124B4B}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
