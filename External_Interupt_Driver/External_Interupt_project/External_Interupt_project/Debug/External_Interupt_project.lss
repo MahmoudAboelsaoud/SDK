@@ -1,0 +1,549 @@
+
+External_Interupt_project.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002a4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000c  00800060  000002a4  00000338  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000006  0080006c  0080006c  00000344  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000344  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  00000a10  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000aa7  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000070  00000000  00000000  00000ad6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000427  00000000  00000000  00000b46  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000001e3  00000000  00000000  00000f6d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000002bd  00000000  00000000  00001150  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000180  00000000  00000000  00001410  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    0000025d  00000000  00000000  00001590  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000002c8  00000000  00000000  000017ed  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000050  00000000  00000000  00001ab5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 5f 00 	jmp	0xbe	; 0xbe <__vector_1>
+   8:	0c 94 86 00 	jmp	0x10c	; 0x10c <__vector_2>
+   c:	0c 94 ad 00 	jmp	0x15a	; 0x15a <__vector_3>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 ea       	ldi	r30, 0xA4	; 164
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 36       	cpi	r26, 0x6C	; 108
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	ac e6       	ldi	r26, 0x6C	; 108
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a2 37       	cpi	r26, 0x72	; 114
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 52 00 	call	0xa4	; 0xa4 <main>
+  8a:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <fun0>:
+#include "EXTI_interface.h"
+#include "BIT_MATH.h"
+
+void fun0(void)
+{
+SET_BIT (DDRB,6);
+  92:	be 9a       	sbi	0x17, 6	; 23
+SET_BIT (PORTB,6);
+  94:	c6 9a       	sbi	0x18, 6	; 24
+  96:	08 95       	ret
+
+00000098 <fun1>:
+}
+
+void fun1(void)
+{
+	SET_BIT (DDRC,6);
+  98:	a6 9a       	sbi	0x14, 6	; 20
+	SET_BIT (PORTC,6);
+  9a:	ae 9a       	sbi	0x15, 6	; 21
+  9c:	08 95       	ret
+
+0000009e <fun2>:
+} 
+
+void fun2(void)
+{
+	SET_BIT (DDRC,7);
+  9e:	a7 9a       	sbi	0x14, 7	; 20
+	SET_BIT (PORTC,7);
+  a0:	af 9a       	sbi	0x15, 7	; 21
+  a2:	08 95       	ret
+
+000000a4 <main>:
+
+
+int main(void)
+{
+	
+	Hal_Ext_Interrupt_Init(&ob1);
+  a4:	84 e6       	ldi	r24, 0x64	; 100
+  a6:	90 e0       	ldi	r25, 0x00	; 0
+  a8:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <Hal_Ext_Interrupt_Init>
+	Hal_Ext_Interrupt_Init(&ob2);
+  ac:	80 e6       	ldi	r24, 0x60	; 96
+  ae:	90 e0       	ldi	r25, 0x00	; 0
+  b0:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <Hal_Ext_Interrupt_Init>
+	Hal_Ext_Interrupt_Init(&ob0);
+  b4:	88 e6       	ldi	r24, 0x68	; 104
+  b6:	90 e0       	ldi	r25, 0x00	; 0
+  b8:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <Hal_Ext_Interrupt_Init>
+  bc:	ff cf       	rjmp	.-2      	; 0xbc <main+0x18>
+
+000000be <__vector_1>:
+static void  (*cb_int1)(void);
+static void  (*cb_int2)(void);
+
+
+ISR(INT0_vect)
+{
+  be:	1f 92       	push	r1
+  c0:	0f 92       	push	r0
+  c2:	0f b6       	in	r0, 0x3f	; 63
+  c4:	0f 92       	push	r0
+  c6:	11 24       	eor	r1, r1
+  c8:	2f 93       	push	r18
+  ca:	3f 93       	push	r19
+  cc:	4f 93       	push	r20
+  ce:	5f 93       	push	r21
+  d0:	6f 93       	push	r22
+  d2:	7f 93       	push	r23
+  d4:	8f 93       	push	r24
+  d6:	9f 93       	push	r25
+  d8:	af 93       	push	r26
+  da:	bf 93       	push	r27
+  dc:	ef 93       	push	r30
+  de:	ff 93       	push	r31
+	/*callback function from INT0 */
+	 (*cb_int0)();
+  e0:	e0 91 6c 00 	lds	r30, 0x006C
+  e4:	f0 91 6d 00 	lds	r31, 0x006D
+  e8:	09 95       	icall
+}
+  ea:	ff 91       	pop	r31
+  ec:	ef 91       	pop	r30
+  ee:	bf 91       	pop	r27
+  f0:	af 91       	pop	r26
+  f2:	9f 91       	pop	r25
+  f4:	8f 91       	pop	r24
+  f6:	7f 91       	pop	r23
+  f8:	6f 91       	pop	r22
+  fa:	5f 91       	pop	r21
+  fc:	4f 91       	pop	r20
+  fe:	3f 91       	pop	r19
+ 100:	2f 91       	pop	r18
+ 102:	0f 90       	pop	r0
+ 104:	0f be       	out	0x3f, r0	; 63
+ 106:	0f 90       	pop	r0
+ 108:	1f 90       	pop	r1
+ 10a:	18 95       	reti
+
+0000010c <__vector_2>:
+
+ISR(INT1_vect)
+{
+ 10c:	1f 92       	push	r1
+ 10e:	0f 92       	push	r0
+ 110:	0f b6       	in	r0, 0x3f	; 63
+ 112:	0f 92       	push	r0
+ 114:	11 24       	eor	r1, r1
+ 116:	2f 93       	push	r18
+ 118:	3f 93       	push	r19
+ 11a:	4f 93       	push	r20
+ 11c:	5f 93       	push	r21
+ 11e:	6f 93       	push	r22
+ 120:	7f 93       	push	r23
+ 122:	8f 93       	push	r24
+ 124:	9f 93       	push	r25
+ 126:	af 93       	push	r26
+ 128:	bf 93       	push	r27
+ 12a:	ef 93       	push	r30
+ 12c:	ff 93       	push	r31
+	/*callback function from INT1 */
+	 (*cb_int1)();
+ 12e:	e0 91 6e 00 	lds	r30, 0x006E
+ 132:	f0 91 6f 00 	lds	r31, 0x006F
+ 136:	09 95       	icall
+}
+ 138:	ff 91       	pop	r31
+ 13a:	ef 91       	pop	r30
+ 13c:	bf 91       	pop	r27
+ 13e:	af 91       	pop	r26
+ 140:	9f 91       	pop	r25
+ 142:	8f 91       	pop	r24
+ 144:	7f 91       	pop	r23
+ 146:	6f 91       	pop	r22
+ 148:	5f 91       	pop	r21
+ 14a:	4f 91       	pop	r20
+ 14c:	3f 91       	pop	r19
+ 14e:	2f 91       	pop	r18
+ 150:	0f 90       	pop	r0
+ 152:	0f be       	out	0x3f, r0	; 63
+ 154:	0f 90       	pop	r0
+ 156:	1f 90       	pop	r1
+ 158:	18 95       	reti
+
+0000015a <__vector_3>:
+
+ISR(INT2_vect)
+{
+ 15a:	1f 92       	push	r1
+ 15c:	0f 92       	push	r0
+ 15e:	0f b6       	in	r0, 0x3f	; 63
+ 160:	0f 92       	push	r0
+ 162:	11 24       	eor	r1, r1
+ 164:	2f 93       	push	r18
+ 166:	3f 93       	push	r19
+ 168:	4f 93       	push	r20
+ 16a:	5f 93       	push	r21
+ 16c:	6f 93       	push	r22
+ 16e:	7f 93       	push	r23
+ 170:	8f 93       	push	r24
+ 172:	9f 93       	push	r25
+ 174:	af 93       	push	r26
+ 176:	bf 93       	push	r27
+ 178:	ef 93       	push	r30
+ 17a:	ff 93       	push	r31
+	/*callback function from INT2*/
+	 (*cb_int2)();
+ 17c:	e0 91 70 00 	lds	r30, 0x0070
+ 180:	f0 91 71 00 	lds	r31, 0x0071
+ 184:	09 95       	icall
+}
+ 186:	ff 91       	pop	r31
+ 188:	ef 91       	pop	r30
+ 18a:	bf 91       	pop	r27
+ 18c:	af 91       	pop	r26
+ 18e:	9f 91       	pop	r25
+ 190:	8f 91       	pop	r24
+ 192:	7f 91       	pop	r23
+ 194:	6f 91       	pop	r22
+ 196:	5f 91       	pop	r21
+ 198:	4f 91       	pop	r20
+ 19a:	3f 91       	pop	r19
+ 19c:	2f 91       	pop	r18
+ 19e:	0f 90       	pop	r0
+ 1a0:	0f be       	out	0x3f, r0	; 63
+ 1a2:	0f 90       	pop	r0
+ 1a4:	1f 90       	pop	r1
+ 1a6:	18 95       	reti
+
+000001a8 <Hal_Ext_Interrupt_Init>:
+
+bool_t Hal_Ext_Interrupt_Init(gstr_ext_interrupt_config *str_config)
+{
+ 1a8:	fc 01       	movw	r30, r24
+
+ bool_t ret_val =E_TRUE ;
+
+ if(str_config != NULL)
+ 1aa:	00 97       	sbiw	r24, 0x00	; 0
+ 1ac:	09 f4       	brne	.+2      	; 0x1b0 <Hal_Ext_Interrupt_Init+0x8>
+ 1ae:	6c c0       	rjmp	.+216    	; 0x288 <Hal_Ext_Interrupt_Init+0xe0>
+ {
+	 if((str_config ->interrupt_number == INT_0) && (str_config->cb_fun_ptr !=NULL))
+ 1b0:	80 81       	ld	r24, Z
+ 1b2:	81 11       	cpse	r24, r1
+ 1b4:	26 c0       	rjmp	.+76     	; 0x202 <Hal_Ext_Interrupt_Init+0x5a>
+ 1b6:	82 81       	ldd	r24, Z+2	; 0x02
+ 1b8:	93 81       	ldd	r25, Z+3	; 0x03
+ 1ba:	00 97       	sbiw	r24, 0x00	; 0
+ 1bc:	09 f4       	brne	.+2      	; 0x1c0 <Hal_Ext_Interrupt_Init+0x18>
+ 1be:	66 c0       	rjmp	.+204    	; 0x28c <Hal_Ext_Interrupt_Init+0xe4>
+	 {
+		 
+			cb_int0 = (void(*)(void))(str_config->cb_fun_ptr);
+ 1c0:	90 93 6d 00 	sts	0x006D, r25
+ 1c4:	80 93 6c 00 	sts	0x006C, r24
+			
+			 /*set the level configuration */
+			 if(str_config->interrupt_level==LOW_LEVEL)
+ 1c8:	81 81       	ldd	r24, Z+1	; 0x01
+ 1ca:	81 11       	cpse	r24, r1
+ 1cc:	03 c0       	rjmp	.+6      	; 0x1d4 <Hal_Ext_Interrupt_Init+0x2c>
+				 /*LOW_LEVEL*/
+			  MCUCR &=~(1<<0)&~(1<<1);
+ 1ce:	85 b7       	in	r24, 0x35	; 53
+ 1d0:	8c 7f       	andi	r24, 0xFC	; 252
+ 1d2:	85 bf       	out	0x35, r24	; 53
+
+			 if(str_config->interrupt_level==ANY_CHANGE)
+ 1d4:	81 81       	ldd	r24, Z+1	; 0x01
+ 1d6:	81 30       	cpi	r24, 0x01	; 1
+ 1d8:	19 f4       	brne	.+6      	; 0x1e0 <Hal_Ext_Interrupt_Init+0x38>
+				 /*ANY_CHANGE*/
+			   MCUCR |=(1<<0)&~(1<<1);
+ 1da:	85 b7       	in	r24, 0x35	; 53
+ 1dc:	81 60       	ori	r24, 0x01	; 1
+ 1de:	85 bf       	out	0x35, r24	; 53
+
+			 if(str_config->interrupt_level==RISING_EDAGE)
+ 1e0:	81 81       	ldd	r24, Z+1	; 0x01
+ 1e2:	83 30       	cpi	r24, 0x03	; 3
+ 1e4:	19 f4       	brne	.+6      	; 0x1ec <Hal_Ext_Interrupt_Init+0x44>
+				 /*RISING_EDAGE*/
+			  MCUCR |=(1<<0)|(1<<1);
+ 1e6:	85 b7       	in	r24, 0x35	; 53
+ 1e8:	83 60       	ori	r24, 0x03	; 3
+ 1ea:	85 bf       	out	0x35, r24	; 53
+
+			 if(str_config->interrupt_level==FALLING_EDAGE)
+ 1ec:	81 81       	ldd	r24, Z+1	; 0x01
+ 1ee:	82 30       	cpi	r24, 0x02	; 2
+ 1f0:	19 f4       	brne	.+6      	; 0x1f8 <Hal_Ext_Interrupt_Init+0x50>
+				 /*FALLING_EDAGE*/
+			  MCUCR &=~(1<<0)|(1<<1);
+ 1f2:	85 b7       	in	r24, 0x35	; 53
+ 1f4:	8e 7f       	andi	r24, 0xFE	; 254
+ 1f6:	85 bf       	out	0x35, r24	; 53
+			  
+			  GICR = (1<<6);
+ 1f8:	80 e4       	ldi	r24, 0x40	; 64
+ 1fa:	8b bf       	out	0x3b, r24	; 59
+			  CLR_BIT(DDRD,2);
+ 1fc:	8a 98       	cbi	0x11, 2	; 17
+}
+
+bool_t Hal_Ext_Interrupt_Init(gstr_ext_interrupt_config *str_config)
+{
+
+ bool_t ret_val =E_TRUE ;
+ 1fe:	81 e0       	ldi	r24, 0x01	; 1
+			 if(str_config->interrupt_level==FALLING_EDAGE)
+				 /*FALLING_EDAGE*/
+			  MCUCR &=~(1<<0)|(1<<1);
+			  
+			  GICR = (1<<6);
+			  CLR_BIT(DDRD,2);
+ 200:	4c c0       	rjmp	.+152    	; 0x29a <Hal_Ext_Interrupt_Init+0xf2>
+			 
+	 }
+
+
+	 else if((str_config ->interrupt_number == INT_1) && (str_config->cb_fun_ptr !=NULL))
+ 202:	81 30       	cpi	r24, 0x01	; 1
+ 204:	31 f5       	brne	.+76     	; 0x252 <Hal_Ext_Interrupt_Init+0xaa>
+ 206:	82 81       	ldd	r24, Z+2	; 0x02
+ 208:	93 81       	ldd	r25, Z+3	; 0x03
+ 20a:	00 97       	sbiw	r24, 0x00	; 0
+ 20c:	09 f4       	brne	.+2      	; 0x210 <Hal_Ext_Interrupt_Init+0x68>
+ 20e:	40 c0       	rjmp	.+128    	; 0x290 <Hal_Ext_Interrupt_Init+0xe8>
+		 {
+		  		
+			cb_int1 = (void(*)(void))(str_config->cb_fun_ptr);
+ 210:	90 93 6f 00 	sts	0x006F, r25
+ 214:	80 93 6e 00 	sts	0x006E, r24
+				  
+			 /*set the level configuration */
+			 if(str_config->interrupt_level==LOW_LEVEL)
+ 218:	81 81       	ldd	r24, Z+1	; 0x01
+ 21a:	81 11       	cpse	r24, r1
+ 21c:	03 c0       	rjmp	.+6      	; 0x224 <Hal_Ext_Interrupt_Init+0x7c>
+				 /*LOW_LEVEL*/
+			  MCUCR &=~(1<<2)&~(1<<3);
+ 21e:	85 b7       	in	r24, 0x35	; 53
+ 220:	83 7f       	andi	r24, 0xF3	; 243
+ 222:	85 bf       	out	0x35, r24	; 53
+
+			 if(str_config->interrupt_level==ANY_CHANGE)
+ 224:	81 81       	ldd	r24, Z+1	; 0x01
+ 226:	81 30       	cpi	r24, 0x01	; 1
+ 228:	19 f4       	brne	.+6      	; 0x230 <Hal_Ext_Interrupt_Init+0x88>
+			 	 /*ANY_CHANGE*/
+			   MCUCR |=(1<<2)&~(1<<3);
+ 22a:	85 b7       	in	r24, 0x35	; 53
+ 22c:	84 60       	ori	r24, 0x04	; 4
+ 22e:	85 bf       	out	0x35, r24	; 53
+
+			 if(str_config->interrupt_level==RISING_EDAGE)
+ 230:	81 81       	ldd	r24, Z+1	; 0x01
+ 232:	83 30       	cpi	r24, 0x03	; 3
+ 234:	19 f4       	brne	.+6      	; 0x23c <Hal_Ext_Interrupt_Init+0x94>
+			 	 /*RISING_EDAGE*/
+			  MCUCR |=(1<<2)|(1<<3);
+ 236:	85 b7       	in	r24, 0x35	; 53
+ 238:	8c 60       	ori	r24, 0x0C	; 12
+ 23a:	85 bf       	out	0x35, r24	; 53
+
+			 if(str_config->interrupt_level==FALLING_EDAGE)
+ 23c:	81 81       	ldd	r24, Z+1	; 0x01
+ 23e:	82 30       	cpi	r24, 0x02	; 2
+ 240:	19 f4       	brne	.+6      	; 0x248 <Hal_Ext_Interrupt_Init+0xa0>
+			     /*FALLING_EDAGE*/
+			  MCUCR &=~(1<<2)|(1<<3);
+ 242:	85 b7       	in	r24, 0x35	; 53
+ 244:	8b 7f       	andi	r24, 0xFB	; 251
+ 246:	85 bf       	out	0x35, r24	; 53
+				  GICR = (1<<7);
+ 248:	80 e8       	ldi	r24, 0x80	; 128
+ 24a:	8b bf       	out	0x3b, r24	; 59
+				 CLR_BIT(DDRD,3);
+ 24c:	8b 98       	cbi	0x11, 3	; 17
+}
+
+bool_t Hal_Ext_Interrupt_Init(gstr_ext_interrupt_config *str_config)
+{
+
+ bool_t ret_val =E_TRUE ;
+ 24e:	81 e0       	ldi	r24, 0x01	; 1
+
+			 if(str_config->interrupt_level==FALLING_EDAGE)
+			     /*FALLING_EDAGE*/
+			  MCUCR &=~(1<<2)|(1<<3);
+				  GICR = (1<<7);
+				 CLR_BIT(DDRD,3);
+ 250:	24 c0       	rjmp	.+72     	; 0x29a <Hal_Ext_Interrupt_Init+0xf2>
+			  
+		 }
+
+	 else if((str_config ->interrupt_number == INT_2) && (str_config->cb_fun_ptr !=NULL))
+ 252:	82 30       	cpi	r24, 0x02	; 2
+ 254:	f9 f4       	brne	.+62     	; 0x294 <Hal_Ext_Interrupt_Init+0xec>
+ 256:	82 81       	ldd	r24, Z+2	; 0x02
+ 258:	93 81       	ldd	r25, Z+3	; 0x03
+ 25a:	00 97       	sbiw	r24, 0x00	; 0
+ 25c:	e9 f0       	breq	.+58     	; 0x298 <Hal_Ext_Interrupt_Init+0xf0>
+	  	 {
+		 cb_int2 = (void(*)(void))(str_config->cb_fun_ptr);
+ 25e:	90 93 71 00 	sts	0x0071, r25
+ 262:	80 93 70 00 	sts	0x0070, r24
+			 /*set the level configuration */
+			 if(str_config->interrupt_level==RISING_EDAGE)
+ 266:	81 81       	ldd	r24, Z+1	; 0x01
+ 268:	83 30       	cpi	r24, 0x03	; 3
+ 26a:	19 f4       	brne	.+6      	; 0x272 <Hal_Ext_Interrupt_Init+0xca>
+				 /*RISING_EDAGE*/
+		     	  MCUCSR |=(1<<6);
+ 26c:	84 b7       	in	r24, 0x34	; 52
+ 26e:	80 64       	ori	r24, 0x40	; 64
+ 270:	84 bf       	out	0x34, r24	; 52
+			if(str_config->interrupt_level==FALLING_EDAGE)
+ 272:	81 81       	ldd	r24, Z+1	; 0x01
+ 274:	82 30       	cpi	r24, 0x02	; 2
+ 276:	19 f4       	brne	.+6      	; 0x27e <Hal_Ext_Interrupt_Init+0xd6>
+				 /*FALLING_EDAGE*/
+	    	  MCUCSR &=~(1<<6);
+ 278:	84 b7       	in	r24, 0x34	; 52
+ 27a:	8f 7b       	andi	r24, 0xBF	; 191
+ 27c:	84 bf       	out	0x34, r24	; 52
+
+				   /*enable INT2*/
+				 CLR_BIT(DDRB,2);
+ 27e:	ba 98       	cbi	0x17, 2	; 23
+				 GICR = (1<<5);
+ 280:	80 e2       	ldi	r24, 0x20	; 32
+ 282:	8b bf       	out	0x3b, r24	; 59
+}
+
+bool_t Hal_Ext_Interrupt_Init(gstr_ext_interrupt_config *str_config)
+{
+
+ bool_t ret_val =E_TRUE ;
+ 284:	81 e0       	ldi	r24, 0x01	; 1
+				 /*FALLING_EDAGE*/
+	    	  MCUCSR &=~(1<<6);
+
+				   /*enable INT2*/
+				 CLR_BIT(DDRB,2);
+				 GICR = (1<<5);
+ 286:	09 c0       	rjmp	.+18     	; 0x29a <Hal_Ext_Interrupt_Init+0xf2>
+	 }
+
+ }
+ else
+ {
+	 ret_val = E_FALSE;
+ 288:	80 e0       	ldi	r24, 0x00	; 0
+ 28a:	07 c0       	rjmp	.+14     	; 0x29a <Hal_Ext_Interrupt_Init+0xf2>
+				 GICR = (1<<5);
+	  	 }
+
+	 else
+	 {
+		 ret_val = E_FALSE;
+ 28c:	80 e0       	ldi	r24, 0x00	; 0
+ 28e:	05 c0       	rjmp	.+10     	; 0x29a <Hal_Ext_Interrupt_Init+0xf2>
+ 290:	80 e0       	ldi	r24, 0x00	; 0
+ 292:	03 c0       	rjmp	.+6      	; 0x29a <Hal_Ext_Interrupt_Init+0xf2>
+ 294:	80 e0       	ldi	r24, 0x00	; 0
+ 296:	01 c0       	rjmp	.+2      	; 0x29a <Hal_Ext_Interrupt_Init+0xf2>
+ 298:	80 e0       	ldi	r24, 0x00	; 0
+ else
+ {
+	 ret_val = E_FALSE;
+ }
+ 
+  SREG = (1<<7);
+ 29a:	90 e8       	ldi	r25, 0x80	; 128
+ 29c:	9f bf       	out	0x3f, r25	; 63
+	
+return ret_val;
+}
+ 29e:	08 95       	ret
+
+000002a0 <_exit>:
+ 2a0:	f8 94       	cli
+
+000002a2 <__stop_program>:
+ 2a2:	ff cf       	rjmp	.-2      	; 0x2a2 <__stop_program>
