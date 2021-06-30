@@ -1,0 +1,608 @@
+
+GPIO_AvrDriver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000318  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00000318  0000038c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000006cc  00000000  00000000  0000038c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000097  00000000  00000000  00000a58  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .comment      0000002f  00000000  00000000  00000aef  2**0
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000058  00000000  00000000  00000b1e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000470  00000000  00000000  00000b76  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000017f  00000000  00000000  00000fe6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000222  00000000  00000000  00001165  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000078  00000000  00000000  00001388  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000016b  00000000  00000000  00001400  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000005e5  00000000  00000000  0000156b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  00001b50  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 8a 01 	jmp	0x314	; 0x314 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+int main(void)
+{
+	
+	
+	
+	 MGPIO_SetPortDirection(PORTA, PIN0, OUTPUT);
+  6c:	41 e0       	ldi	r20, 0x01	; 1
+  6e:	60 e0       	ldi	r22, 0x00	; 0
+  70:	82 e0       	ldi	r24, 0x02	; 2
+  72:	0e 94 7f 00 	call	0xfe	; 0xfe <MGPIO_SetPortDirection>
+	 MGPIO_SetPortDirection(PORTB, PIN1, OUTPUT);
+  76:	41 e0       	ldi	r20, 0x01	; 1
+  78:	61 e0       	ldi	r22, 0x01	; 1
+  7a:	83 e0       	ldi	r24, 0x03	; 3
+  7c:	0e 94 7f 00 	call	0xfe	; 0xfe <MGPIO_SetPortDirection>
+	 MGPIO_SetPortDirection(PORTC, PIN2, OUTPUT);
+  80:	41 e0       	ldi	r20, 0x01	; 1
+  82:	62 e0       	ldi	r22, 0x02	; 2
+  84:	84 e0       	ldi	r24, 0x04	; 4
+  86:	0e 94 7f 00 	call	0xfe	; 0xfe <MGPIO_SetPortDirection>
+	 MGPIO_SetPortDirection(PORTD, PIN3, OUTPUT);
+  8a:	41 e0       	ldi	r20, 0x01	; 1
+  8c:	63 e0       	ldi	r22, 0x03	; 3
+  8e:	85 e0       	ldi	r24, 0x05	; 5
+  90:	0e 94 7f 00 	call	0xfe	; 0xfe <MGPIO_SetPortDirection>
+	 
+	 MGPIO_SetPin(PORTA,PIN0);
+  94:	60 e0       	ldi	r22, 0x00	; 0
+  96:	82 e0       	ldi	r24, 0x02	; 2
+  98:	0e 94 0b 01 	call	0x216	; 0x216 <MGPIO_SetPin>
+	 MGPIO_SetPin(PORTB,PIN0);
+  9c:	60 e0       	ldi	r22, 0x00	; 0
+  9e:	83 e0       	ldi	r24, 0x03	; 3
+  a0:	0e 94 0b 01 	call	0x216	; 0x216 <MGPIO_SetPin>
+	 MGPIO_SetPin(PORTC,PIN0);
+  a4:	60 e0       	ldi	r22, 0x00	; 0
+  a6:	84 e0       	ldi	r24, 0x04	; 4
+  a8:	0e 94 0b 01 	call	0x216	; 0x216 <MGPIO_SetPin>
+	 MGPIO_SetPin(PORTD,PIN0);
+  ac:	60 e0       	ldi	r22, 0x00	; 0
+  ae:	85 e0       	ldi	r24, 0x05	; 5
+  b0:	0e 94 0b 01 	call	0x216	; 0x216 <MGPIO_SetPin>
+	 MGPIO_SetPin(PORTA,PIN7);
+  b4:	67 e0       	ldi	r22, 0x07	; 7
+  b6:	82 e0       	ldi	r24, 0x02	; 2
+  b8:	0e 94 0b 01 	call	0x216	; 0x216 <MGPIO_SetPin>
+    while(1)
+    {
+        
+		
+		
+		MGPIO_TogalPin(PORTA,PIN0);
+  bc:	60 e0       	ldi	r22, 0x00	; 0
+  be:	82 e0       	ldi	r24, 0x02	; 2
+  c0:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+		MGPIO_TogalPin(PORTA,PIN1);
+  c4:	61 e0       	ldi	r22, 0x01	; 1
+  c6:	82 e0       	ldi	r24, 0x02	; 2
+  c8:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+		MGPIO_TogalPin(PORTA,PIN2);
+  cc:	62 e0       	ldi	r22, 0x02	; 2
+  ce:	82 e0       	ldi	r24, 0x02	; 2
+  d0:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+		MGPIO_TogalPin(PORTA,PIN3);
+  d4:	63 e0       	ldi	r22, 0x03	; 3
+  d6:	82 e0       	ldi	r24, 0x02	; 2
+  d8:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+		MGPIO_TogalPin(PORTA,PIN4);
+  dc:	64 e0       	ldi	r22, 0x04	; 4
+  de:	82 e0       	ldi	r24, 0x02	; 2
+  e0:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+		MGPIO_TogalPin(PORTA,PIN5);
+  e4:	65 e0       	ldi	r22, 0x05	; 5
+  e6:	82 e0       	ldi	r24, 0x02	; 2
+  e8:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+		MGPIO_TogalPin(PORTA,PIN6);
+  ec:	66 e0       	ldi	r22, 0x06	; 6
+  ee:	82 e0       	ldi	r24, 0x02	; 2
+  f0:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+		MGPIO_TogalPin(PORTA,PIN7);
+  f4:	67 e0       	ldi	r22, 0x07	; 7
+  f6:	82 e0       	ldi	r24, 0x02	; 2
+  f8:	0e 94 4d 01 	call	0x29a	; 0x29a <MGPIO_TogalPin>
+  fc:	df cf       	rjmp	.-66     	; 0xbc <main+0x50>
+
+000000fe <MGPIO_SetPortDirection>:
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+	if(Copy_ProtDir == OUTPUT)
+  fe:	41 30       	cpi	r20, 0x01	; 1
+ 100:	09 f0       	breq	.+2      	; 0x104 <MGPIO_SetPortDirection+0x6>
+ 102:	41 c0       	rjmp	.+130    	; 0x186 <MGPIO_SetPortDirection+0x88>
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+ 104:	82 30       	cpi	r24, 0x02	; 2
+ 106:	71 f4       	brne	.+28     	; 0x124 <MGPIO_SetPortDirection+0x26>
+ 108:	2a b3       	in	r18, 0x1a	; 26
+ 10a:	81 e0       	ldi	r24, 0x01	; 1
+ 10c:	90 e0       	ldi	r25, 0x00	; 0
+ 10e:	ac 01       	movw	r20, r24
+ 110:	02 c0       	rjmp	.+4      	; 0x116 <MGPIO_SetPortDirection+0x18>
+ 112:	44 0f       	add	r20, r20
+ 114:	55 1f       	adc	r21, r21
+ 116:	6a 95       	dec	r22
+ 118:	e2 f7       	brpl	.-8      	; 0x112 <MGPIO_SetPortDirection+0x14>
+ 11a:	ba 01       	movw	r22, r20
+ 11c:	62 2b       	or	r22, r18
+ 11e:	6a bb       	out	0x1a, r22	; 26
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 120:	81 e0       	ldi	r24, 0x01	; 1
+ 122:	08 95       	ret
+	if(Copy_ProtDir == OUTPUT)
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+ 124:	83 30       	cpi	r24, 0x03	; 3
+ 126:	71 f4       	brne	.+28     	; 0x144 <MGPIO_SetPortDirection+0x46>
+ 128:	27 b3       	in	r18, 0x17	; 23
+ 12a:	81 e0       	ldi	r24, 0x01	; 1
+ 12c:	90 e0       	ldi	r25, 0x00	; 0
+ 12e:	ac 01       	movw	r20, r24
+ 130:	02 c0       	rjmp	.+4      	; 0x136 <MGPIO_SetPortDirection+0x38>
+ 132:	44 0f       	add	r20, r20
+ 134:	55 1f       	adc	r21, r21
+ 136:	6a 95       	dec	r22
+ 138:	e2 f7       	brpl	.-8      	; 0x132 <MGPIO_SetPortDirection+0x34>
+ 13a:	ba 01       	movw	r22, r20
+ 13c:	62 2b       	or	r22, r18
+ 13e:	67 bb       	out	0x17, r22	; 23
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 140:	81 e0       	ldi	r24, 0x01	; 1
+ 142:	08 95       	ret
+	if(Copy_ProtDir == OUTPUT)
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  SET_BIT(DIR_DDRC,Copy_Pin);
+ 144:	84 30       	cpi	r24, 0x04	; 4
+ 146:	71 f4       	brne	.+28     	; 0x164 <MGPIO_SetPortDirection+0x66>
+ 148:	24 b3       	in	r18, 0x14	; 20
+ 14a:	81 e0       	ldi	r24, 0x01	; 1
+ 14c:	90 e0       	ldi	r25, 0x00	; 0
+ 14e:	ac 01       	movw	r20, r24
+ 150:	02 c0       	rjmp	.+4      	; 0x156 <MGPIO_SetPortDirection+0x58>
+ 152:	44 0f       	add	r20, r20
+ 154:	55 1f       	adc	r21, r21
+ 156:	6a 95       	dec	r22
+ 158:	e2 f7       	brpl	.-8      	; 0x152 <MGPIO_SetPortDirection+0x54>
+ 15a:	ba 01       	movw	r22, r20
+ 15c:	62 2b       	or	r22, r18
+ 15e:	64 bb       	out	0x14, r22	; 20
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 160:	81 e0       	ldi	r24, 0x01	; 1
+ 162:	08 95       	ret
+	if(Copy_ProtDir == OUTPUT)
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  SET_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  SET_BIT(DIR_DDRD,Copy_Pin);
+ 164:	85 30       	cpi	r24, 0x05	; 5
+ 166:	09 f0       	breq	.+2      	; 0x16a <MGPIO_SetPortDirection+0x6c>
+ 168:	52 c0       	rjmp	.+164    	; 0x20e <MGPIO_SetPortDirection+0x110>
+ 16a:	21 b3       	in	r18, 0x11	; 17
+ 16c:	81 e0       	ldi	r24, 0x01	; 1
+ 16e:	90 e0       	ldi	r25, 0x00	; 0
+ 170:	ac 01       	movw	r20, r24
+ 172:	02 c0       	rjmp	.+4      	; 0x178 <MGPIO_SetPortDirection+0x7a>
+ 174:	44 0f       	add	r20, r20
+ 176:	55 1f       	adc	r21, r21
+ 178:	6a 95       	dec	r22
+ 17a:	e2 f7       	brpl	.-8      	; 0x174 <MGPIO_SetPortDirection+0x76>
+ 17c:	ba 01       	movw	r22, r20
+ 17e:	62 2b       	or	r22, r18
+ 180:	61 bb       	out	0x11, r22	; 17
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 182:	81 e0       	ldi	r24, 0x01	; 1
+ 184:	08 95       	ret
+		else if(Copy_Port == PORTD)  SET_BIT(DIR_DDRD,Copy_Pin);
+		else ret_val = E_FALSE;
+	}
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+ 186:	82 30       	cpi	r24, 0x02	; 2
+ 188:	79 f4       	brne	.+30     	; 0x1a8 <MGPIO_SetPortDirection+0xaa>
+ 18a:	2a b3       	in	r18, 0x1a	; 26
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+ 18e:	90 e0       	ldi	r25, 0x00	; 0
+ 190:	ac 01       	movw	r20, r24
+ 192:	02 c0       	rjmp	.+4      	; 0x198 <MGPIO_SetPortDirection+0x9a>
+ 194:	44 0f       	add	r20, r20
+ 196:	55 1f       	adc	r21, r21
+ 198:	6a 95       	dec	r22
+ 19a:	e2 f7       	brpl	.-8      	; 0x194 <MGPIO_SetPortDirection+0x96>
+ 19c:	ba 01       	movw	r22, r20
+ 19e:	60 95       	com	r22
+ 1a0:	62 23       	and	r22, r18
+ 1a2:	6a bb       	out	0x1a, r22	; 26
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 1a4:	81 e0       	ldi	r24, 0x01	; 1
+ 1a6:	08 95       	ret
+		else ret_val = E_FALSE;
+	}
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+ 1a8:	83 30       	cpi	r24, 0x03	; 3
+ 1aa:	79 f4       	brne	.+30     	; 0x1ca <MGPIO_SetPortDirection+0xcc>
+ 1ac:	27 b3       	in	r18, 0x17	; 23
+ 1ae:	81 e0       	ldi	r24, 0x01	; 1
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	ac 01       	movw	r20, r24
+ 1b4:	02 c0       	rjmp	.+4      	; 0x1ba <MGPIO_SetPortDirection+0xbc>
+ 1b6:	44 0f       	add	r20, r20
+ 1b8:	55 1f       	adc	r21, r21
+ 1ba:	6a 95       	dec	r22
+ 1bc:	e2 f7       	brpl	.-8      	; 0x1b6 <MGPIO_SetPortDirection+0xb8>
+ 1be:	ba 01       	movw	r22, r20
+ 1c0:	60 95       	com	r22
+ 1c2:	62 23       	and	r22, r18
+ 1c4:	67 bb       	out	0x17, r22	; 23
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 1c6:	81 e0       	ldi	r24, 0x01	; 1
+ 1c8:	08 95       	ret
+	}
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  CLR_BIT(DIR_DDRC,Copy_Pin);
+ 1ca:	84 30       	cpi	r24, 0x04	; 4
+ 1cc:	79 f4       	brne	.+30     	; 0x1ec <MGPIO_SetPortDirection+0xee>
+ 1ce:	24 b3       	in	r18, 0x14	; 20
+ 1d0:	81 e0       	ldi	r24, 0x01	; 1
+ 1d2:	90 e0       	ldi	r25, 0x00	; 0
+ 1d4:	ac 01       	movw	r20, r24
+ 1d6:	02 c0       	rjmp	.+4      	; 0x1dc <MGPIO_SetPortDirection+0xde>
+ 1d8:	44 0f       	add	r20, r20
+ 1da:	55 1f       	adc	r21, r21
+ 1dc:	6a 95       	dec	r22
+ 1de:	e2 f7       	brpl	.-8      	; 0x1d8 <MGPIO_SetPortDirection+0xda>
+ 1e0:	ba 01       	movw	r22, r20
+ 1e2:	60 95       	com	r22
+ 1e4:	62 23       	and	r22, r18
+ 1e6:	64 bb       	out	0x14, r22	; 20
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 1e8:	81 e0       	ldi	r24, 0x01	; 1
+ 1ea:	08 95       	ret
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  CLR_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  CLR_BIT(DIR_DDRD,Copy_Pin);
+ 1ec:	85 30       	cpi	r24, 0x05	; 5
+ 1ee:	89 f4       	brne	.+34     	; 0x212 <MGPIO_SetPortDirection+0x114>
+ 1f0:	21 b3       	in	r18, 0x11	; 17
+ 1f2:	81 e0       	ldi	r24, 0x01	; 1
+ 1f4:	90 e0       	ldi	r25, 0x00	; 0
+ 1f6:	ac 01       	movw	r20, r24
+ 1f8:	02 c0       	rjmp	.+4      	; 0x1fe <MGPIO_SetPortDirection+0x100>
+ 1fa:	44 0f       	add	r20, r20
+ 1fc:	55 1f       	adc	r21, r21
+ 1fe:	6a 95       	dec	r22
+ 200:	e2 f7       	brpl	.-8      	; 0x1fa <MGPIO_SetPortDirection+0xfc>
+ 202:	ba 01       	movw	r22, r20
+ 204:	60 95       	com	r22
+ 206:	62 23       	and	r22, r18
+ 208:	61 bb       	out	0x11, r22	; 17
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 20a:	81 e0       	ldi	r24, 0x01	; 1
+ 20c:	08 95       	ret
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  SET_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  SET_BIT(DIR_DDRD,Copy_Pin);
+		else ret_val = E_FALSE;
+ 20e:	80 e0       	ldi	r24, 0x00	; 0
+ 210:	08 95       	ret
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  CLR_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  CLR_BIT(DIR_DDRD,Copy_Pin);
+		else ret_val = E_FALSE;
+ 212:	80 e0       	ldi	r24, 0x00	; 0
+		
+	}
+	return ret_val;
+}
+ 214:	08 95       	ret
+
+00000216 <MGPIO_SetPin>:
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+ 216:	82 30       	cpi	r24, 0x02	; 2
+ 218:	71 f4       	brne	.+28     	; 0x236 <MGPIO_SetPin+0x20>
+ 21a:	2b b3       	in	r18, 0x1b	; 27
+ 21c:	81 e0       	ldi	r24, 0x01	; 1
+ 21e:	90 e0       	ldi	r25, 0x00	; 0
+ 220:	ac 01       	movw	r20, r24
+ 222:	02 c0       	rjmp	.+4      	; 0x228 <MGPIO_SetPin+0x12>
+ 224:	44 0f       	add	r20, r20
+ 226:	55 1f       	adc	r21, r21
+ 228:	6a 95       	dec	r22
+ 22a:	e2 f7       	brpl	.-8      	; 0x224 <MGPIO_SetPin+0xe>
+ 22c:	ba 01       	movw	r22, r20
+ 22e:	62 2b       	or	r22, r18
+ 230:	6b bb       	out	0x1b, r22	; 27
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 232:	81 e0       	ldi	r24, 0x01	; 1
+ 234:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+ 236:	83 30       	cpi	r24, 0x03	; 3
+ 238:	71 f4       	brne	.+28     	; 0x256 <MGPIO_SetPin+0x40>
+ 23a:	28 b3       	in	r18, 0x18	; 24
+ 23c:	81 e0       	ldi	r24, 0x01	; 1
+ 23e:	90 e0       	ldi	r25, 0x00	; 0
+ 240:	ac 01       	movw	r20, r24
+ 242:	02 c0       	rjmp	.+4      	; 0x248 <MGPIO_SetPin+0x32>
+ 244:	44 0f       	add	r20, r20
+ 246:	55 1f       	adc	r21, r21
+ 248:	6a 95       	dec	r22
+ 24a:	e2 f7       	brpl	.-8      	; 0x244 <MGPIO_SetPin+0x2e>
+ 24c:	ba 01       	movw	r22, r20
+ 24e:	62 2b       	or	r22, r18
+ 250:	68 bb       	out	0x18, r22	; 24
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 252:	81 e0       	ldi	r24, 0x01	; 1
+ 254:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  SET_BIT(OUT_PORTC,Copy_Pin);
+ 256:	84 30       	cpi	r24, 0x04	; 4
+ 258:	71 f4       	brne	.+28     	; 0x276 <MGPIO_SetPin+0x60>
+ 25a:	25 b3       	in	r18, 0x15	; 21
+ 25c:	81 e0       	ldi	r24, 0x01	; 1
+ 25e:	90 e0       	ldi	r25, 0x00	; 0
+ 260:	ac 01       	movw	r20, r24
+ 262:	02 c0       	rjmp	.+4      	; 0x268 <MGPIO_SetPin+0x52>
+ 264:	44 0f       	add	r20, r20
+ 266:	55 1f       	adc	r21, r21
+ 268:	6a 95       	dec	r22
+ 26a:	e2 f7       	brpl	.-8      	; 0x264 <MGPIO_SetPin+0x4e>
+ 26c:	ba 01       	movw	r22, r20
+ 26e:	62 2b       	or	r22, r18
+ 270:	65 bb       	out	0x15, r22	; 21
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 272:	81 e0       	ldi	r24, 0x01	; 1
+ 274:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  SET_BIT(OUT_PORTC,Copy_Pin);
+	else if(Copy_Port == PORTD)  SET_BIT(OUT_PORTD,Copy_Pin);
+ 276:	85 30       	cpi	r24, 0x05	; 5
+ 278:	71 f4       	brne	.+28     	; 0x296 <MGPIO_SetPin+0x80>
+ 27a:	22 b3       	in	r18, 0x12	; 18
+ 27c:	81 e0       	ldi	r24, 0x01	; 1
+ 27e:	90 e0       	ldi	r25, 0x00	; 0
+ 280:	ac 01       	movw	r20, r24
+ 282:	02 c0       	rjmp	.+4      	; 0x288 <MGPIO_SetPin+0x72>
+ 284:	44 0f       	add	r20, r20
+ 286:	55 1f       	adc	r21, r21
+ 288:	6a 95       	dec	r22
+ 28a:	e2 f7       	brpl	.-8      	; 0x284 <MGPIO_SetPin+0x6e>
+ 28c:	ba 01       	movw	r22, r20
+ 28e:	62 2b       	or	r22, r18
+ 290:	62 bb       	out	0x12, r22	; 18
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 292:	81 e0       	ldi	r24, 0x01	; 1
+ 294:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  SET_BIT(OUT_PORTC,Copy_Pin);
+	else if(Copy_Port == PORTD)  SET_BIT(OUT_PORTD,Copy_Pin);
+	else ret_val = E_FALSE;
+ 296:	80 e0       	ldi	r24, 0x00	; 0
+	
+	return ret_val;
+}
+ 298:	08 95       	ret
+
+0000029a <MGPIO_TogalPin>:
+
+bool_t MGPIO_TogalPin(u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+	
+	if     (Copy_Port == PORTA)  TOG_BIT(OUT_PORTA,Copy_Pin);
+ 29a:	82 30       	cpi	r24, 0x02	; 2
+ 29c:	69 f4       	brne	.+26     	; 0x2b8 <MGPIO_TogalPin+0x1e>
+ 29e:	2b b3       	in	r18, 0x1b	; 27
+ 2a0:	81 e0       	ldi	r24, 0x01	; 1
+ 2a2:	90 e0       	ldi	r25, 0x00	; 0
+ 2a4:	ac 01       	movw	r20, r24
+ 2a6:	02 c0       	rjmp	.+4      	; 0x2ac <MGPIO_TogalPin+0x12>
+ 2a8:	44 0f       	add	r20, r20
+ 2aa:	55 1f       	adc	r21, r21
+ 2ac:	6a 95       	dec	r22
+ 2ae:	e2 f7       	brpl	.-8      	; 0x2a8 <MGPIO_TogalPin+0xe>
+ 2b0:	ba 01       	movw	r22, r20
+ 2b2:	62 27       	eor	r22, r18
+ 2b4:	6b bb       	out	0x1b, r22	; 27
+ 2b6:	2c c0       	rjmp	.+88     	; 0x310 <MGPIO_TogalPin+0x76>
+	else if(Copy_Port == PORTB)  TOG_BIT(OUT_PORTB,Copy_Pin);
+ 2b8:	83 30       	cpi	r24, 0x03	; 3
+ 2ba:	69 f4       	brne	.+26     	; 0x2d6 <MGPIO_TogalPin+0x3c>
+ 2bc:	28 b3       	in	r18, 0x18	; 24
+ 2be:	81 e0       	ldi	r24, 0x01	; 1
+ 2c0:	90 e0       	ldi	r25, 0x00	; 0
+ 2c2:	ac 01       	movw	r20, r24
+ 2c4:	02 c0       	rjmp	.+4      	; 0x2ca <MGPIO_TogalPin+0x30>
+ 2c6:	44 0f       	add	r20, r20
+ 2c8:	55 1f       	adc	r21, r21
+ 2ca:	6a 95       	dec	r22
+ 2cc:	e2 f7       	brpl	.-8      	; 0x2c6 <MGPIO_TogalPin+0x2c>
+ 2ce:	ba 01       	movw	r22, r20
+ 2d0:	62 27       	eor	r22, r18
+ 2d2:	68 bb       	out	0x18, r22	; 24
+ 2d4:	1d c0       	rjmp	.+58     	; 0x310 <MGPIO_TogalPin+0x76>
+	else if(Copy_Port == PORTC)  TOG_BIT(OUT_PORTC,Copy_Pin);
+ 2d6:	84 30       	cpi	r24, 0x04	; 4
+ 2d8:	69 f4       	brne	.+26     	; 0x2f4 <MGPIO_TogalPin+0x5a>
+ 2da:	25 b3       	in	r18, 0x15	; 21
+ 2dc:	81 e0       	ldi	r24, 0x01	; 1
+ 2de:	90 e0       	ldi	r25, 0x00	; 0
+ 2e0:	ac 01       	movw	r20, r24
+ 2e2:	02 c0       	rjmp	.+4      	; 0x2e8 <MGPIO_TogalPin+0x4e>
+ 2e4:	44 0f       	add	r20, r20
+ 2e6:	55 1f       	adc	r21, r21
+ 2e8:	6a 95       	dec	r22
+ 2ea:	e2 f7       	brpl	.-8      	; 0x2e4 <MGPIO_TogalPin+0x4a>
+ 2ec:	ba 01       	movw	r22, r20
+ 2ee:	62 27       	eor	r22, r18
+ 2f0:	65 bb       	out	0x15, r22	; 21
+ 2f2:	0e c0       	rjmp	.+28     	; 0x310 <MGPIO_TogalPin+0x76>
+	else if(Copy_Port == PORTD)  TOG_BIT(OUT_PORTD,Copy_Pin);
+ 2f4:	85 30       	cpi	r24, 0x05	; 5
+ 2f6:	61 f4       	brne	.+24     	; 0x310 <MGPIO_TogalPin+0x76>
+ 2f8:	22 b3       	in	r18, 0x12	; 18
+ 2fa:	81 e0       	ldi	r24, 0x01	; 1
+ 2fc:	90 e0       	ldi	r25, 0x00	; 0
+ 2fe:	ac 01       	movw	r20, r24
+ 300:	02 c0       	rjmp	.+4      	; 0x306 <MGPIO_TogalPin+0x6c>
+ 302:	44 0f       	add	r20, r20
+ 304:	55 1f       	adc	r21, r21
+ 306:	6a 95       	dec	r22
+ 308:	e2 f7       	brpl	.-8      	; 0x302 <MGPIO_TogalPin+0x68>
+ 30a:	ba 01       	movw	r22, r20
+ 30c:	62 27       	eor	r22, r18
+ 30e:	62 bb       	out	0x12, r22	; 18
+	
+	return ret_val;
+}
+ 310:	81 e0       	ldi	r24, 0x01	; 1
+ 312:	08 95       	ret
+
+00000314 <_exit>:
+ 314:	f8 94       	cli
+
+00000316 <__stop_program>:
+ 316:	ff cf       	rjmp	.-2      	; 0x316 <__stop_program>

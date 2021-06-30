@@ -1,0 +1,434 @@
+
+SPI_Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001f8  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000008  00800060  000001f8  0000026c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000006cc  00000000  00000000  00000274  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000097  00000000  00000000  00000940  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .comment      0000002f  00000000  00000000  000009d7  2**0
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000a8  00000000  00000000  00000a06  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a9e  00000000  00000000  00000aae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000039c  00000000  00000000  0000154c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000004d7  00000000  00000000  000018e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000118  00000000  00000000  00001dc0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000496  00000000  00000000  00001ed8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000861  00000000  00000000  0000236e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000090  00000000  00000000  00002bcf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+#include "GPIO.h"
+
+bool_t GPIO_PortInit( enum_port_t port, uint_8 pins, uint_8 init_value)
+{
+	bool_t ret_val = E_FALSE;
+  if( ((port==PORTD)||(port ==PORTB)||(port ==PORTC)||(port ==PORTA)) && ((init_value==0)||((init_value==1))) )
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+	{
+		if(init_value==0)
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+		{
+			if(port==PORTA)
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+			{
+				PORTA1 &=~(1<<pins);
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 41 00 	jmp	0x82	; 0x82 <__vector_12>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+			}
+			else if(port==PORTB)
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+			{
+				PORTB1 &=~(1<<pins);
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+			}
+			else if(port==PORTC)
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+			{
+				PORTC1 &=~(1<<pins);
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 ef       	ldi	r30, 0xF8	; 248
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 36       	cpi	r26, 0x68	; 104
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 97 00 	call	0x12e	; 0x12e <main>
+			}
+			else
+			{
+				PORTD1 &=~(1<<pins);
+  7a:	0c 94 fa 00 	jmp	0x1f4	; 0x1f4 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <__vector_12>:
+  82:	1f 92       	push	r1
+  84:	0f 92       	push	r0
+  86:	0f b6       	in	r0, 0x3f	; 63
+  88:	0f 92       	push	r0
+  8a:	11 24       	eor	r1, r1
+  8c:	0f 90       	pop	r0
+  8e:	0f be       	out	0x3f, r0	; 63
+  90:	0f 90       	pop	r0
+  92:	1f 90       	pop	r1
+  94:	18 95       	reti
+
+00000096 <MSPI_boolInit>:
+			}
+		}
+		else if(init_value==1)
+  96:	fc 01       	movw	r30, r24
+  98:	00 97       	sbiw	r24, 0x00	; 0
+		  {
+			if(port==PORTB)
+  9a:	c1 f1       	breq	.+112    	; 0x10c <MSPI_boolInit+0x76>
+  9c:	bc 9a       	sbi	0x17, 4	; 23
+			{
+				PORTB1|=(1<<pins);
+  9e:	bd 9a       	sbi	0x17, 5	; 23
+  a0:	be 98       	cbi	0x17, 6	; 23
+  a2:	bf 9a       	sbi	0x17, 7	; 23
+  a4:	86 81       	ldd	r24, Z+6	; 0x06
+  a6:	81 30       	cpi	r24, 0x01	; 1
+  a8:	11 f4       	brne	.+4      	; 0xae <MSPI_boolInit+0x18>
+  aa:	6f 9a       	sbi	0x0d, 7	; 13
+  ac:	01 c0       	rjmp	.+2      	; 0xb0 <MSPI_boolInit+0x1a>
+  ae:	6f 98       	cbi	0x0d, 7	; 13
+  b0:	87 81       	ldd	r24, Z+7	; 0x07
+  b2:	81 30       	cpi	r24, 0x01	; 1
+  b4:	11 f4       	brne	.+4      	; 0xba <MSPI_boolInit+0x24>
+			}
+		    else if(port==PORTA)
+  b6:	6d 9a       	sbi	0x0d, 5	; 13
+  b8:	01 c0       	rjmp	.+2      	; 0xbc <MSPI_boolInit+0x26>
+			{
+				PORTA1|=(1<<pins);
+  ba:	6d 98       	cbi	0x0d, 5	; 13
+  bc:	80 81       	ld	r24, Z
+  be:	81 30       	cpi	r24, 0x01	; 1
+  c0:	11 f4       	brne	.+4      	; 0xc6 <MSPI_boolInit+0x30>
+  c2:	6c 9a       	sbi	0x0d, 4	; 13
+  c4:	01 c0       	rjmp	.+2      	; 0xc8 <MSPI_boolInit+0x32>
+  c6:	6c 98       	cbi	0x0d, 4	; 13
+  c8:	84 81       	ldd	r24, Z+4	; 0x04
+  ca:	81 30       	cpi	r24, 0x01	; 1
+  cc:	11 f4       	brne	.+4      	; 0xd2 <MSPI_boolInit+0x3c>
+  ce:	6b 9a       	sbi	0x0d, 3	; 13
+  d0:	01 c0       	rjmp	.+2      	; 0xd4 <MSPI_boolInit+0x3e>
+  d2:	6b 98       	cbi	0x0d, 3	; 13
+			}
+			else if(port==PORTC)
+  d4:	85 81       	ldd	r24, Z+5	; 0x05
+  d6:	81 30       	cpi	r24, 0x01	; 1
+			{
+				PORTC1|=(1<<pins);
+  d8:	11 f4       	brne	.+4      	; 0xde <MSPI_boolInit+0x48>
+  da:	6a 9a       	sbi	0x0d, 2	; 13
+  dc:	01 c0       	rjmp	.+2      	; 0xe0 <MSPI_boolInit+0x4a>
+  de:	6a 98       	cbi	0x0d, 2	; 13
+  e0:	9d b1       	in	r25, 0x0d	; 13
+  e2:	81 81       	ldd	r24, Z+1	; 0x01
+  e4:	89 2b       	or	r24, r25
+  e6:	8d b9       	out	0x0d, r24	; 13
+  e8:	83 81       	ldd	r24, Z+3	; 0x03
+  ea:	81 30       	cpi	r24, 0x01	; 1
+  ec:	11 f4       	brne	.+4      	; 0xf2 <MSPI_boolInit+0x5c>
+  ee:	70 9a       	sbi	0x0e, 0	; 14
+			}
+			else
+			{
+				PORTD1|=(1<<pins);
+  f0:	01 c0       	rjmp	.+2      	; 0xf4 <MSPI_boolInit+0x5e>
+  f2:	70 98       	cbi	0x0e, 0	; 14
+  f4:	82 81       	ldd	r24, Z+2	; 0x02
+  f6:	81 30       	cpi	r24, 0x01	; 1
+  f8:	11 f4       	brne	.+4      	; 0xfe <MSPI_boolInit+0x68>
+  fa:	6e 9a       	sbi	0x0d, 6	; 13
+  fc:	01 c0       	rjmp	.+2      	; 0x100 <MSPI_boolInit+0x6a>
+  fe:	6e 98       	cbi	0x0d, 6	; 13
+ 100:	80 e5       	ldi	r24, 0x50	; 80
+ 102:	8d b9       	out	0x0d, r24	; 13
+ 104:	d0 9a       	sbi	0x1a, 0	; 26
+ 106:	8f b7       	in	r24, 0x3f	; 63
+	else
+	{
+		ret_val = E_FALSE;
+	}
+	return ret_val;
+}
+ 108:	80 68       	ori	r24, 0x80	; 128
+ 10a:	8f bf       	out	0x3f, r24	; 63
+	else
+	{
+		
+	}
+	return ret_val;
+}
+ 10c:	81 e0       	ldi	r24, 0x01	; 1
+ 10e:	08 95       	ret
+
+00000110 <MSPI_boolSendReceiveSynch>:
+
+bool_t MSPI_boolSendReceiveSynch (u8 copy_u8DateToSend, u8 * copy_u8DataToReceive)
+{
+	bool_t ret_val = E_TRUE;
+	
+	if(copy_u8DataToReceive != NULL)
+ 110:	61 15       	cp	r22, r1
+ 112:	71 05       	cpc	r23, r1
+ 114:	51 f0       	breq	.+20     	; 0x12a <MSPI_boolSendReceiveSynch+0x1a>
+	{
+	/*slave select pin is low*/
+	
+	 SPCR |=  (1<<MSTR);
+ 116:	6c 9a       	sbi	0x0d, 4	; 13
+	/*put the data on the MOIS pin*/
+	 SPDR = copy_u8DateToSend;
+ 118:	8f b9       	out	0x0f, r24	; 15
+	/*wait for the data sent*/
+	 while((GET_BIT(SPSR, SPIF)) == 0);
+ 11a:	77 9b       	sbis	0x0e, 7	; 14
+ 11c:	fe cf       	rjmp	.-4      	; 0x11a <MSPI_boolSendReceiveSynch+0xa>
+	/*put the received data from the MISO in the copy_u8DataToReceive */
+	*copy_u8DataToReceive = SPDR;
+ 11e:	8f b1       	in	r24, 0x0f	; 15
+ 120:	fb 01       	movw	r30, r22
+ 122:	80 83       	st	Z, r24
+	/*slave select pin is high*/
+	SET_BIT(PORTA1,0);
+ 124:	d8 9a       	sbi	0x1b, 0	; 27
+}
+
+
+bool_t MSPI_boolSendReceiveSynch (u8 copy_u8DateToSend, u8 * copy_u8DataToReceive)
+{
+	bool_t ret_val = E_TRUE;
+ 126:	81 e0       	ldi	r24, 0x01	; 1
+ 128:	08 95       	ret
+	SET_BIT(PORTA1,0);
+	
+	}
+	else
+	{
+		ret_val = E_FALSE;
+ 12a:	80 e0       	ldi	r24, 0x00	; 0
+	}
+	return ret_val;
+}
+ 12c:	08 95       	ret
+
+0000012e <main>:
+	.SpiMode = SPI_MASTER,
+	.SpiPrescaler = SPI_FOSC4,
+};
+#define F_CPU 1000000UL
+int main(void)
+{
+ 12e:	cf 93       	push	r28
+ 130:	df 93       	push	r29
+ 132:	00 d0       	rcall	.+0      	; 0x134 <main+0x6>
+ 134:	00 d0       	rcall	.+0      	; 0x136 <main+0x8>
+ 136:	1f 92       	push	r1
+ 138:	cd b7       	in	r28, 0x3d	; 61
+ 13a:	de b7       	in	r29, 0x3e	; 62
+	u8 arr[]={0xaf,0xfa,0xaf,0xfa};
+ 13c:	9f ea       	ldi	r25, 0xAF	; 175
+ 13e:	99 83       	std	Y+1, r25	; 0x01
+ 140:	8a ef       	ldi	r24, 0xFA	; 250
+ 142:	8a 83       	std	Y+2, r24	; 0x02
+ 144:	9b 83       	std	Y+3, r25	; 0x03
+ 146:	8c 83       	std	Y+4, r24	; 0x04
+	u8 data_received;
+   // SPI_initMaster();
+    MSPI_boolInit(&obg1);
+ 148:	80 e6       	ldi	r24, 0x60	; 96
+ 14a:	90 e0       	ldi	r25, 0x00	; 0
+ 14c:	0e 94 4b 00 	call	0x96	; 0x96 <MSPI_boolInit>
+ 150:	8e 01       	movw	r16, r28
+ 152:	0f 5f       	subi	r16, 0xFF	; 255
+ 154:	1f 4f       	sbci	r17, 0xFF	; 255
+	.SpiInterruptEnable = SPI_INI_ON,
+	.SpiMode = SPI_MASTER,
+	.SpiPrescaler = SPI_FOSC4,
+};
+#define F_CPU 1000000UL
+int main(void)
+ 156:	7e 01       	movw	r14, r28
+ 158:	24 e0       	ldi	r18, 0x04	; 4
+ 15a:	e2 0e       	add	r14, r18
+ 15c:	f1 1c       	adc	r15, r1
+	for (u8 i=0;i<3;i++)
+	{
+		
+	    MSPI_boolSendReceiveSynch(arr[i], &data_received);
+		
+	    PORTD=0xff;
+ 15e:	dd 24       	eor	r13, r13
+ 160:	da 94       	dec	r13
+	.SpiInterruptEnable = SPI_INI_ON,
+	.SpiMode = SPI_MASTER,
+	.SpiPrescaler = SPI_FOSC4,
+};
+#define F_CPU 1000000UL
+int main(void)
+ 162:	58 01       	movw	r10, r16
+    MSPI_boolInit(&obg1);
+	//MSPI_boolSendReceiveSynch(0xff, &data_received);
+	for (u8 i=0;i<3;i++)
+	{
+		
+	    MSPI_boolSendReceiveSynch(arr[i], &data_received);
+ 164:	be 01       	movw	r22, r28
+ 166:	6b 5f       	subi	r22, 0xFB	; 251
+ 168:	7f 4f       	sbci	r23, 0xFF	; 255
+ 16a:	f8 01       	movw	r30, r16
+ 16c:	81 91       	ld	r24, Z+
+ 16e:	8f 01       	movw	r16, r30
+ 170:	0e 94 88 00 	call	0x110	; 0x110 <MSPI_boolSendReceiveSynch>
+		
+	    PORTD=0xff;
+ 174:	d2 ba       	out	0x12, r13	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 176:	ff e3       	ldi	r31, 0x3F	; 63
+ 178:	2d e0       	ldi	r18, 0x0D	; 13
+ 17a:	83 e0       	ldi	r24, 0x03	; 3
+ 17c:	f1 50       	subi	r31, 0x01	; 1
+ 17e:	20 40       	sbci	r18, 0x00	; 0
+ 180:	80 40       	sbci	r24, 0x00	; 0
+ 182:	e1 f7       	brne	.-8      	; 0x17c <main+0x4e>
+ 184:	00 c0       	rjmp	.+0      	; 0x186 <main+0x58>
+ 186:	00 00       	nop
+		_delay_ms(1000);
+		MSPI_boolSendReceiveSynch(arr[i], &data_received);
+ 188:	be 01       	movw	r22, r28
+ 18a:	6b 5f       	subi	r22, 0xFB	; 251
+ 18c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 18e:	f5 01       	movw	r30, r10
+ 190:	80 81       	ld	r24, Z
+ 192:	0e 94 88 00 	call	0x110	; 0x110 <MSPI_boolSendReceiveSynch>
+		
+		PORTD=0x00;
+ 196:	12 ba       	out	0x12, r1	; 18
+ 198:	ff e3       	ldi	r31, 0x3F	; 63
+ 19a:	2d e0       	ldi	r18, 0x0D	; 13
+ 19c:	83 e0       	ldi	r24, 0x03	; 3
+ 19e:	f1 50       	subi	r31, 0x01	; 1
+ 1a0:	20 40       	sbci	r18, 0x00	; 0
+ 1a2:	80 40       	sbci	r24, 0x00	; 0
+ 1a4:	e1 f7       	brne	.-8      	; 0x19e <main+0x70>
+ 1a6:	00 c0       	rjmp	.+0      	; 0x1a8 <main+0x7a>
+ 1a8:	00 00       	nop
+	u8 arr[]={0xaf,0xfa,0xaf,0xfa};
+	u8 data_received;
+   // SPI_initMaster();
+    MSPI_boolInit(&obg1);
+	//MSPI_boolSendReceiveSynch(0xff, &data_received);
+	for (u8 i=0;i<3;i++)
+ 1aa:	0e 15       	cp	r16, r14
+ 1ac:	1f 05       	cpc	r17, r15
+ 1ae:	c9 f6       	brne	.-78     	; 0x162 <main+0x34>
+	
+    while(1)
+    {
+		MSPI_boolSendReceiveSynch(0x00, &data_received);
+		
+		PORTD=0xff;
+ 1b0:	1f ef       	ldi	r17, 0xFF	; 255
+	}
+	
+	
+    while(1)
+    {
+		MSPI_boolSendReceiveSynch(0x00, &data_received);
+ 1b2:	be 01       	movw	r22, r28
+ 1b4:	6b 5f       	subi	r22, 0xFB	; 251
+ 1b6:	7f 4f       	sbci	r23, 0xFF	; 255
+ 1b8:	80 e0       	ldi	r24, 0x00	; 0
+ 1ba:	0e 94 88 00 	call	0x110	; 0x110 <MSPI_boolSendReceiveSynch>
+		
+		PORTD=0xff;
+ 1be:	12 bb       	out	0x12, r17	; 18
+ 1c0:	9f e3       	ldi	r25, 0x3F	; 63
+ 1c2:	ed e0       	ldi	r30, 0x0D	; 13
+ 1c4:	f3 e0       	ldi	r31, 0x03	; 3
+ 1c6:	91 50       	subi	r25, 0x01	; 1
+ 1c8:	e0 40       	sbci	r30, 0x00	; 0
+ 1ca:	f0 40       	sbci	r31, 0x00	; 0
+ 1cc:	e1 f7       	brne	.-8      	; 0x1c6 <main+0x98>
+ 1ce:	00 c0       	rjmp	.+0      	; 0x1d0 <main+0xa2>
+ 1d0:	00 00       	nop
+		_delay_ms(1000);
+	
+		MSPI_boolSendReceiveSynch(0xff, &data_received);	
+ 1d2:	be 01       	movw	r22, r28
+ 1d4:	6b 5f       	subi	r22, 0xFB	; 251
+ 1d6:	7f 4f       	sbci	r23, 0xFF	; 255
+ 1d8:	81 2f       	mov	r24, r17
+ 1da:	0e 94 88 00 	call	0x110	; 0x110 <MSPI_boolSendReceiveSynch>
+		PORTD=0x00;
+ 1de:	12 ba       	out	0x12, r1	; 18
+ 1e0:	2f e3       	ldi	r18, 0x3F	; 63
+ 1e2:	8d e0       	ldi	r24, 0x0D	; 13
+ 1e4:	93 e0       	ldi	r25, 0x03	; 3
+ 1e6:	21 50       	subi	r18, 0x01	; 1
+ 1e8:	80 40       	sbci	r24, 0x00	; 0
+ 1ea:	90 40       	sbci	r25, 0x00	; 0
+ 1ec:	e1 f7       	brne	.-8      	; 0x1e6 <main+0xb8>
+ 1ee:	00 c0       	rjmp	.+0      	; 0x1f0 <main+0xc2>
+ 1f0:	00 00       	nop
+ 1f2:	df cf       	rjmp	.-66     	; 0x1b2 <main+0x84>
+
+000001f4 <_exit>:
+ 1f4:	f8 94       	cli
+
+000001f6 <__stop_program>:
+ 1f6:	ff cf       	rjmp	.-2      	; 0x1f6 <__stop_program>
