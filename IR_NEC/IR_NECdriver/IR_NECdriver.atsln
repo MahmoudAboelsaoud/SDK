@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "IR_NECdriver", "IR_NECdriver\IR_NECdriver.cproj", "{35112B95-6C56-46C2-A6B0-B967BEE2436F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35112B95-6C56-46C2-A6B0-B967BEE2436F}.Debug|AVR.ActiveCfg = Debug|AVR
+		{35112B95-6C56-46C2-A6B0-B967BEE2436F}.Debug|AVR.Build.0 = Debug|AVR
+		{35112B95-6C56-46C2-A6B0-B967BEE2436F}.Release|AVR.ActiveCfg = Release|AVR
+		{35112B95-6C56-46C2-A6B0-B967BEE2436F}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
