@@ -1,0 +1,1798 @@
+
+safe_App_MC2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000008fa  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000072  00800060  000008fa  0000098e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000018  008000d2  008000d2  00000a00  2**0
+                  ALLOC
+  3 .stab         00000954  00000000  00000000  00000a00  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000183  00000000  00000000  00001354  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  000014d7  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000158  00000000  00000000  00001506  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00001818  00000000  00000000  0000165e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000683  00000000  00000000  00002e76  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   0000093c  00000000  00000000  000034f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000314  00000000  00000000  00003e38  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000712  00000000  00000000  0000414c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00000aea  00000000  00000000  0000485e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000108  00000000  00000000  00005348  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 f9 01 	jmp	0x3f2	; 0x3f2 <__vector_13>
+  38:	0c 94 47 02 	jmp	0x48e	; 0x48e <__vector_14>
+  3c:	0c 94 20 02 	jmp	0x440	; 0x440 <__vector_15>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea ef       	ldi	r30, 0xFA	; 250
+  68:	f8 e0       	ldi	r31, 0x08	; 8
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 3d       	cpi	r26, 0xD2	; 210
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 ed       	ldi	r26, 0xD2	; 210
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	aa 3e       	cpi	r26, 0xEA	; 234
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 1f 03 	call	0x63e	; 0x63e <main>
+  8a:	0c 94 7b 04 	jmp	0x8f6	; 0x8f6 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <Lcd_Send_Command>:
+
+bool_t Lcd_Send_Command(u8 comm)
+{
+	bool_t ret_val=E_TRUE;
+	/* Clear RS, RW */
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, RS);
+  92:	c0 98       	cbi	0x18, 0	; 24
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, RW);
+  94:	c1 98       	cbi	0x18, 1	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  96:	e9 ef       	ldi	r30, 0xF9	; 249
+  98:	f0 e0       	ldi	r31, 0x00	; 0
+  9a:	31 97       	sbiw	r30, 0x01	; 1
+  9c:	f1 f7       	brne	.-4      	; 0x9a <Lcd_Send_Command+0x8>
+  9e:	00 c0       	rjmp	.+0      	; 0xa0 <Lcd_Send_Command+0xe>
+  a0:	00 00       	nop
+	_delay_ms(1);
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, E);
+  a2:	c2 98       	cbi	0x18, 2	; 24
+  a4:	e9 ef       	ldi	r30, 0xF9	; 249
+  a6:	f0 e0       	ldi	r31, 0x00	; 0
+  a8:	31 97       	sbiw	r30, 0x01	; 1
+  aa:	f1 f7       	brne	.-4      	; 0xa8 <Lcd_Send_Command+0x16>
+  ac:	00 c0       	rjmp	.+0      	; 0xae <Lcd_Send_Command+0x1c>
+  ae:	00 00       	nop
+		_delay_ms(1);
+		CLEAR_BIT(LCD_CNTR_PORT_PORT, E);
+		_delay_ms(1);
+
+#elif(DATA_BITS_MODE==8)
+		LCD_DATA_PORT_PORT=comm;
+  b0:	85 bb       	out	0x15, r24	; 21
+  b2:	89 ef       	ldi	r24, 0xF9	; 249
+  b4:	90 e0       	ldi	r25, 0x00	; 0
+  b6:	01 97       	sbiw	r24, 0x01	; 1
+  b8:	f1 f7       	brne	.-4      	; 0xb6 <Lcd_Send_Command+0x24>
+  ba:	00 c0       	rjmp	.+0      	; 0xbc <Lcd_Send_Command+0x2a>
+  bc:	00 00       	nop
+		_delay_ms(1);
+		/*SET the enable pulse*/
+		SET_BIT(LCD_CNTR_PORT_PORT, E);
+  be:	c2 9a       	sbi	0x18, 2	; 24
+  c0:	e9 ef       	ldi	r30, 0xF9	; 249
+  c2:	f0 e0       	ldi	r31, 0x00	; 0
+  c4:	31 97       	sbiw	r30, 0x01	; 1
+  c6:	f1 f7       	brne	.-4      	; 0xc4 <Lcd_Send_Command+0x32>
+  c8:	00 c0       	rjmp	.+0      	; 0xca <Lcd_Send_Command+0x38>
+  ca:	00 00       	nop
+		_delay_ms(1);
+		CLEAR_BIT(LCD_CNTR_PORT_PORT, E);
+  cc:	c2 98       	cbi	0x18, 2	; 24
+  ce:	89 ef       	ldi	r24, 0xF9	; 249
+  d0:	90 e0       	ldi	r25, 0x00	; 0
+  d2:	01 97       	sbiw	r24, 0x01	; 1
+  d4:	f1 f7       	brne	.-4      	; 0xd2 <Lcd_Send_Command+0x40>
+  d6:	00 c0       	rjmp	.+0      	; 0xd8 <Lcd_Send_Command+0x46>
+  d8:	00 00       	nop
+
+#endif
+
+
+	return ret_val;
+}
+  da:	81 e0       	ldi	r24, 0x01	; 1
+  dc:	08 95       	ret
+
+000000de <Lcd_Init>:
+
+bool_t Lcd_Init()
+{
+	bool_t ret_val=E_TRUE;
+	/* set lcd data port and RS E Rw as output  */
+	LCD_CNTR_PORT_DIR |=(1<<RS)|(1<<RW)|(1<<E);
+  de:	87 b3       	in	r24, 0x17	; 23
+  e0:	87 60       	ori	r24, 0x07	; 7
+  e2:	87 bb       	out	0x17, r24	; 23
+	       LCD_DATA_PORT_DIR=0x0f; /* Configure the lowest 4 bits of the data port as output pins */
+		#endif
+	       Lcd_Send_Command(FOUR_BITS_DATA_MODE); /* initialize LCD in 4-bit mode */
+	       Lcd_Send_Command(TWO_LINE_LCD_Four_BIT_MODE);
+    #elif(DATA_BITS_MODE == 8)
+	       LCD_DATA_PORT_DIR=0xff; /* initialize LCD in 8-bit mode */
+  e4:	8f ef       	ldi	r24, 0xFF	; 255
+  e6:	84 bb       	out	0x14, r24	; 20
+	       Lcd_Send_Command(TWO_LINE_LCD_Eight_BIT_MODE);
+  e8:	88 e3       	ldi	r24, 0x38	; 56
+  ea:	0e 94 49 00 	call	0x92	; 0x92 <Lcd_Send_Command>
+	#endif
+	Lcd_Send_Command(CURSOR_OFF);
+  ee:	8c e0       	ldi	r24, 0x0C	; 12
+  f0:	0e 94 49 00 	call	0x92	; 0x92 <Lcd_Send_Command>
+	Lcd_Send_Command(CLEAR_COMMAND);
+  f4:	81 e0       	ldi	r24, 0x01	; 1
+  f6:	0e 94 49 00 	call	0x92	; 0x92 <Lcd_Send_Command>
+
+	return ret_val;
+}
+  fa:	81 e0       	ldi	r24, 0x01	; 1
+  fc:	08 95       	ret
+
+000000fe <Lcd_Display_Character>:
+
+bool_t Lcd_Display_Character(u8 ch)
+{
+	bool_t ret_val=E_TRUE;
+	/* Clear RS, RW */
+	SET_BIT(LCD_CNTR_PORT_PORT, RS);
+  fe:	c0 9a       	sbi	0x18, 0	; 24
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, RW);
+ 100:	c1 98       	cbi	0x18, 1	; 24
+ 102:	e9 ef       	ldi	r30, 0xF9	; 249
+ 104:	f0 e0       	ldi	r31, 0x00	; 0
+ 106:	31 97       	sbiw	r30, 0x01	; 1
+ 108:	f1 f7       	brne	.-4      	; 0x106 <Lcd_Display_Character+0x8>
+ 10a:	00 c0       	rjmp	.+0      	; 0x10c <Lcd_Display_Character+0xe>
+ 10c:	00 00       	nop
+	_delay_ms(1);
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, E);
+ 10e:	c2 98       	cbi	0x18, 2	; 24
+ 110:	e9 ef       	ldi	r30, 0xF9	; 249
+ 112:	f0 e0       	ldi	r31, 0x00	; 0
+ 114:	31 97       	sbiw	r30, 0x01	; 1
+ 116:	f1 f7       	brne	.-4      	; 0x114 <Lcd_Display_Character+0x16>
+ 118:	00 c0       	rjmp	.+0      	; 0x11a <Lcd_Display_Character+0x1c>
+ 11a:	00 00       	nop
+		_delay_ms(1);
+		CLEAR_BIT(LCD_CNTR_PORT_PORT, E);
+		_delay_ms(1);
+
+#elif(DATA_BITS_MODE==8)
+		LCD_DATA_PORT_PORT=ch;
+ 11c:	85 bb       	out	0x15, r24	; 21
+ 11e:	89 ef       	ldi	r24, 0xF9	; 249
+ 120:	90 e0       	ldi	r25, 0x00	; 0
+ 122:	01 97       	sbiw	r24, 0x01	; 1
+ 124:	f1 f7       	brne	.-4      	; 0x122 <Lcd_Display_Character+0x24>
+ 126:	00 c0       	rjmp	.+0      	; 0x128 <Lcd_Display_Character+0x2a>
+ 128:	00 00       	nop
+		_delay_ms(1);
+		/*SET the enable pulse*/
+		SET_BIT(LCD_CNTR_PORT_PORT, E);
+ 12a:	c2 9a       	sbi	0x18, 2	; 24
+ 12c:	e9 ef       	ldi	r30, 0xF9	; 249
+ 12e:	f0 e0       	ldi	r31, 0x00	; 0
+ 130:	31 97       	sbiw	r30, 0x01	; 1
+ 132:	f1 f7       	brne	.-4      	; 0x130 <Lcd_Display_Character+0x32>
+ 134:	00 c0       	rjmp	.+0      	; 0x136 <Lcd_Display_Character+0x38>
+ 136:	00 00       	nop
+		_delay_ms(1);
+		CLEAR_BIT(LCD_CNTR_PORT_PORT, E);
+ 138:	c2 98       	cbi	0x18, 2	; 24
+ 13a:	89 ef       	ldi	r24, 0xF9	; 249
+ 13c:	90 e0       	ldi	r25, 0x00	; 0
+ 13e:	01 97       	sbiw	r24, 0x01	; 1
+ 140:	f1 f7       	brne	.-4      	; 0x13e <Lcd_Display_Character+0x40>
+ 142:	00 c0       	rjmp	.+0      	; 0x144 <Lcd_Display_Character+0x46>
+ 144:	00 00       	nop
+
+
+#endif
+
+	return ret_val;
+}
+ 146:	81 e0       	ldi	r24, 0x01	; 1
+ 148:	08 95       	ret
+
+0000014a <Lcd_Display_String>:
+	return ret_val;
+	
+}
+
+bool_t Lcd_Display_String(const u8* str)
+{
+ 14a:	cf 93       	push	r28
+ 14c:	df 93       	push	r29
+ 14e:	ec 01       	movw	r28, r24
+	bool_t ret_val=E_TRUE;
+
+	/* Clear RS, RW */
+	SET_BIT(LCD_CNTR_PORT_PORT, RS);
+ 150:	c0 9a       	sbi	0x18, 0	; 24
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, RW);
+ 152:	c1 98       	cbi	0x18, 1	; 24
+
+	while(*str){
+ 154:	88 81       	ld	r24, Y
+ 156:	88 23       	and	r24, r24
+ 158:	31 f0       	breq	.+12     	; 0x166 <Lcd_Display_String+0x1c>
+
+	return ret_val;
+	
+}
+
+bool_t Lcd_Display_String(const u8* str)
+ 15a:	21 96       	adiw	r28, 0x01	; 1
+	/* Clear RS, RW */
+	SET_BIT(LCD_CNTR_PORT_PORT, RS);
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, RW);
+
+	while(*str){
+		Lcd_Display_Character(*str);
+ 15c:	0e 94 7f 00 	call	0xfe	; 0xfe <Lcd_Display_Character>
+
+	/* Clear RS, RW */
+	SET_BIT(LCD_CNTR_PORT_PORT, RS);
+	CLEAR_BIT(LCD_CNTR_PORT_PORT, RW);
+
+	while(*str){
+ 160:	89 91       	ld	r24, Y+
+ 162:	81 11       	cpse	r24, r1
+ 164:	fb cf       	rjmp	.-10     	; 0x15c <Lcd_Display_String+0x12>
+	_delay_ms(1);*/
+	str++;
+	}
+
+	return ret_val;
+}
+ 166:	81 e0       	ldi	r24, 0x01	; 1
+ 168:	df 91       	pop	r29
+ 16a:	cf 91       	pop	r28
+ 16c:	08 95       	ret
+
+0000016e <LCD_goToRowColumn>:
+{
+	bool_t ret_val=E_TRUE;
+
+	 static	u8 Address;
+
+	switch(row)
+ 16e:	81 30       	cpi	r24, 0x01	; 1
+ 170:	49 f0       	breq	.+18     	; 0x184 <LCD_goToRowColumn+0x16>
+ 172:	28 f0       	brcs	.+10     	; 0x17e <LCD_goToRowColumn+0x10>
+ 174:	82 30       	cpi	r24, 0x02	; 2
+ 176:	51 f0       	breq	.+20     	; 0x18c <LCD_goToRowColumn+0x1e>
+ 178:	83 30       	cpi	r24, 0x03	; 3
+ 17a:	79 f4       	brne	.+30     	; 0x19a <LCD_goToRowColumn+0x2c>
+ 17c:	0b c0       	rjmp	.+22     	; 0x194 <LCD_goToRowColumn+0x26>
+		{
+			case 0:
+					Address=col;
+ 17e:	60 93 d2 00 	sts	0x00D2, r22
+					break;
+ 182:	0b c0       	rjmp	.+22     	; 0x19a <LCD_goToRowColumn+0x2c>
+			case 1:
+					Address=col+0x40;
+ 184:	60 5c       	subi	r22, 0xC0	; 192
+ 186:	60 93 d2 00 	sts	0x00D2, r22
+					break;
+ 18a:	07 c0       	rjmp	.+14     	; 0x19a <LCD_goToRowColumn+0x2c>
+			case 2:
+					Address=col+0x10;
+ 18c:	60 5f       	subi	r22, 0xF0	; 240
+ 18e:	60 93 d2 00 	sts	0x00D2, r22
+					break;
+ 192:	03 c0       	rjmp	.+6      	; 0x19a <LCD_goToRowColumn+0x2c>
+			case 3:
+					Address=col+0x50;
+ 194:	60 5b       	subi	r22, 0xB0	; 176
+ 196:	60 93 d2 00 	sts	0x00D2, r22
+					break;
+		}
+	 /* we need to apply the corresponding command 0b10000000+Address */
+	Lcd_Send_Command(Address | SET_CURSOR_LOCATION);
+ 19a:	80 91 d2 00 	lds	r24, 0x00D2
+ 19e:	80 68       	ori	r24, 0x80	; 128
+ 1a0:	0e 94 49 00 	call	0x92	; 0x92 <Lcd_Send_Command>
+
+
+
+	return ret_val;
+}
+ 1a4:	81 e0       	ldi	r24, 0x01	; 1
+ 1a6:	08 95       	ret
+
+000001a8 <LCD_Display_RowColumn>:
+
+bool_t LCD_Display_RowColumn(u8 row, u8 col, const u8* str)
+{
+ 1a8:	cf 93       	push	r28
+ 1aa:	df 93       	push	r29
+ 1ac:	ea 01       	movw	r28, r20
+
+	bool_t ret_val=E_TRUE;
+
+	 LCD_goToRowColumn(row, col);
+ 1ae:	0e 94 b7 00 	call	0x16e	; 0x16e <LCD_goToRowColumn>
+	 Lcd_Display_String(str);
+ 1b2:	ce 01       	movw	r24, r28
+ 1b4:	0e 94 a5 00 	call	0x14a	; 0x14a <Lcd_Display_String>
+
+	return ret_val;
+}
+ 1b8:	81 e0       	ldi	r24, 0x01	; 1
+ 1ba:	df 91       	pop	r29
+ 1bc:	cf 91       	pop	r28
+ 1be:	08 95       	ret
+
+000001c0 <Lcd_Clean>:
+
+bool_t Lcd_Clean()
+{
+	bool_t ret_val=E_TRUE;
+
+  Lcd_Send_Command(CLEAR_COMMAND);
+ 1c0:	81 e0       	ldi	r24, 0x01	; 1
+ 1c2:	0e 94 49 00 	call	0x92	; 0x92 <Lcd_Send_Command>
+
+	return ret_val;
+}
+ 1c6:	81 e0       	ldi	r24, 0x01	; 1
+ 1c8:	08 95       	ret
+
+000001ca <MGPIO_SetPortDirection>:
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+	if(Copy_ProtDir == OUTPUT)
+ 1ca:	41 30       	cpi	r20, 0x01	; 1
+ 1cc:	09 f0       	breq	.+2      	; 0x1d0 <MGPIO_SetPortDirection+0x6>
+ 1ce:	41 c0       	rjmp	.+130    	; 0x252 <MGPIO_SetPortDirection+0x88>
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+ 1d0:	82 30       	cpi	r24, 0x02	; 2
+ 1d2:	71 f4       	brne	.+28     	; 0x1f0 <MGPIO_SetPortDirection+0x26>
+ 1d4:	2a b3       	in	r18, 0x1a	; 26
+ 1d6:	81 e0       	ldi	r24, 0x01	; 1
+ 1d8:	90 e0       	ldi	r25, 0x00	; 0
+ 1da:	ac 01       	movw	r20, r24
+ 1dc:	02 c0       	rjmp	.+4      	; 0x1e2 <MGPIO_SetPortDirection+0x18>
+ 1de:	44 0f       	add	r20, r20
+ 1e0:	55 1f       	adc	r21, r21
+ 1e2:	6a 95       	dec	r22
+ 1e4:	e2 f7       	brpl	.-8      	; 0x1de <MGPIO_SetPortDirection+0x14>
+ 1e6:	ba 01       	movw	r22, r20
+ 1e8:	62 2b       	or	r22, r18
+ 1ea:	6a bb       	out	0x1a, r22	; 26
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 1ec:	81 e0       	ldi	r24, 0x01	; 1
+ 1ee:	08 95       	ret
+	if(Copy_ProtDir == OUTPUT)
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+ 1f0:	83 30       	cpi	r24, 0x03	; 3
+ 1f2:	71 f4       	brne	.+28     	; 0x210 <MGPIO_SetPortDirection+0x46>
+ 1f4:	27 b3       	in	r18, 0x17	; 23
+ 1f6:	81 e0       	ldi	r24, 0x01	; 1
+ 1f8:	90 e0       	ldi	r25, 0x00	; 0
+ 1fa:	ac 01       	movw	r20, r24
+ 1fc:	02 c0       	rjmp	.+4      	; 0x202 <MGPIO_SetPortDirection+0x38>
+ 1fe:	44 0f       	add	r20, r20
+ 200:	55 1f       	adc	r21, r21
+ 202:	6a 95       	dec	r22
+ 204:	e2 f7       	brpl	.-8      	; 0x1fe <MGPIO_SetPortDirection+0x34>
+ 206:	ba 01       	movw	r22, r20
+ 208:	62 2b       	or	r22, r18
+ 20a:	67 bb       	out	0x17, r22	; 23
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 20c:	81 e0       	ldi	r24, 0x01	; 1
+ 20e:	08 95       	ret
+	if(Copy_ProtDir == OUTPUT)
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  SET_BIT(DIR_DDRC,Copy_Pin);
+ 210:	84 30       	cpi	r24, 0x04	; 4
+ 212:	71 f4       	brne	.+28     	; 0x230 <MGPIO_SetPortDirection+0x66>
+ 214:	24 b3       	in	r18, 0x14	; 20
+ 216:	81 e0       	ldi	r24, 0x01	; 1
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	ac 01       	movw	r20, r24
+ 21c:	02 c0       	rjmp	.+4      	; 0x222 <MGPIO_SetPortDirection+0x58>
+ 21e:	44 0f       	add	r20, r20
+ 220:	55 1f       	adc	r21, r21
+ 222:	6a 95       	dec	r22
+ 224:	e2 f7       	brpl	.-8      	; 0x21e <MGPIO_SetPortDirection+0x54>
+ 226:	ba 01       	movw	r22, r20
+ 228:	62 2b       	or	r22, r18
+ 22a:	64 bb       	out	0x14, r22	; 20
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 22c:	81 e0       	ldi	r24, 0x01	; 1
+ 22e:	08 95       	ret
+	if(Copy_ProtDir == OUTPUT)
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  SET_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  SET_BIT(DIR_DDRD,Copy_Pin);
+ 230:	85 30       	cpi	r24, 0x05	; 5
+ 232:	09 f0       	breq	.+2      	; 0x236 <MGPIO_SetPortDirection+0x6c>
+ 234:	52 c0       	rjmp	.+164    	; 0x2da <MGPIO_SetPortDirection+0x110>
+ 236:	21 b3       	in	r18, 0x11	; 17
+ 238:	81 e0       	ldi	r24, 0x01	; 1
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	ac 01       	movw	r20, r24
+ 23e:	02 c0       	rjmp	.+4      	; 0x244 <MGPIO_SetPortDirection+0x7a>
+ 240:	44 0f       	add	r20, r20
+ 242:	55 1f       	adc	r21, r21
+ 244:	6a 95       	dec	r22
+ 246:	e2 f7       	brpl	.-8      	; 0x240 <MGPIO_SetPortDirection+0x76>
+ 248:	ba 01       	movw	r22, r20
+ 24a:	62 2b       	or	r22, r18
+ 24c:	61 bb       	out	0x11, r22	; 17
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 24e:	81 e0       	ldi	r24, 0x01	; 1
+ 250:	08 95       	ret
+		else if(Copy_Port == PORTD)  SET_BIT(DIR_DDRD,Copy_Pin);
+		else ret_val = E_FALSE;
+	}
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+ 252:	82 30       	cpi	r24, 0x02	; 2
+ 254:	79 f4       	brne	.+30     	; 0x274 <MGPIO_SetPortDirection+0xaa>
+ 256:	2a b3       	in	r18, 0x1a	; 26
+ 258:	81 e0       	ldi	r24, 0x01	; 1
+ 25a:	90 e0       	ldi	r25, 0x00	; 0
+ 25c:	ac 01       	movw	r20, r24
+ 25e:	02 c0       	rjmp	.+4      	; 0x264 <MGPIO_SetPortDirection+0x9a>
+ 260:	44 0f       	add	r20, r20
+ 262:	55 1f       	adc	r21, r21
+ 264:	6a 95       	dec	r22
+ 266:	e2 f7       	brpl	.-8      	; 0x260 <MGPIO_SetPortDirection+0x96>
+ 268:	ba 01       	movw	r22, r20
+ 26a:	60 95       	com	r22
+ 26c:	62 23       	and	r22, r18
+ 26e:	6a bb       	out	0x1a, r22	; 26
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 270:	81 e0       	ldi	r24, 0x01	; 1
+ 272:	08 95       	ret
+		else ret_val = E_FALSE;
+	}
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+ 274:	83 30       	cpi	r24, 0x03	; 3
+ 276:	79 f4       	brne	.+30     	; 0x296 <MGPIO_SetPortDirection+0xcc>
+ 278:	27 b3       	in	r18, 0x17	; 23
+ 27a:	81 e0       	ldi	r24, 0x01	; 1
+ 27c:	90 e0       	ldi	r25, 0x00	; 0
+ 27e:	ac 01       	movw	r20, r24
+ 280:	02 c0       	rjmp	.+4      	; 0x286 <MGPIO_SetPortDirection+0xbc>
+ 282:	44 0f       	add	r20, r20
+ 284:	55 1f       	adc	r21, r21
+ 286:	6a 95       	dec	r22
+ 288:	e2 f7       	brpl	.-8      	; 0x282 <MGPIO_SetPortDirection+0xb8>
+ 28a:	ba 01       	movw	r22, r20
+ 28c:	60 95       	com	r22
+ 28e:	62 23       	and	r22, r18
+ 290:	67 bb       	out	0x17, r22	; 23
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 292:	81 e0       	ldi	r24, 0x01	; 1
+ 294:	08 95       	ret
+	}
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  CLR_BIT(DIR_DDRC,Copy_Pin);
+ 296:	84 30       	cpi	r24, 0x04	; 4
+ 298:	79 f4       	brne	.+30     	; 0x2b8 <MGPIO_SetPortDirection+0xee>
+ 29a:	24 b3       	in	r18, 0x14	; 20
+ 29c:	81 e0       	ldi	r24, 0x01	; 1
+ 29e:	90 e0       	ldi	r25, 0x00	; 0
+ 2a0:	ac 01       	movw	r20, r24
+ 2a2:	02 c0       	rjmp	.+4      	; 0x2a8 <MGPIO_SetPortDirection+0xde>
+ 2a4:	44 0f       	add	r20, r20
+ 2a6:	55 1f       	adc	r21, r21
+ 2a8:	6a 95       	dec	r22
+ 2aa:	e2 f7       	brpl	.-8      	; 0x2a4 <MGPIO_SetPortDirection+0xda>
+ 2ac:	ba 01       	movw	r22, r20
+ 2ae:	60 95       	com	r22
+ 2b0:	62 23       	and	r22, r18
+ 2b2:	64 bb       	out	0x14, r22	; 20
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 2b4:	81 e0       	ldi	r24, 0x01	; 1
+ 2b6:	08 95       	ret
+	else
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  CLR_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  CLR_BIT(DIR_DDRD,Copy_Pin);
+ 2b8:	85 30       	cpi	r24, 0x05	; 5
+ 2ba:	89 f4       	brne	.+34     	; 0x2de <MGPIO_SetPortDirection+0x114>
+ 2bc:	21 b3       	in	r18, 0x11	; 17
+ 2be:	81 e0       	ldi	r24, 0x01	; 1
+ 2c0:	90 e0       	ldi	r25, 0x00	; 0
+ 2c2:	ac 01       	movw	r20, r24
+ 2c4:	02 c0       	rjmp	.+4      	; 0x2ca <MGPIO_SetPortDirection+0x100>
+ 2c6:	44 0f       	add	r20, r20
+ 2c8:	55 1f       	adc	r21, r21
+ 2ca:	6a 95       	dec	r22
+ 2cc:	e2 f7       	brpl	.-8      	; 0x2c6 <MGPIO_SetPortDirection+0xfc>
+ 2ce:	ba 01       	movw	r22, r20
+ 2d0:	60 95       	com	r22
+ 2d2:	62 23       	and	r22, r18
+ 2d4:	61 bb       	out	0x11, r22	; 17
+#include "MGPIO_config.h"
+
+
+bool_t MGPIO_SetPortDirection( u8 Copy_Port, u8 Copy_Pin, u8 Copy_ProtDir)
+{
+	bool_t ret_val = E_TRUE;
+ 2d6:	81 e0       	ldi	r24, 0x01	; 1
+ 2d8:	08 95       	ret
+	{
+		if     (Copy_Port == PORTA)  SET_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  SET_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  SET_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  SET_BIT(DIR_DDRD,Copy_Pin);
+		else ret_val = E_FALSE;
+ 2da:	80 e0       	ldi	r24, 0x00	; 0
+ 2dc:	08 95       	ret
+	{
+		if     (Copy_Port == PORTA)  CLR_BIT(DIR_DDRA,Copy_Pin);
+		else if(Copy_Port == PORTB)  CLR_BIT(DIR_DDRB,Copy_Pin);
+		else if(Copy_Port == PORTC)  CLR_BIT(DIR_DDRC,Copy_Pin);
+		else if(Copy_Port == PORTD)  CLR_BIT(DIR_DDRD,Copy_Pin);
+		else ret_val = E_FALSE;
+ 2de:	80 e0       	ldi	r24, 0x00	; 0
+		
+	}
+	return ret_val;
+}
+ 2e0:	08 95       	ret
+
+000002e2 <MGPIO_SetPin>:
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+ 2e2:	82 30       	cpi	r24, 0x02	; 2
+ 2e4:	71 f4       	brne	.+28     	; 0x302 <MGPIO_SetPin+0x20>
+ 2e6:	2b b3       	in	r18, 0x1b	; 27
+ 2e8:	81 e0       	ldi	r24, 0x01	; 1
+ 2ea:	90 e0       	ldi	r25, 0x00	; 0
+ 2ec:	ac 01       	movw	r20, r24
+ 2ee:	02 c0       	rjmp	.+4      	; 0x2f4 <MGPIO_SetPin+0x12>
+ 2f0:	44 0f       	add	r20, r20
+ 2f2:	55 1f       	adc	r21, r21
+ 2f4:	6a 95       	dec	r22
+ 2f6:	e2 f7       	brpl	.-8      	; 0x2f0 <MGPIO_SetPin+0xe>
+ 2f8:	ba 01       	movw	r22, r20
+ 2fa:	62 2b       	or	r22, r18
+ 2fc:	6b bb       	out	0x1b, r22	; 27
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 2fe:	81 e0       	ldi	r24, 0x01	; 1
+ 300:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+ 302:	83 30       	cpi	r24, 0x03	; 3
+ 304:	71 f4       	brne	.+28     	; 0x322 <MGPIO_SetPin+0x40>
+ 306:	28 b3       	in	r18, 0x18	; 24
+ 308:	81 e0       	ldi	r24, 0x01	; 1
+ 30a:	90 e0       	ldi	r25, 0x00	; 0
+ 30c:	ac 01       	movw	r20, r24
+ 30e:	02 c0       	rjmp	.+4      	; 0x314 <MGPIO_SetPin+0x32>
+ 310:	44 0f       	add	r20, r20
+ 312:	55 1f       	adc	r21, r21
+ 314:	6a 95       	dec	r22
+ 316:	e2 f7       	brpl	.-8      	; 0x310 <MGPIO_SetPin+0x2e>
+ 318:	ba 01       	movw	r22, r20
+ 31a:	62 2b       	or	r22, r18
+ 31c:	68 bb       	out	0x18, r22	; 24
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 31e:	81 e0       	ldi	r24, 0x01	; 1
+ 320:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  SET_BIT(OUT_PORTC,Copy_Pin);
+ 322:	84 30       	cpi	r24, 0x04	; 4
+ 324:	71 f4       	brne	.+28     	; 0x342 <MGPIO_SetPin+0x60>
+ 326:	25 b3       	in	r18, 0x15	; 21
+ 328:	81 e0       	ldi	r24, 0x01	; 1
+ 32a:	90 e0       	ldi	r25, 0x00	; 0
+ 32c:	ac 01       	movw	r20, r24
+ 32e:	02 c0       	rjmp	.+4      	; 0x334 <MGPIO_SetPin+0x52>
+ 330:	44 0f       	add	r20, r20
+ 332:	55 1f       	adc	r21, r21
+ 334:	6a 95       	dec	r22
+ 336:	e2 f7       	brpl	.-8      	; 0x330 <MGPIO_SetPin+0x4e>
+ 338:	ba 01       	movw	r22, r20
+ 33a:	62 2b       	or	r22, r18
+ 33c:	65 bb       	out	0x15, r22	; 21
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 33e:	81 e0       	ldi	r24, 0x01	; 1
+ 340:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  SET_BIT(OUT_PORTC,Copy_Pin);
+	else if(Copy_Port == PORTD)  SET_BIT(OUT_PORTD,Copy_Pin);
+ 342:	85 30       	cpi	r24, 0x05	; 5
+ 344:	71 f4       	brne	.+28     	; 0x362 <MGPIO_SetPin+0x80>
+ 346:	22 b3       	in	r18, 0x12	; 18
+ 348:	81 e0       	ldi	r24, 0x01	; 1
+ 34a:	90 e0       	ldi	r25, 0x00	; 0
+ 34c:	ac 01       	movw	r20, r24
+ 34e:	02 c0       	rjmp	.+4      	; 0x354 <MGPIO_SetPin+0x72>
+ 350:	44 0f       	add	r20, r20
+ 352:	55 1f       	adc	r21, r21
+ 354:	6a 95       	dec	r22
+ 356:	e2 f7       	brpl	.-8      	; 0x350 <MGPIO_SetPin+0x6e>
+ 358:	ba 01       	movw	r22, r20
+ 35a:	62 2b       	or	r22, r18
+ 35c:	62 bb       	out	0x12, r22	; 18
+}
+
+
+bool_t MGPIO_SetPin  (u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 35e:	81 e0       	ldi	r24, 0x01	; 1
+ 360:	08 95       	ret
+	
+	if     (Copy_Port == PORTA)  SET_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  SET_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  SET_BIT(OUT_PORTC,Copy_Pin);
+	else if(Copy_Port == PORTD)  SET_BIT(OUT_PORTD,Copy_Pin);
+	else ret_val = E_FALSE;
+ 362:	80 e0       	ldi	r24, 0x00	; 0
+	
+	return ret_val;
+}
+ 364:	08 95       	ret
+
+00000366 <MGPIO_ClearPin>:
+
+
+bool_t MGPIO_ClearPin(u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+	if     (Copy_Port == PORTA)  CLR_BIT(OUT_PORTA,Copy_Pin);
+ 366:	82 30       	cpi	r24, 0x02	; 2
+ 368:	79 f4       	brne	.+30     	; 0x388 <MGPIO_ClearPin+0x22>
+ 36a:	2b b3       	in	r18, 0x1b	; 27
+ 36c:	81 e0       	ldi	r24, 0x01	; 1
+ 36e:	90 e0       	ldi	r25, 0x00	; 0
+ 370:	ac 01       	movw	r20, r24
+ 372:	02 c0       	rjmp	.+4      	; 0x378 <MGPIO_ClearPin+0x12>
+ 374:	44 0f       	add	r20, r20
+ 376:	55 1f       	adc	r21, r21
+ 378:	6a 95       	dec	r22
+ 37a:	e2 f7       	brpl	.-8      	; 0x374 <MGPIO_ClearPin+0xe>
+ 37c:	ba 01       	movw	r22, r20
+ 37e:	60 95       	com	r22
+ 380:	62 23       	and	r22, r18
+ 382:	6b bb       	out	0x1b, r22	; 27
+}
+
+
+bool_t MGPIO_ClearPin(u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 384:	81 e0       	ldi	r24, 0x01	; 1
+ 386:	08 95       	ret
+	if     (Copy_Port == PORTA)  CLR_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  CLR_BIT(OUT_PORTB,Copy_Pin);
+ 388:	83 30       	cpi	r24, 0x03	; 3
+ 38a:	79 f4       	brne	.+30     	; 0x3aa <MGPIO_ClearPin+0x44>
+ 38c:	28 b3       	in	r18, 0x18	; 24
+ 38e:	81 e0       	ldi	r24, 0x01	; 1
+ 390:	90 e0       	ldi	r25, 0x00	; 0
+ 392:	ac 01       	movw	r20, r24
+ 394:	02 c0       	rjmp	.+4      	; 0x39a <MGPIO_ClearPin+0x34>
+ 396:	44 0f       	add	r20, r20
+ 398:	55 1f       	adc	r21, r21
+ 39a:	6a 95       	dec	r22
+ 39c:	e2 f7       	brpl	.-8      	; 0x396 <MGPIO_ClearPin+0x30>
+ 39e:	ba 01       	movw	r22, r20
+ 3a0:	60 95       	com	r22
+ 3a2:	62 23       	and	r22, r18
+ 3a4:	68 bb       	out	0x18, r22	; 24
+}
+
+
+bool_t MGPIO_ClearPin(u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 3a6:	81 e0       	ldi	r24, 0x01	; 1
+ 3a8:	08 95       	ret
+	if     (Copy_Port == PORTA)  CLR_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  CLR_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  CLR_BIT(OUT_PORTC,Copy_Pin);
+ 3aa:	84 30       	cpi	r24, 0x04	; 4
+ 3ac:	79 f4       	brne	.+30     	; 0x3cc <MGPIO_ClearPin+0x66>
+ 3ae:	25 b3       	in	r18, 0x15	; 21
+ 3b0:	81 e0       	ldi	r24, 0x01	; 1
+ 3b2:	90 e0       	ldi	r25, 0x00	; 0
+ 3b4:	ac 01       	movw	r20, r24
+ 3b6:	02 c0       	rjmp	.+4      	; 0x3bc <MGPIO_ClearPin+0x56>
+ 3b8:	44 0f       	add	r20, r20
+ 3ba:	55 1f       	adc	r21, r21
+ 3bc:	6a 95       	dec	r22
+ 3be:	e2 f7       	brpl	.-8      	; 0x3b8 <MGPIO_ClearPin+0x52>
+ 3c0:	ba 01       	movw	r22, r20
+ 3c2:	60 95       	com	r22
+ 3c4:	62 23       	and	r22, r18
+ 3c6:	65 bb       	out	0x15, r22	; 21
+}
+
+
+bool_t MGPIO_ClearPin(u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 3c8:	81 e0       	ldi	r24, 0x01	; 1
+ 3ca:	08 95       	ret
+	if     (Copy_Port == PORTA)  CLR_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  CLR_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  CLR_BIT(OUT_PORTC,Copy_Pin);
+	else if(Copy_Port == PORTD)  CLR_BIT(OUT_PORTD,Copy_Pin);
+ 3cc:	85 30       	cpi	r24, 0x05	; 5
+ 3ce:	79 f4       	brne	.+30     	; 0x3ee <MGPIO_ClearPin+0x88>
+ 3d0:	22 b3       	in	r18, 0x12	; 18
+ 3d2:	81 e0       	ldi	r24, 0x01	; 1
+ 3d4:	90 e0       	ldi	r25, 0x00	; 0
+ 3d6:	ac 01       	movw	r20, r24
+ 3d8:	02 c0       	rjmp	.+4      	; 0x3de <MGPIO_ClearPin+0x78>
+ 3da:	44 0f       	add	r20, r20
+ 3dc:	55 1f       	adc	r21, r21
+ 3de:	6a 95       	dec	r22
+ 3e0:	e2 f7       	brpl	.-8      	; 0x3da <MGPIO_ClearPin+0x74>
+ 3e2:	ba 01       	movw	r22, r20
+ 3e4:	60 95       	com	r22
+ 3e6:	62 23       	and	r22, r18
+ 3e8:	62 bb       	out	0x12, r22	; 18
+}
+
+
+bool_t MGPIO_ClearPin(u8 Copy_Port, u8 Copy_Pin)
+{
+	bool_t ret_val = E_TRUE;
+ 3ea:	81 e0       	ldi	r24, 0x01	; 1
+ 3ec:	08 95       	ret
+	if     (Copy_Port == PORTA)  CLR_BIT(OUT_PORTA,Copy_Pin);
+	else if(Copy_Port == PORTB)  CLR_BIT(OUT_PORTB,Copy_Pin);
+	else if(Copy_Port == PORTC)  CLR_BIT(OUT_PORTC,Copy_Pin);
+	else if(Copy_Port == PORTD)  CLR_BIT(OUT_PORTD,Copy_Pin);
+	else ret_val = E_FALSE;
+ 3ee:	80 e0       	ldi	r24, 0x00	; 0
+	
+	
+	return ret_val;
+}
+ 3f0:	08 95       	ret
+
+000003f2 <__vector_13>:
+static void (*uart_RxCallBack)(void);
+static void (*uart_TxCallBack)(void);
+
+
+ISR(USART_RXC_vect)
+{
+ 3f2:	1f 92       	push	r1
+ 3f4:	0f 92       	push	r0
+ 3f6:	0f b6       	in	r0, 0x3f	; 63
+ 3f8:	0f 92       	push	r0
+ 3fa:	11 24       	eor	r1, r1
+ 3fc:	2f 93       	push	r18
+ 3fe:	3f 93       	push	r19
+ 400:	4f 93       	push	r20
+ 402:	5f 93       	push	r21
+ 404:	6f 93       	push	r22
+ 406:	7f 93       	push	r23
+ 408:	8f 93       	push	r24
+ 40a:	9f 93       	push	r25
+ 40c:	af 93       	push	r26
+ 40e:	bf 93       	push	r27
+ 410:	ef 93       	push	r30
+ 412:	ff 93       	push	r31
+	(*uart_RxCallBack)();
+ 414:	e0 91 d3 00 	lds	r30, 0x00D3
+ 418:	f0 91 d4 00 	lds	r31, 0x00D4
+ 41c:	09 95       	icall
+}
+ 41e:	ff 91       	pop	r31
+ 420:	ef 91       	pop	r30
+ 422:	bf 91       	pop	r27
+ 424:	af 91       	pop	r26
+ 426:	9f 91       	pop	r25
+ 428:	8f 91       	pop	r24
+ 42a:	7f 91       	pop	r23
+ 42c:	6f 91       	pop	r22
+ 42e:	5f 91       	pop	r21
+ 430:	4f 91       	pop	r20
+ 432:	3f 91       	pop	r19
+ 434:	2f 91       	pop	r18
+ 436:	0f 90       	pop	r0
+ 438:	0f be       	out	0x3f, r0	; 63
+ 43a:	0f 90       	pop	r0
+ 43c:	1f 90       	pop	r1
+ 43e:	18 95       	reti
+
+00000440 <__vector_15>:
+
+ISR(USART_TXC_vect)
+{
+ 440:	1f 92       	push	r1
+ 442:	0f 92       	push	r0
+ 444:	0f b6       	in	r0, 0x3f	; 63
+ 446:	0f 92       	push	r0
+ 448:	11 24       	eor	r1, r1
+ 44a:	2f 93       	push	r18
+ 44c:	3f 93       	push	r19
+ 44e:	4f 93       	push	r20
+ 450:	5f 93       	push	r21
+ 452:	6f 93       	push	r22
+ 454:	7f 93       	push	r23
+ 456:	8f 93       	push	r24
+ 458:	9f 93       	push	r25
+ 45a:	af 93       	push	r26
+ 45c:	bf 93       	push	r27
+ 45e:	ef 93       	push	r30
+ 460:	ff 93       	push	r31
+	(*uart_TxCallBack)();
+ 462:	e0 91 d5 00 	lds	r30, 0x00D5
+ 466:	f0 91 d6 00 	lds	r31, 0x00D6
+ 46a:	09 95       	icall
+}
+ 46c:	ff 91       	pop	r31
+ 46e:	ef 91       	pop	r30
+ 470:	bf 91       	pop	r27
+ 472:	af 91       	pop	r26
+ 474:	9f 91       	pop	r25
+ 476:	8f 91       	pop	r24
+ 478:	7f 91       	pop	r23
+ 47a:	6f 91       	pop	r22
+ 47c:	5f 91       	pop	r21
+ 47e:	4f 91       	pop	r20
+ 480:	3f 91       	pop	r19
+ 482:	2f 91       	pop	r18
+ 484:	0f 90       	pop	r0
+ 486:	0f be       	out	0x3f, r0	; 63
+ 488:	0f 90       	pop	r0
+ 48a:	1f 90       	pop	r1
+ 48c:	18 95       	reti
+
+0000048e <__vector_14>:
+
+
+ISR(USART_UDRE_vect)
+{
+ 48e:	1f 92       	push	r1
+ 490:	0f 92       	push	r0
+ 492:	0f b6       	in	r0, 0x3f	; 63
+ 494:	0f 92       	push	r0
+ 496:	11 24       	eor	r1, r1
+ 498:	2f 93       	push	r18
+ 49a:	3f 93       	push	r19
+ 49c:	4f 93       	push	r20
+ 49e:	5f 93       	push	r21
+ 4a0:	6f 93       	push	r22
+ 4a2:	7f 93       	push	r23
+ 4a4:	8f 93       	push	r24
+ 4a6:	9f 93       	push	r25
+ 4a8:	af 93       	push	r26
+ 4aa:	bf 93       	push	r27
+ 4ac:	ef 93       	push	r30
+ 4ae:	ff 93       	push	r31
+	(*uart_TxCallBack)();
+ 4b0:	e0 91 d5 00 	lds	r30, 0x00D5
+ 4b4:	f0 91 d6 00 	lds	r31, 0x00D6
+ 4b8:	09 95       	icall
+}
+ 4ba:	ff 91       	pop	r31
+ 4bc:	ef 91       	pop	r30
+ 4be:	bf 91       	pop	r27
+ 4c0:	af 91       	pop	r26
+ 4c2:	9f 91       	pop	r25
+ 4c4:	8f 91       	pop	r24
+ 4c6:	7f 91       	pop	r23
+ 4c8:	6f 91       	pop	r22
+ 4ca:	5f 91       	pop	r21
+ 4cc:	4f 91       	pop	r20
+ 4ce:	3f 91       	pop	r19
+ 4d0:	2f 91       	pop	r18
+ 4d2:	0f 90       	pop	r0
+ 4d4:	0f be       	out	0x3f, r0	; 63
+ 4d6:	0f 90       	pop	r0
+ 4d8:	1f 90       	pop	r1
+ 4da:	18 95       	reti
+
+000004dc <MUART_boolInit>:
+
+
+bool_t MUART_boolInit(gstr_uart_t *obj)
+{
+ 4dc:	fc 01       	movw	r30, r24
+	bool_t ret_val = E_TRUE;
+	if(obj != NULL)
+ 4de:	00 97       	sbiw	r24, 0x00	; 0
+ 4e0:	09 f4       	brne	.+2      	; 0x4e4 <MUART_boolInit+0x8>
+ 4e2:	a7 c0       	rjmp	.+334    	; 0x632 <MUART_boolInit+0x156>
+	{
+	/**set the URSEL bit to can writing on UCSRC register SET_BIT(UCSRC,URSEL);***/
+			SET_BIT(UCSRC,URSEL);
+ 4e4:	80 b5       	in	r24, 0x20	; 32
+ 4e6:	80 68       	ori	r24, 0x80	; 128
+ 4e8:	80 bd       	out	0x20, r24	; 32
+			/*******mode selection*******/
+		if(obj->usart_mode==ASYENCHRONOUS_USART)
+ 4ea:	87 81       	ldd	r24, Z+7	; 0x07
+ 4ec:	81 11       	cpse	r24, r1
+ 4ee:	03 c0       	rjmp	.+6      	; 0x4f6 <MUART_boolInit+0x1a>
+			CLR_BIT(UCSRC,UMSEL);
+ 4f0:	80 b5       	in	r24, 0x20	; 32
+ 4f2:	8f 7b       	andi	r24, 0xBF	; 191
+ 4f4:	80 bd       	out	0x20, r24	; 32
+			/******parity selection*******/
+		if(obj->parity==USART_PARITY_OFF)
+ 4f6:	80 85       	ldd	r24, Z+8	; 0x08
+ 4f8:	81 11       	cpse	r24, r1
+ 4fa:	07 c0       	rjmp	.+14     	; 0x50a <MUART_boolInit+0x2e>
+			{
+				CLR_BIT(UCSRC,UPM0);
+ 4fc:	80 b5       	in	r24, 0x20	; 32
+ 4fe:	8f 7e       	andi	r24, 0xEF	; 239
+ 500:	80 bd       	out	0x20, r24	; 32
+				CLR_BIT(UCSRC,UPM1);
+ 502:	80 b5       	in	r24, 0x20	; 32
+ 504:	8f 7d       	andi	r24, 0xDF	; 223
+ 506:	80 bd       	out	0x20, r24	; 32
+ 508:	0f c0       	rjmp	.+30     	; 0x528 <MUART_boolInit+0x4c>
+			}
+		else if(obj->parity==USART_PARITY_EVEN)
+ 50a:	81 30       	cpi	r24, 0x01	; 1
+ 50c:	39 f4       	brne	.+14     	; 0x51c <MUART_boolInit+0x40>
+			{
+				CLR_BIT(UCSRC,UPM0);
+ 50e:	80 b5       	in	r24, 0x20	; 32
+ 510:	8f 7e       	andi	r24, 0xEF	; 239
+ 512:	80 bd       	out	0x20, r24	; 32
+				SET_BIT(UCSRC,UPM1);
+ 514:	80 b5       	in	r24, 0x20	; 32
+ 516:	80 62       	ori	r24, 0x20	; 32
+ 518:	80 bd       	out	0x20, r24	; 32
+ 51a:	06 c0       	rjmp	.+12     	; 0x528 <MUART_boolInit+0x4c>
+			}
+		else
+			{
+				SET_BIT(UCSRC,UPM0);
+ 51c:	80 b5       	in	r24, 0x20	; 32
+ 51e:	80 61       	ori	r24, 0x10	; 16
+ 520:	80 bd       	out	0x20, r24	; 32
+				SET_BIT(UCSRC,UPM1);
+ 522:	80 b5       	in	r24, 0x20	; 32
+ 524:	80 62       	ori	r24, 0x20	; 32
+ 526:	80 bd       	out	0x20, r24	; 32
+			}
+	  /***********stop bit number**********/
+		if(obj->stop_bit_num==USART_ONE_STOP_BIT)
+ 528:	81 85       	ldd	r24, Z+9	; 0x09
+ 52a:	81 11       	cpse	r24, r1
+ 52c:	04 c0       	rjmp	.+8      	; 0x536 <MUART_boolInit+0x5a>
+				CLR_BIT(UCSRC,USBS);
+ 52e:	80 b5       	in	r24, 0x20	; 32
+ 530:	87 7f       	andi	r24, 0xF7	; 247
+ 532:	80 bd       	out	0x20, r24	; 32
+ 534:	03 c0       	rjmp	.+6      	; 0x53c <MUART_boolInit+0x60>
+		else
+		     	SET_BIT(UCSRC,USBS);
+ 536:	80 b5       	in	r24, 0x20	; 32
+ 538:	88 60       	ori	r24, 0x08	; 8
+ 53a:	80 bd       	out	0x20, r24	; 32
+	 /***********data size send**********/
+		if(obj->data_size==USART_8_BITS)
+ 53c:	82 85       	ldd	r24, Z+10	; 0x0a
+ 53e:	83 30       	cpi	r24, 0x03	; 3
+ 540:	41 f4       	brne	.+16     	; 0x552 <MUART_boolInit+0x76>
+			{
+				//UCSRC |=(1<<UCSZ0)|(1<<UCSZ1)|(1<<URSEL);
+				SET_BIT(UCSRC,UCSZ0);
+ 542:	80 b5       	in	r24, 0x20	; 32
+ 544:	82 60       	ori	r24, 0x02	; 2
+ 546:	80 bd       	out	0x20, r24	; 32
+				SET_BIT(UCSRC,UCSZ1);
+ 548:	80 b5       	in	r24, 0x20	; 32
+ 54a:	84 60       	ori	r24, 0x04	; 4
+ 54c:	80 bd       	out	0x20, r24	; 32
+				CLR_BIT(UCSRB,UCSZ2);
+ 54e:	52 98       	cbi	0x0a, 2	; 10
+ 550:	2d c0       	rjmp	.+90     	; 0x5ac <MUART_boolInit+0xd0>
+			}
+		else if(obj->data_size==USART_5_BITS)
+ 552:	81 11       	cpse	r24, r1
+ 554:	0a c0       	rjmp	.+20     	; 0x56a <MUART_boolInit+0x8e>
+			{
+			//UCSRC &=~(1<<UCSZ1)&(1<<UCSZ1)|(1<<URSEL);
+			CLR_BIT(UCSRC,UCSZ0);
+ 556:	80 b5       	in	r24, 0x20	; 32
+ 558:	8d 7f       	andi	r24, 0xFD	; 253
+ 55a:	80 bd       	out	0x20, r24	; 32
+			CLR_BIT(UCSRC,UCSZ1);
+ 55c:	80 b5       	in	r24, 0x20	; 32
+ 55e:	8b 7f       	andi	r24, 0xFB	; 251
+ 560:	80 bd       	out	0x20, r24	; 32
+			CLR_BIT(UCSRC,UCSZ2);
+ 562:	80 b5       	in	r24, 0x20	; 32
+ 564:	8b 7f       	andi	r24, 0xFB	; 251
+ 566:	80 bd       	out	0x20, r24	; 32
+ 568:	21 c0       	rjmp	.+66     	; 0x5ac <MUART_boolInit+0xd0>
+			}
+		else if(obj->data_size==USART_6_BITS)
+ 56a:	81 30       	cpi	r24, 0x01	; 1
+ 56c:	51 f4       	brne	.+20     	; 0x582 <MUART_boolInit+0xa6>
+			{
+			SET_BIT(UCSRC,UCSZ0);
+ 56e:	80 b5       	in	r24, 0x20	; 32
+ 570:	82 60       	ori	r24, 0x02	; 2
+ 572:	80 bd       	out	0x20, r24	; 32
+			CLR_BIT(UCSRC,UCSZ1);
+ 574:	80 b5       	in	r24, 0x20	; 32
+ 576:	8b 7f       	andi	r24, 0xFB	; 251
+ 578:	80 bd       	out	0x20, r24	; 32
+			CLR_BIT(UCSRC,UCSZ2);
+ 57a:	80 b5       	in	r24, 0x20	; 32
+ 57c:	8b 7f       	andi	r24, 0xFB	; 251
+ 57e:	80 bd       	out	0x20, r24	; 32
+ 580:	15 c0       	rjmp	.+42     	; 0x5ac <MUART_boolInit+0xd0>
+			}
+		else if(obj->data_size==USART_7_BITS)
+ 582:	82 30       	cpi	r24, 0x02	; 2
+ 584:	51 f4       	brne	.+20     	; 0x59a <MUART_boolInit+0xbe>
+			{
+				CLR_BIT(UCSRC,UCSZ0);
+ 586:	80 b5       	in	r24, 0x20	; 32
+ 588:	8d 7f       	andi	r24, 0xFD	; 253
+ 58a:	80 bd       	out	0x20, r24	; 32
+				SET_BIT(UCSRC,UCSZ1);
+ 58c:	80 b5       	in	r24, 0x20	; 32
+ 58e:	84 60       	ori	r24, 0x04	; 4
+ 590:	80 bd       	out	0x20, r24	; 32
+				CLR_BIT(UCSRC,UCSZ2);
+ 592:	80 b5       	in	r24, 0x20	; 32
+ 594:	8b 7f       	andi	r24, 0xFB	; 251
+ 596:	80 bd       	out	0x20, r24	; 32
+ 598:	09 c0       	rjmp	.+18     	; 0x5ac <MUART_boolInit+0xd0>
+			}
+		else 
+			{
+			SET_BIT(UCSRC,UCSZ0);
+ 59a:	80 b5       	in	r24, 0x20	; 32
+ 59c:	82 60       	ori	r24, 0x02	; 2
+ 59e:	80 bd       	out	0x20, r24	; 32
+			SET_BIT(UCSRC,UCSZ1);
+ 5a0:	80 b5       	in	r24, 0x20	; 32
+ 5a2:	84 60       	ori	r24, 0x04	; 4
+ 5a4:	80 bd       	out	0x20, r24	; 32
+			SET_BIT(UCSRC,UCSZ2);
+ 5a6:	80 b5       	in	r24, 0x20	; 32
+ 5a8:	84 60       	ori	r24, 0x04	; 4
+ 5aa:	80 bd       	out	0x20, r24	; 32
+			}
+	/************ clock polarity selection******/
+		if(obj->clock_polarity==USART_RISING_EDEG)
+ 5ac:	83 85       	ldd	r24, Z+11	; 0x0b
+ 5ae:	81 11       	cpse	r24, r1
+ 5b0:	04 c0       	rjmp	.+8      	; 0x5ba <MUART_boolInit+0xde>
+			CLR_BIT(UCSRC,UCPOL);
+ 5b2:	80 b5       	in	r24, 0x20	; 32
+ 5b4:	8e 7f       	andi	r24, 0xFE	; 254
+ 5b6:	80 bd       	out	0x20, r24	; 32
+ 5b8:	03 c0       	rjmp	.+6      	; 0x5c0 <MUART_boolInit+0xe4>
+		else
+			SET_BIT(UCSRC,UCPOL);
+ 5ba:	80 b5       	in	r24, 0x20	; 32
+ 5bc:	81 60       	ori	r24, 0x01	; 1
+ 5be:	80 bd       	out	0x20, r24	; 32
+	/*********** RX enable*****************/
+		if(obj->rx_enable==UART_RX_ON)
+ 5c0:	81 81       	ldd	r24, Z+1	; 0x01
+ 5c2:	81 30       	cpi	r24, 0x01	; 1
+ 5c4:	11 f4       	brne	.+4      	; 0x5ca <MUART_boolInit+0xee>
+			SET_BIT(UCSRB,RXEN);	
+ 5c6:	54 9a       	sbi	0x0a, 4	; 10
+ 5c8:	01 c0       	rjmp	.+2      	; 0x5cc <MUART_boolInit+0xf0>
+		else
+			CLR_BIT(UCSRB,RXEN);
+ 5ca:	54 98       	cbi	0x0a, 4	; 10
+	/*************** TX enable************/
+		if(obj->tx_enable==UART_TX_ON)
+ 5cc:	80 81       	ld	r24, Z
+ 5ce:	81 30       	cpi	r24, 0x01	; 1
+ 5d0:	11 f4       	brne	.+4      	; 0x5d6 <MUART_boolInit+0xfa>
+			SET_BIT(UCSRB,TXEN);
+ 5d2:	53 9a       	sbi	0x0a, 3	; 10
+ 5d4:	01 c0       	rjmp	.+2      	; 0x5d8 <MUART_boolInit+0xfc>
+		else
+			CLR_BIT(UCSRB,TXEN);
+ 5d6:	53 98       	cbi	0x0a, 3	; 10
+	/*********TX interrupt enable*******/	
+		if(obj->tx_interrupt_enable==UART_TX__INT_ON)
+ 5d8:	83 81       	ldd	r24, Z+3	; 0x03
+ 5da:	81 30       	cpi	r24, 0x01	; 1
+ 5dc:	11 f4       	brne	.+4      	; 0x5e2 <MUART_boolInit+0x106>
+			SET_BIT(UCSRB,TXCIE);
+ 5de:	56 9a       	sbi	0x0a, 6	; 10
+ 5e0:	01 c0       	rjmp	.+2      	; 0x5e4 <MUART_boolInit+0x108>
+		else
+			CLR_BIT(UCSRB,TXCIE);
+ 5e2:	56 98       	cbi	0x0a, 6	; 10
+   /*********RX interrupt enable********/
+		if(obj->rx_interrupt_enable==UART_RX__INT_ON)
+ 5e4:	82 81       	ldd	r24, Z+2	; 0x02
+ 5e6:	81 30       	cpi	r24, 0x01	; 1
+ 5e8:	11 f4       	brne	.+4      	; 0x5ee <MUART_boolInit+0x112>
+			SET_BIT(UCSRB,RXCIE);
+ 5ea:	57 9a       	sbi	0x0a, 7	; 10
+ 5ec:	01 c0       	rjmp	.+2      	; 0x5f0 <MUART_boolInit+0x114>
+		else
+			CLR_BIT(UCSRB,RXCIE);
+ 5ee:	57 98       	cbi	0x0a, 7	; 10
+	/**********UDRIE interrupt enable********/
+		if(obj->UDRIE_interrupt_enable==UART_UDRIE__INT_ON)
+ 5f0:	84 81       	ldd	r24, Z+4	; 0x04
+ 5f2:	81 30       	cpi	r24, 0x01	; 1
+ 5f4:	11 f4       	brne	.+4      	; 0x5fa <MUART_boolInit+0x11e>
+			SET_BIT(UCSRB,UDRIE);
+ 5f6:	55 9a       	sbi	0x0a, 5	; 10
+ 5f8:	01 c0       	rjmp	.+2      	; 0x5fc <MUART_boolInit+0x120>
+		else
+			CLR_BIT(UCSRB,UDRIE);
+ 5fa:	55 98       	cbi	0x0a, 5	; 10
+	/************Baud rate setting***********/
+		if(obj->baud_rate==BAUD_RATE_9600)
+ 5fc:	85 81       	ldd	r24, Z+5	; 0x05
+ 5fe:	96 81       	ldd	r25, Z+6	; 0x06
+ 600:	80 38       	cpi	r24, 0x80	; 128
+ 602:	25 e2       	ldi	r18, 0x25	; 37
+ 604:	92 07       	cpc	r25, r18
+ 606:	21 f4       	brne	.+8      	; 0x610 <MUART_boolInit+0x134>
+		{
+			UBRL =0x33;
+ 608:	83 e3       	ldi	r24, 0x33	; 51
+ 60a:	89 b9       	out	0x09, r24	; 9
+			UBRH =0x00;
+ 60c:	10 bc       	out	0x20, r1	; 32
+ 60e:	0c c0       	rjmp	.+24     	; 0x628 <MUART_boolInit+0x14c>
+		}
+		else if(obj->baud_rate==BAUD_RATE_2400)
+ 610:	80 36       	cpi	r24, 0x60	; 96
+ 612:	29 e0       	ldi	r18, 0x09	; 9
+ 614:	92 07       	cpc	r25, r18
+ 616:	19 f4       	brne	.+6      	; 0x61e <MUART_boolInit+0x142>
+		{
+			UBRL =0x00;
+ 618:	19 b8       	out	0x09, r1	; 9
+			UBRH =0x00;
+ 61a:	10 bc       	out	0x20, r1	; 32
+ 61c:	05 c0       	rjmp	.+10     	; 0x628 <MUART_boolInit+0x14c>
+		}
+		else if(obj->baud_rate==BAUD_RATE_4800)
+ 61e:	80 3c       	cpi	r24, 0xC0	; 192
+ 620:	92 41       	sbci	r25, 0x12	; 18
+ 622:	11 f4       	brne	.+4      	; 0x628 <MUART_boolInit+0x14c>
+		{
+			UBRL =0x00;
+ 624:	19 b8       	out	0x09, r1	; 9
+			UBRH =0x00;
+ 626:	10 bc       	out	0x20, r1	; 32
+		}
+		
+		/***turn on the galoble interrupt***/
+		SET_BIT(SREG,7);
+ 628:	8f b7       	in	r24, 0x3f	; 63
+ 62a:	80 68       	ori	r24, 0x80	; 128
+ 62c:	8f bf       	out	0x3f, r24	; 63
+}
+
+
+bool_t MUART_boolInit(gstr_uart_t *obj)
+{
+	bool_t ret_val = E_TRUE;
+ 62e:	81 e0       	ldi	r24, 0x01	; 1
+ 630:	08 95       	ret
+		/***turn on the galoble interrupt***/
+		SET_BIT(SREG,7);
+	}
+	else
+	{
+		 ret_val=E_FALSE;
+ 632:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	return ret_val;	
+}
+ 634:	08 95       	ret
+
+00000636 <MUART_u8Receive>:
+	}
+}
+
+u8   MUART_u8Receive(void)
+{
+	while(!GET_BIT(UCSRA,RXC));
+ 636:	5f 9b       	sbis	0x0b, 7	; 11
+ 638:	fe cf       	rjmp	.-4      	; 0x636 <MUART_u8Receive>
+	return (u8)UDR;
+ 63a:	8c b1       	in	r24, 0x0c	; 12
+}
+ 63c:	08 95       	ret
+
+0000063e <main>:
+
+#include "Safe_interface.h"
+
+int main(void)
+{
+	Safe_Init();
+ 63e:	0e 94 a4 03 	call	0x748	; 0x748 <Safe_Init>
+	
+	
+    while(1)
+    {
+		Safe_Start();	
+ 642:	0e 94 cf 03 	call	0x79e	; 0x79e <Safe_Start>
+ 646:	fd cf       	rjmp	.-6      	; 0x642 <main+0x4>
+
+00000648 <GetPassword>:
+u8 val =0;
+u8 CorectFalg =0;
+
+static void GetPassword(void)
+{
+	data = 0;
+ 648:	10 92 df 00 	sts	0x00DF, r1
+	data = MUART_u8Receive();
+ 64c:	0e 94 1b 03 	call	0x636	; 0x636 <MUART_u8Receive>
+ 650:	80 93 df 00 	sts	0x00DF, r24
+ 654:	83 e2       	ldi	r24, 0x23	; 35
+ 656:	94 ef       	ldi	r25, 0xF4	; 244
+ 658:	01 97       	sbiw	r24, 0x01	; 1
+ 65a:	f1 f7       	brne	.-4      	; 0x658 <GetPassword+0x10>
+ 65c:	00 c0       	rjmp	.+0      	; 0x65e <GetPassword+0x16>
+ 65e:	00 00       	nop
+	_delay_ms(250);
+	userEnteredPassword[i] = data;
+ 660:	80 91 df 00 	lds	r24, 0x00DF
+ 664:	e0 91 d9 00 	lds	r30, 0x00D9
+ 668:	f0 e0       	ldi	r31, 0x00	; 0
+ 66a:	e5 52       	subi	r30, 0x25	; 37
+ 66c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 66e:	80 83       	st	Z, r24
+	itoa(data, buffer_spi_lcd_out,10);
+ 670:	4a e0       	ldi	r20, 0x0A	; 10
+ 672:	50 e0       	ldi	r21, 0x00	; 0
+ 674:	60 ee       	ldi	r22, 0xE0	; 224
+ 676:	70 e0       	ldi	r23, 0x00	; 0
+ 678:	90 e0       	ldi	r25, 0x00	; 0
+ 67a:	0e 94 36 04 	call	0x86c	; 0x86c <itoa>
+	LCD_Display_RowColumn(2,i ,buffer_spi_lcd_out);
+ 67e:	40 ee       	ldi	r20, 0xE0	; 224
+ 680:	50 e0       	ldi	r21, 0x00	; 0
+ 682:	60 91 d9 00 	lds	r22, 0x00D9
+ 686:	82 e0       	ldi	r24, 0x02	; 2
+ 688:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+ 68c:	83 ed       	ldi	r24, 0xD3	; 211
+ 68e:	90 e3       	ldi	r25, 0x30	; 48
+ 690:	01 97       	sbiw	r24, 0x01	; 1
+ 692:	f1 f7       	brne	.-4      	; 0x690 <GetPassword+0x48>
+ 694:	00 c0       	rjmp	.+0      	; 0x696 <GetPassword+0x4e>
+ 696:	00 00       	nop
+	_delay_ms(50);
+	LCD_Display_RowColumn(2,i ,'#');
+ 698:	43 e2       	ldi	r20, 0x23	; 35
+ 69a:	50 e0       	ldi	r21, 0x00	; 0
+ 69c:	60 91 d9 00 	lds	r22, 0x00D9
+ 6a0:	82 e0       	ldi	r24, 0x02	; 2
+ 6a2:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+ 6a6:	08 95       	ret
+
+000006a8 <Passworderrorhandel>:
+	return count;
+}	
+
+
+static void Passworderrorhandel()
+{
+ 6a8:	40 91 da 00 	lds	r20, 0x00DA
+ 6ac:	eb ed       	ldi	r30, 0xDB	; 219
+ 6ae:	f0 e0       	ldi	r31, 0x00	; 0
+ 6b0:	a0 e6       	ldi	r26, 0x60	; 96
+ 6b2:	b0 e0       	ldi	r27, 0x00	; 0
+	}
+	return count;
+}	
+
+
+static void Passworderrorhandel()
+ 6b4:	8f ed       	ldi	r24, 0xDF	; 223
+ 6b6:	90 e0       	ldi	r25, 0x00	; 0
+	
+static u8 PasswordCheck(u8 * password)
+{
+	for(u8 i=0;i<4;i++)
+	{
+	if (password[i] == userPassword [i])
+ 6b8:	31 91       	ld	r19, Z+
+ 6ba:	2d 91       	ld	r18, X+
+ 6bc:	32 13       	cpse	r19, r18
+ 6be:	01 c0       	rjmp	.+2      	; 0x6c2 <Passworderrorhandel+0x1a>
+		count++;
+ 6c0:	4f 5f       	subi	r20, 0xFF	; 255
+	LCD_Display_RowColumn(2,i ,'#');
+}
+	
+static u8 PasswordCheck(u8 * password)
+{
+	for(u8 i=0;i<4;i++)
+ 6c2:	e8 17       	cp	r30, r24
+ 6c4:	f9 07       	cpc	r31, r25
+ 6c6:	c1 f7       	brne	.-16     	; 0x6b8 <Passworderrorhandel+0x10>
+ 6c8:	40 93 da 00 	sts	0x00DA, r20
+}	
+
+
+static void Passworderrorhandel()
+{
+	val = PasswordCheck(userEnteredPassword);
+ 6cc:	40 93 d8 00 	sts	0x00D8, r20
+	
+	if(val == 4)
+ 6d0:	44 30       	cpi	r20, 0x04	; 4
+ 6d2:	a1 f4       	brne	.+40     	; 0x6fc <Passworderrorhandel+0x54>
+	{
+		Lcd_Clean();
+ 6d4:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <Lcd_Clean>
+		MGPIO_ClearPin(PORTB,PIN6);
+ 6d8:	66 e0       	ldi	r22, 0x06	; 6
+ 6da:	83 e0       	ldi	r24, 0x03	; 3
+ 6dc:	0e 94 b3 01 	call	0x366	; 0x366 <MGPIO_ClearPin>
+		MGPIO_SetPin(PORTB,PIN4);
+ 6e0:	64 e0       	ldi	r22, 0x04	; 4
+ 6e2:	83 e0       	ldi	r24, 0x03	; 3
+ 6e4:	0e 94 71 01 	call	0x2e2	; 0x2e2 <MGPIO_SetPin>
+		LCD_Display_RowColumn(2,0," Safe Is Open^_^");
+ 6e8:	40 e7       	ldi	r20, 0x70	; 112
+ 6ea:	50 e0       	ldi	r21, 0x00	; 0
+ 6ec:	60 e0       	ldi	r22, 0x00	; 0
+ 6ee:	82 e0       	ldi	r24, 0x02	; 2
+ 6f0:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+		CorectFalg=1;
+ 6f4:	81 e0       	ldi	r24, 0x01	; 1
+ 6f6:	80 93 d7 00 	sts	0x00D7, r24
+ 6fa:	08 95       	ret
+	}
+	else
+	{
+		Lcd_Clean();
+ 6fc:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <Lcd_Clean>
+		LCD_Display_RowColumn(0,0,"Error Password");
+ 700:	41 e8       	ldi	r20, 0x81	; 129
+ 702:	50 e0       	ldi	r21, 0x00	; 0
+ 704:	60 e0       	ldi	r22, 0x00	; 0
+ 706:	80 e0       	ldi	r24, 0x00	; 0
+ 708:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+		MGPIO_ClearPin(PORTB,PIN7);
+ 70c:	67 e0       	ldi	r22, 0x07	; 7
+ 70e:	83 e0       	ldi	r24, 0x03	; 3
+ 710:	0e 94 b3 01 	call	0x366	; 0x366 <MGPIO_ClearPin>
+ 714:	2f e7       	ldi	r18, 0x7F	; 127
+ 716:	8a e1       	ldi	r24, 0x1A	; 26
+ 718:	96 e0       	ldi	r25, 0x06	; 6
+ 71a:	21 50       	subi	r18, 0x01	; 1
+ 71c:	80 40       	sbci	r24, 0x00	; 0
+ 71e:	90 40       	sbci	r25, 0x00	; 0
+ 720:	e1 f7       	brne	.-8      	; 0x71a <Passworderrorhandel+0x72>
+ 722:	00 c0       	rjmp	.+0      	; 0x724 <Passworderrorhandel+0x7c>
+ 724:	00 00       	nop
+		_delay_ms(2000);
+		Lcd_Clean();
+ 726:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <Lcd_Clean>
+		LCD_Display_RowColumn(0,0,"TryOtherPassword");
+ 72a:	40 e9       	ldi	r20, 0x90	; 144
+ 72c:	50 e0       	ldi	r21, 0x00	; 0
+ 72e:	60 e0       	ldi	r22, 0x00	; 0
+ 730:	80 e0       	ldi	r24, 0x00	; 0
+ 732:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+		MGPIO_SetPin(PORTB,PIN7);
+ 736:	67 e0       	ldi	r22, 0x07	; 7
+ 738:	83 e0       	ldi	r24, 0x03	; 3
+ 73a:	0e 94 71 01 	call	0x2e2	; 0x2e2 <MGPIO_SetPin>
+		MGPIO_SetPin(PORTB,PIN5);
+ 73e:	65 e0       	ldi	r22, 0x05	; 5
+ 740:	83 e0       	ldi	r24, 0x03	; 3
+ 742:	0e 94 71 01 	call	0x2e2	; 0x2e2 <MGPIO_SetPin>
+ 746:	08 95       	ret
+
+00000748 <Safe_Init>:
+
+
+
+void Safe_Init(void)
+{
+	MGPIO_SetPortDirection(PORTB,PIN4,OUTPUT);
+ 748:	41 e0       	ldi	r20, 0x01	; 1
+ 74a:	64 e0       	ldi	r22, 0x04	; 4
+ 74c:	83 e0       	ldi	r24, 0x03	; 3
+ 74e:	0e 94 e5 00 	call	0x1ca	; 0x1ca <MGPIO_SetPortDirection>
+	MGPIO_SetPortDirection(PORTB,PIN5,OUTPUT);
+ 752:	41 e0       	ldi	r20, 0x01	; 1
+ 754:	65 e0       	ldi	r22, 0x05	; 5
+ 756:	83 e0       	ldi	r24, 0x03	; 3
+ 758:	0e 94 e5 00 	call	0x1ca	; 0x1ca <MGPIO_SetPortDirection>
+	MGPIO_SetPortDirection(PORTB,PIN6,OUTPUT);
+ 75c:	41 e0       	ldi	r20, 0x01	; 1
+ 75e:	66 e0       	ldi	r22, 0x06	; 6
+ 760:	83 e0       	ldi	r24, 0x03	; 3
+ 762:	0e 94 e5 00 	call	0x1ca	; 0x1ca <MGPIO_SetPortDirection>
+	MGPIO_SetPortDirection(PORTB,PIN7,OUTPUT);
+ 766:	41 e0       	ldi	r20, 0x01	; 1
+ 768:	67 e0       	ldi	r22, 0x07	; 7
+ 76a:	83 e0       	ldi	r24, 0x03	; 3
+ 76c:	0e 94 e5 00 	call	0x1ca	; 0x1ca <MGPIO_SetPortDirection>
+	MGPIO_ClearPin(PORTB,PIN4);
+ 770:	64 e0       	ldi	r22, 0x04	; 4
+ 772:	83 e0       	ldi	r24, 0x03	; 3
+ 774:	0e 94 b3 01 	call	0x366	; 0x366 <MGPIO_ClearPin>
+	MGPIO_ClearPin(PORTB,PIN5);
+ 778:	65 e0       	ldi	r22, 0x05	; 5
+ 77a:	83 e0       	ldi	r24, 0x03	; 3
+ 77c:	0e 94 b3 01 	call	0x366	; 0x366 <MGPIO_ClearPin>
+	MGPIO_SetPin(PORTB,PIN6);
+ 780:	66 e0       	ldi	r22, 0x06	; 6
+ 782:	83 e0       	ldi	r24, 0x03	; 3
+ 784:	0e 94 71 01 	call	0x2e2	; 0x2e2 <MGPIO_SetPin>
+	MGPIO_SetPin(PORTB,PIN7);
+ 788:	67 e0       	ldi	r22, 0x07	; 7
+ 78a:	83 e0       	ldi	r24, 0x03	; 3
+ 78c:	0e 94 71 01 	call	0x2e2	; 0x2e2 <MGPIO_SetPin>
+	MUART_boolInit(&obj);
+ 790:	84 e6       	ldi	r24, 0x64	; 100
+ 792:	90 e0       	ldi	r25, 0x00	; 0
+ 794:	0e 94 6e 02 	call	0x4dc	; 0x4dc <MUART_boolInit>
+	Lcd_Init();	
+ 798:	0e 94 6f 00 	call	0xde	; 0xde <Lcd_Init>
+ 79c:	08 95       	ret
+
+0000079e <Safe_Start>:
+
+
+void Safe_Start(void)
+{
+	
+	Lcd_Clean();
+ 79e:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <Lcd_Clean>
+	LCD_Display_RowColumn(0,4," Welcome");
+ 7a2:	41 ea       	ldi	r20, 0xA1	; 161
+ 7a4:	50 e0       	ldi	r21, 0x00	; 0
+ 7a6:	64 e0       	ldi	r22, 0x04	; 4
+ 7a8:	80 e0       	ldi	r24, 0x00	; 0
+ 7aa:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+ 7ae:	83 e2       	ldi	r24, 0x23	; 35
+ 7b0:	94 ef       	ldi	r25, 0xF4	; 244
+ 7b2:	01 97       	sbiw	r24, 0x01	; 1
+ 7b4:	f1 f7       	brne	.-4      	; 0x7b2 <Safe_Start+0x14>
+ 7b6:	00 c0       	rjmp	.+0      	; 0x7b8 <Safe_Start+0x1a>
+ 7b8:	00 00       	nop
+	_delay_ms(250);
+	Lcd_Clean();
+ 7ba:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <Lcd_Clean>
+	LCD_Display_RowColumn(0,0," Enter Password:"); 
+ 7be:	4a ea       	ldi	r20, 0xAA	; 170
+ 7c0:	50 e0       	ldi	r21, 0x00	; 0
+ 7c2:	60 e0       	ldi	r22, 0x00	; 0
+ 7c4:	80 e0       	ldi	r24, 0x00	; 0
+ 7c6:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+	
+		i=val=count=0;
+ 7ca:	10 92 da 00 	sts	0x00DA, r1
+ 7ce:	10 92 d8 00 	sts	0x00D8, r1
+ 7d2:	10 92 d9 00 	sts	0x00D9, r1
+	do{
+		GetPassword();
+ 7d6:	0e 94 24 03 	call	0x648	; 0x648 <GetPassword>
+		i++;
+ 7da:	80 91 d9 00 	lds	r24, 0x00D9
+ 7de:	8f 5f       	subi	r24, 0xFF	; 255
+ 7e0:	80 93 d9 00 	sts	0x00D9, r24
+	  } while(i!=4);
+ 7e4:	84 30       	cpi	r24, 0x04	; 4
+ 7e6:	b9 f7       	brne	.-18     	; 0x7d6 <Safe_Start+0x38>
+	  Passworderrorhandel();
+ 7e8:	0e 94 54 03 	call	0x6a8	; 0x6a8 <Passworderrorhandel>
+	  
+	while(CorectFalg);  
+ 7ec:	80 91 d7 00 	lds	r24, 0x00D7
+ 7f0:	81 11       	cpse	r24, r1
+ 7f2:	3b c0       	rjmp	.+118    	; 0x86a <__stack+0xb>
+	
+	  i=val=count=0;
+ 7f4:	10 92 da 00 	sts	0x00DA, r1
+ 7f8:	10 92 d8 00 	sts	0x00D8, r1
+ 7fc:	10 92 d9 00 	sts	0x00D9, r1
+	  do{
+		  GetPassword();
+ 800:	0e 94 24 03 	call	0x648	; 0x648 <GetPassword>
+		  i++;
+ 804:	80 91 d9 00 	lds	r24, 0x00D9
+ 808:	8f 5f       	subi	r24, 0xFF	; 255
+ 80a:	80 93 d9 00 	sts	0x00D9, r24
+	  } while(i!=4);
+ 80e:	84 30       	cpi	r24, 0x04	; 4
+ 810:	b9 f7       	brne	.-18     	; 0x800 <Safe_Start+0x62>
+	  Passworderrorhandel();
+ 812:	0e 94 54 03 	call	0x6a8	; 0x6a8 <Passworderrorhandel>
+	  
+	  while(CorectFalg);
+ 816:	80 91 d7 00 	lds	r24, 0x00D7
+ 81a:	81 11       	cpse	r24, r1
+ 81c:	25 c0       	rjmp	.+74     	; 0x868 <__stack+0x9>
+	  
+		 i=val=count=0;
+ 81e:	10 92 da 00 	sts	0x00DA, r1
+ 822:	10 92 d8 00 	sts	0x00D8, r1
+ 826:	10 92 d9 00 	sts	0x00D9, r1
+	   do{
+		   GetPassword();
+ 82a:	0e 94 24 03 	call	0x648	; 0x648 <GetPassword>
+		   i++;
+ 82e:	80 91 d9 00 	lds	r24, 0x00D9
+ 832:	8f 5f       	subi	r24, 0xFF	; 255
+ 834:	80 93 d9 00 	sts	0x00D9, r24
+	   } while(i!=4);
+ 838:	84 30       	cpi	r24, 0x04	; 4
+ 83a:	b9 f7       	brne	.-18     	; 0x82a <Safe_Start+0x8c>
+	   Passworderrorhandel();
+ 83c:	0e 94 54 03 	call	0x6a8	; 0x6a8 <Passworderrorhandel>
+	   
+	   while(CorectFalg);
+ 840:	80 91 d7 00 	lds	r24, 0x00D7
+ 844:	81 11       	cpse	r24, r1
+ 846:	0f c0       	rjmp	.+30     	; 0x866 <__stack+0x7>
+	   
+	   Lcd_Clean();
+ 848:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <Lcd_Clean>
+	   LCD_Display_RowColumn(1,3,"No Chance!");
+ 84c:	4b eb       	ldi	r20, 0xBB	; 187
+ 84e:	50 e0       	ldi	r21, 0x00	; 0
+ 850:	63 e0       	ldi	r22, 0x03	; 3
+ 852:	81 e0       	ldi	r24, 0x01	; 1
+ 854:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+	   LCD_Display_RowColumn(2,3,"Safe Closed");
+ 858:	46 ec       	ldi	r20, 0xC6	; 198
+ 85a:	50 e0       	ldi	r21, 0x00	; 0
+ 85c:	63 e0       	ldi	r22, 0x03	; 3
+ 85e:	82 e0       	ldi	r24, 0x02	; 2
+ 860:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LCD_Display_RowColumn>
+ 864:	08 95       	ret
+ 866:	ff cf       	rjmp	.-2      	; 0x866 <__stack+0x7>
+ 868:	ff cf       	rjmp	.-2      	; 0x868 <__stack+0x9>
+ 86a:	ff cf       	rjmp	.-2      	; 0x86a <__stack+0xb>
+
+0000086c <itoa>:
+ 86c:	fb 01       	movw	r30, r22
+ 86e:	9f 01       	movw	r18, r30
+ 870:	e8 94       	clt
+ 872:	42 30       	cpi	r20, 0x02	; 2
+ 874:	c4 f0       	brlt	.+48     	; 0x8a6 <itoa+0x3a>
+ 876:	45 32       	cpi	r20, 0x25	; 37
+ 878:	b4 f4       	brge	.+44     	; 0x8a6 <itoa+0x3a>
+ 87a:	4a 30       	cpi	r20, 0x0A	; 10
+ 87c:	29 f4       	brne	.+10     	; 0x888 <itoa+0x1c>
+ 87e:	97 fb       	bst	r25, 7
+ 880:	1e f4       	brtc	.+6      	; 0x888 <itoa+0x1c>
+ 882:	90 95       	com	r25
+ 884:	81 95       	neg	r24
+ 886:	9f 4f       	sbci	r25, 0xFF	; 255
+ 888:	64 2f       	mov	r22, r20
+ 88a:	77 27       	eor	r23, r23
+ 88c:	0e 94 67 04 	call	0x8ce	; 0x8ce <__udivmodhi4>
+ 890:	80 5d       	subi	r24, 0xD0	; 208
+ 892:	8a 33       	cpi	r24, 0x3A	; 58
+ 894:	0c f0       	brlt	.+2      	; 0x898 <itoa+0x2c>
+ 896:	89 5d       	subi	r24, 0xD9	; 217
+ 898:	81 93       	st	Z+, r24
+ 89a:	cb 01       	movw	r24, r22
+ 89c:	00 97       	sbiw	r24, 0x00	; 0
+ 89e:	a1 f7       	brne	.-24     	; 0x888 <itoa+0x1c>
+ 8a0:	16 f4       	brtc	.+4      	; 0x8a6 <itoa+0x3a>
+ 8a2:	5d e2       	ldi	r21, 0x2D	; 45
+ 8a4:	51 93       	st	Z+, r21
+ 8a6:	10 82       	st	Z, r1
+ 8a8:	c9 01       	movw	r24, r18
+ 8aa:	0c 94 57 04 	jmp	0x8ae	; 0x8ae <strrev>
+
+000008ae <strrev>:
+ 8ae:	dc 01       	movw	r26, r24
+ 8b0:	fc 01       	movw	r30, r24
+ 8b2:	67 2f       	mov	r22, r23
+ 8b4:	71 91       	ld	r23, Z+
+ 8b6:	77 23       	and	r23, r23
+ 8b8:	e1 f7       	brne	.-8      	; 0x8b2 <strrev+0x4>
+ 8ba:	32 97       	sbiw	r30, 0x02	; 2
+ 8bc:	04 c0       	rjmp	.+8      	; 0x8c6 <strrev+0x18>
+ 8be:	7c 91       	ld	r23, X
+ 8c0:	6d 93       	st	X+, r22
+ 8c2:	70 83       	st	Z, r23
+ 8c4:	62 91       	ld	r22, -Z
+ 8c6:	ae 17       	cp	r26, r30
+ 8c8:	bf 07       	cpc	r27, r31
+ 8ca:	c8 f3       	brcs	.-14     	; 0x8be <strrev+0x10>
+ 8cc:	08 95       	ret
+
+000008ce <__udivmodhi4>:
+ 8ce:	aa 1b       	sub	r26, r26
+ 8d0:	bb 1b       	sub	r27, r27
+ 8d2:	51 e1       	ldi	r21, 0x11	; 17
+ 8d4:	07 c0       	rjmp	.+14     	; 0x8e4 <__udivmodhi4_ep>
+
+000008d6 <__udivmodhi4_loop>:
+ 8d6:	aa 1f       	adc	r26, r26
+ 8d8:	bb 1f       	adc	r27, r27
+ 8da:	a6 17       	cp	r26, r22
+ 8dc:	b7 07       	cpc	r27, r23
+ 8de:	10 f0       	brcs	.+4      	; 0x8e4 <__udivmodhi4_ep>
+ 8e0:	a6 1b       	sub	r26, r22
+ 8e2:	b7 0b       	sbc	r27, r23
+
+000008e4 <__udivmodhi4_ep>:
+ 8e4:	88 1f       	adc	r24, r24
+ 8e6:	99 1f       	adc	r25, r25
+ 8e8:	5a 95       	dec	r21
+ 8ea:	a9 f7       	brne	.-22     	; 0x8d6 <__udivmodhi4_loop>
+ 8ec:	80 95       	com	r24
+ 8ee:	90 95       	com	r25
+ 8f0:	bc 01       	movw	r22, r24
+ 8f2:	cd 01       	movw	r24, r26
+ 8f4:	08 95       	ret
+
+000008f6 <_exit>:
+ 8f6:	f8 94       	cli
+
+000008f8 <__stop_program>:
+ 8f8:	ff cf       	rjmp	.-2      	; 0x8f8 <__stop_program>
